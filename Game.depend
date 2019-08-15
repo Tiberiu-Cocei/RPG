@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1565807603 source:d:\informatica\game\game\main.cpp
+	<iostream>
+	<algorithm>
+	<cctype>
+	<string.h>
+	<map>
+
+1565807496 source:d:\informatica\game\game\src\enemy.cpp
+	"Enemy.h"
+
+1565807629 d:\informatica\game\game\include\enemy.h
+
+1565825515 source:d:\informatica\game\game\src\functions.cpp
+	"Functions.h"
+	<iostream>
+
+1565825442 d:\informatica\game\game\include\functions.h
+	<iostream>
+
