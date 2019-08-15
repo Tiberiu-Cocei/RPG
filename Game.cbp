@@ -35,11 +35,11 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Enemy.h" />
-		<Unit filename="include/Functions.h" />
+		<Unit filename="include/PlayerStats.h" />
 		<Unit filename="include/Stats.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Enemy.cpp" />
-		<Unit filename="src/Functions.cpp" />
+		<Unit filename="src/PlayerStats.cpp" />
 		<Unit filename="src/Stats.cpp" />
 		<Extensions>
 			<code_completion />
