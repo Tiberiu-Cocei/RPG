@@ -61,23 +61,6 @@ short int Stats::get_evasion() {
     return this->evasion;
 }
 
-bool Stats::take_damage(short int damage) {
-    this->currentHealthPoints -= damage;
-    if(this->currentHealthPoints <= 0) {
-        return true;
-    }
-    return false;
-}
-
-void Stats::gain_health(short int healing) {
-    if(this->currentHealthPoints + healing >= this->healthPoints) {
-        this->currentHealthPoints = this->healthPoints;
-    }
-    else {
-        this->currentHealthPoints += healing;
-    }
-}
-
 Stats::~Stats()
 {
 }

@@ -7,6 +7,28 @@ PlayerStats::PlayerStats(short int healthPoints, short int attack, short int str
 {
 }
 
+bool PlayerStats::take_damage(short int damage) {
+    this->currentHealthPoints -= damage;
+    std::cout<<"You have suffered " + std::to_string(damage);
+    if(this->currentHealthPoints <= 0) {
+        std::cout<<" damage and have died.\n";
+        this->currentHealthPoints = 0;
+        return true;
+    }
+    std::cout<<" damage and have " + std::to_string(currentHealthPoints) + " health points left.\n";
+    return false;
+}
+
+void PlayerStats::gain_health(short int healing) {
+    if(this->currentHealthPoints + healing >= this->healthPoints) {
+        this->currentHealthPoints = this->healthPoints;
+    }
+    else {
+        this->currentHealthPoints += healing;
+    }
+    std::cout<<"You have gained " + std::to_string(healing) + " health for a total of " + std::to_string(currentHealthPoints) + ".\n";
+}
+
 void PlayerStats::get_own_stats() {
     std::string ownStats = "Your current stats are :\n";
 
@@ -26,7 +48,7 @@ void PlayerStats::get_own_stats() {
     if(attack <= 10) ownStats += "You feel extremely disoriented.\n";
     else if(attack <= 20) ownStats += "You feel as if you're drunk.\n";
     else if(attack <= 30) ownStats += "You lack training.\n";
-    else if(attack <= 40) ownStats += "You could probably hit a standing target.\n";
+    else if(attack <= 40) ownStats += "You're getting better at hitting your opponents.\n";
     else if(attack <= 60) ownStats += "Your accuracy is decent.\n";
     else if(attack <= 80) ownStats += "You feel like your accuracy training has been paying off.\n";
     else if(attack <= 100) ownStats += "You can anticipate your opponents movements and strike with ease.\n";
@@ -36,11 +58,11 @@ void PlayerStats::get_own_stats() {
     if(strength <= 10) ownStats += "You feel extremely weak.\n";
     else if(strength <= 20) ownStats += "Your muscle aren't at all that developed.\n";
     else if(strength <= 30) ownStats += "You regret not training your muscles.\n";
-    else if(strength <= 40) ownStats += "You can probably lift a bigger rock.\n";
+    else if(strength <= 40) ownStats += "You can probably lift a boulder.\n";
     else if(strength <= 60) ownStats += "You're strong enough not to worry about getting pinned down by an enemy.\n";
     else if(strength <= 80) ownStats += "Your muscles are pronounced and developed.\n";
     else if(strength <= 100) ownStats += "You feel very strong and your muscles look sculpted.\n";
-    else ownStats += "You're much stronger than most enemies that you encounter. You could be confused with a pillar man.\n";
+    else ownStats += "You could be confused with a pillar man.\n";
 
     ownStats += std::to_string(defense) + " total defense. ";
     if(defense <= 10) ownStats += "Your reflexes are very slow.\n";
