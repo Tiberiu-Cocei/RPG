@@ -19,6 +19,9 @@ class Stats
         short int get_luck();
         void set_evasion(short int);
         short int get_evasion();
+        virtual void get_stats() = 0;
+        virtual bool take_damage(short int, short int, short int) = 0;
+        virtual void gain_health(short int) = 0;
 
     protected:
         short int healthPoints; //determines how much damage you can take before dying

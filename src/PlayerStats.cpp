@@ -7,16 +7,27 @@ PlayerStats::PlayerStats(short int healthPoints, short int attack, short int str
 {
 }
 
-bool PlayerStats::take_damage(short int damage) {
-    this->currentHealthPoints -= damage;
-    std::cout<<"You have suffered " + std::to_string(damage);
-    if(this->currentHealthPoints <= 0) {
-        std::cout<<" damage and have died.\n";
-        this->currentHealthPoints = 0;
-        return true;
+bool PlayerStats::take_damage(short int attack, short int strength, short int luck) {
+    short int evade = rand() % 50 + 1 + this->luck/10 + this->evasion/5  - attack/10;
+    if(evade > 42) {
+        std::cout<<"You have avoided the attack.\n";
+        return false;
     }
-    std::cout<<" damage and have " + std::to_string(currentHealthPoints) + " health points left.\n";
-    return false;
+    else {
+        short int damage = strength/2.3f - this->defense/3.2f;
+        if(damage < 0) {
+            damage = 0;
+        }
+        this->currentHealthPoints -= damage;
+        std::cout<<"You have suffered " + std::to_string(damage);
+        if(this->currentHealthPoints <= 0) {
+            std::cout<<" damage and have died.\n";
+            this->currentHealthPoints = 0;
+            return true;
+        }
+        std::cout<<" damage and have " + std::to_string(currentHealthPoints) + " health points left.\n";
+        return false;
+    }
 }
 
 void PlayerStats::gain_health(short int healing) {
@@ -29,7 +40,7 @@ void PlayerStats::gain_health(short int healing) {
     std::cout<<"You have gained " + std::to_string(healing) + " health for a total of " + std::to_string(currentHealthPoints) + ".\n";
 }
 
-void PlayerStats::get_own_stats() {
+void PlayerStats::get_stats() {
     std::string ownStats = "Your current stats are :\n";
 
     ownStats += std::to_string(currentHealthPoints) + " health points out of " + std::to_string(healthPoints) + ". ";
@@ -47,7 +58,7 @@ void PlayerStats::get_own_stats() {
     ownStats += std::to_string(attack) + " total attack. ";
     if(attack <= 10) ownStats += "You feel extremely disoriented.\n";
     else if(attack <= 20) ownStats += "You feel as if you're drunk.\n";
-    else if(attack <= 30) ownStats += "You lack training.\n";
+    else if(attack <= 30) ownStats += "You lack combat training.\n";
     else if(attack <= 40) ownStats += "You're getting better at hitting your opponents.\n";
     else if(attack <= 60) ownStats += "Your accuracy is decent.\n";
     else if(attack <= 80) ownStats += "You feel like your accuracy training has been paying off.\n";

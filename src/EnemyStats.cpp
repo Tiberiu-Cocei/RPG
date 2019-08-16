@@ -7,16 +7,27 @@ EnemyStats::EnemyStats(short int healthPoints, short int attack, short int stren
 {
 }
 
-bool EnemyStats::take_damage(short int damage) {
-    this->currentHealthPoints -= damage;
-    std::cout<<"You have dealt " + std::to_string(damage);
-    if(this->currentHealthPoints <= 0) {
-        std::cout<<" damage to the enemy. They died.\n";
-        this->currentHealthPoints = 0;
-        return true;
+bool EnemyStats::take_damage(short int attack, short int strength, short int luck) {
+    short int evade = rand() % 50 + 1 - luck/10 + this->evasion/5  - attack/10;
+    if(evade > 42) {
+        std::cout<<"Your enemy has avoided the attack.\n";
+        return false;
     }
-    std::cout<<" damage to the enemy. They have " + std::to_string(currentHealthPoints) + " health points left.\n";
-    return false;
+    else {
+        short int damage = strength/1.8f - this->defense/3.5f;
+        if(damage < 0) {
+            damage = 0;
+        }
+        this->currentHealthPoints -= damage;
+        std::cout<<"The enemy has suffered " + std::to_string(damage);
+        if(this->currentHealthPoints <= 0) {
+            std::cout<<" damage and has died.\n";
+            this->currentHealthPoints = 0;
+            return true;
+        }
+        std::cout<<" damage and has " + std::to_string(currentHealthPoints) + " health points left.\n";
+        return false;
+    }
 }
 
 void EnemyStats::gain_health(short int healing) {
@@ -29,7 +40,7 @@ void EnemyStats::gain_health(short int healing) {
     std::cout<<"The enemy gained " + std::to_string(healing) + " health for a total of " + std::to_string(currentHealthPoints) + ".\n";
 }
 
-void EnemyStats::get_enemy_stats() {
+void EnemyStats::get_stats() {
     std::string enemyStats = "The stats of your enemy are :\n";
 
     enemyStats += std::to_string(currentHealthPoints) + " health points out of " + std::to_string(healthPoints) + ". ";

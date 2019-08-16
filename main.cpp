@@ -2,11 +2,16 @@
 #include <algorithm>
 #include <cctype>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 #include <map>
 #include "PlayerStats.h"
+#include "EnemyStats.h"
 
 int main()
 {
+  srand (time(NULL));
+
   //command string-int mapping for the switch case
   std::map<std::string, int> commandMapping;
   std::map<std::string, int>::iterator commandMappingIterator;
@@ -18,10 +23,7 @@ int main()
   commandMapping.insert(std::make_pair("my stats", 6));
   commandMapping.insert(std::make_pair("exit", 100));
 
-  PlayerStats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
-//  playerStats->get_own_stats();
-//  playerStats->set_strength(playerStats->get_strength()+105);
-//  playerStats->get_own_stats();
+  Stats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
 
   bool roomLayout[7][7] = {
       { 0, 0, 0, 0, 0, 0, 0 },
@@ -109,7 +111,7 @@ int main()
             }
             break;
           case 6 :
-            playerStats->get_own_stats();
+            playerStats->get_stats();
             break;
           case 100 :
             std::cout<<"Exiting the game.\n";
