@@ -57,10 +57,12 @@
 1565972108 d:\informatica\git\rpg\include\enemystats.h
 	<Stats.h>
 
-1566034295 source:d:\informatica\git\rpg\src\item.cpp
+1566082336 source:d:\informatica\git\rpg\src\item.cpp
 	"Item.h"
+	<string.h>
+	<iostream>
 
-1566034612 d:\informatica\git\rpg\include\item.h
+1566082268 d:\informatica\git\rpg\include\item.h
 	<string>
 	"PlayerStats.h"
 

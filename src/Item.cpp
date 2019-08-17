@@ -2,7 +2,7 @@
 #include <string.h>
 #include <iostream>
 
-Item::Item(std::string name, std::string findDescription, std::string useDescription)
+Item::Item(std::string name, std::string findDescription, std::string useDescription, short int maxStack)
 {
     this->name.clear();
     this->name += name;
@@ -10,6 +10,7 @@ Item::Item(std::string name, std::string findDescription, std::string useDescrip
     this->findDescription += findDescription;
     this->useDescription.clear();
     this->useDescription += useDescription;
+    this->maxStack = maxStack;
 }
 
 void Item::set_name(std::string name) {
@@ -37,6 +38,14 @@ void Item::set_useDescription(std::string useDescription) {
 
 std::string Item::get_useDescription() {
     return this->useDescription;
+}
+
+void Item::set_maxStack(short int maxStack) {
+    this->maxStack = maxStack;
+}
+
+short int Item::get_maxStack() {
+    return this->maxStack;
 }
 
 Item::~Item()
