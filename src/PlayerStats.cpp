@@ -8,13 +8,13 @@ PlayerStats::PlayerStats(short int healthPoints, short int attack, short int str
 }
 
 bool PlayerStats::take_damage(short int attack, short int strength, short int luck) {
-    short int evade = rand() % 50 + 1 + this->luck/10 + this->evasion/5  - attack/10;
+    short int evade = rand() % 50 + 1 + this->luck/10 + this->evasion/5  - attack/10 + this->tempLuck/10 + this->tempEvasion/5;
     if(evade > 42) {
         std::cout<<"You have avoided the attack.\n";
         return false;
     }
     else {
-        short int damage = strength/2.3f - this->defense/3.2f;
+        short int damage = strength/2.3f - this->defense/3.2f - this->tempDefense/3.2f;
         if(damage < 0) {
             damage = 0;
         }
@@ -31,13 +31,47 @@ bool PlayerStats::take_damage(short int attack, short int strength, short int lu
 }
 
 void PlayerStats::gain_health(short int healing) {
-    if(this->currentHealthPoints + healing >= this->healthPoints) {
-        this->currentHealthPoints = this->healthPoints;
+    if(this->currentHealthPoints + healing > this->healthPoints + this->tempHealthPoints) {
+        this->currentHealthPoints = this->healthPoints + this->tempHealthPoints;
     }
     else {
         this->currentHealthPoints += healing;
     }
     std::cout<<"You have gained " + std::to_string(healing) + " health for a total of " + std::to_string(currentHealthPoints) + ".\n";
+}
+
+void PlayerStats::modifyTempStats(short int tempHealthPoints, short int tempAttack, short int tempStrength, short int tempDefense, short int tempLuck, short int tempEvasion) {
+    this->tempHealthPoints += tempHealthPoints;
+    this->currentHealthPoints += tempHealthPoints;
+    this->tempAttack += tempAttack;
+    this->tempStrength += tempStrength;
+    this->tempDefense += tempDefense;
+    this->tempLuck += tempLuck;
+    this->tempEvasion += tempEvasion;
+}
+
+void PlayerStats::resetTempStats() {
+    if(this->currentHealthPoints > this->healthPoints) {
+        this->currentHealthPoints = this->healthPoints;
+    }
+    this->tempHealthPoints = 0;
+    this->tempAttack = 0;
+    this->tempStrength = 0;
+    this->tempDefense = 0;
+    this->tempLuck = 0;
+    this->tempEvasion = 0;
+}
+
+short int PlayerStats::get_tempAttack() {
+    return this->tempAttack;
+}
+
+short int PlayerStats::get_tempStrength() {
+    return this->tempStrength;
+}
+
+short int PlayerStats::get_tempLuck() {
+    return this->tempLuck;
 }
 
 void PlayerStats::get_stats() {

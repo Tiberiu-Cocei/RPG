@@ -36,11 +36,13 @@
 		</Compiler>
 		<Unit filename="include/Enemy.h" />
 		<Unit filename="include/EnemyStats.h" />
+		<Unit filename="include/Item.h" />
 		<Unit filename="include/PlayerStats.h" />
 		<Unit filename="include/Stats.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/EnemyStats.cpp" />
+		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/PlayerStats.cpp" />
 		<Unit filename="src/Stats.cpp" />
 		<Extensions>

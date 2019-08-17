@@ -18,7 +18,7 @@
 1565825442 d:\informatica\game\game\include\functions.h
 	<iostream>
 
-1565986311 source:d:\informatica\git\rpg\main.cpp
+1566033252 source:d:\informatica\git\rpg\main.cpp
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -41,12 +41,12 @@
 
 1565972113 d:\informatica\git\rpg\include\stats.h
 
-1565972099 source:d:\informatica\git\rpg\src\playerstats.cpp
+1566035917 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
 
-1565972111 d:\informatica\git\rpg\include\playerstats.h
+1566035574 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
 1565981768 source:d:\informatica\git\rpg\src\enemystats.cpp
@@ -56,4 +56,11 @@
 
 1565972108 d:\informatica\git\rpg\include\enemystats.h
 	<Stats.h>
+
+1566034295 source:d:\informatica\git\rpg\src\item.cpp
+	"Item.h"
+
+1566034612 d:\informatica\git\rpg\include\item.h
+	<string>
+	"PlayerStats.h"
 
