@@ -7,19 +7,18 @@
 class Item
 {
     public:
-        Item(std::string, std::string, std::string, short int);
+        Item(short int, short int, short int, short int, short int, short int, std::string, std::string, std::string, short int);
         virtual ~Item();
-        void set_name(std::string);
-        std::string get_name();
-        void set_findDescription(std::string);
-        std::string get_findDescription();
-        void set_useDescription(std::string);
-        std::string get_useDescription();
-        void set_maxStack(short int);
-        short int get_maxStack();
-        virtual void use_item(PlayerStats playerStats) = 0;
+        virtual void use_item(PlayerStats& playerStats) = 0;
+        virtual void find_item() = 0;
 
     protected:
+        short int healthBoost;
+        short int attackBoost;
+        short int strengthBoost;
+        short int defenseBoost;
+        short int luckBoost;
+        short int evasionBoost;
         std::string name;
         std::string findDescription;
         std::string useDescription;

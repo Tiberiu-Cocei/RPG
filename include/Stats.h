@@ -7,18 +7,6 @@ class Stats
     public:
         Stats(short int, short int, short int, short int, short int, short int);
         virtual ~Stats();
-        void set_health_points(short int);
-        short int get_health_points();
-        void set_attack(short int);
-        short int get_attack();
-        void set_strength(short int);
-        short int get_strength();
-        void set_defense(short int);
-        short int get_defense();
-        void set_luck(short int);
-        short int get_luck();
-        void set_evasion(short int);
-        short int get_evasion();
         virtual void get_stats() = 0;
         virtual bool take_damage(short int, short int, short int) = 0;
         virtual void gain_health(short int) = 0;

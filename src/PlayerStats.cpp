@@ -14,7 +14,7 @@ bool PlayerStats::take_damage(short int attack, short int strength, short int lu
         return false;
     }
     else {
-        short int damage = strength/2.3f - this->defense/3.2f - this->tempDefense/3.2f;
+        short int damage = strength/2.3f - this->defense/3.2f - this->tempDefense/3.2f - this->dmgReduction;
         if(damage < 0) {
             damage = 0;
         }
@@ -40,7 +40,7 @@ void PlayerStats::gain_health(short int healing) {
     std::cout<<"You have gained " + std::to_string(healing) + " health for a total of " + std::to_string(currentHealthPoints) + ".\n";
 }
 
-void PlayerStats::modifyTempStats(short int tempHealthPoints, short int tempAttack, short int tempStrength, short int tempDefense, short int tempLuck, short int tempEvasion) {
+void PlayerStats::modify_temp_stats(short int tempHealthPoints, short int tempAttack, short int tempStrength, short int tempDefense, short int tempLuck, short int tempEvasion) {
     this->tempHealthPoints += tempHealthPoints;
     this->currentHealthPoints += tempHealthPoints;
     this->tempAttack += tempAttack;
@@ -50,7 +50,7 @@ void PlayerStats::modifyTempStats(short int tempHealthPoints, short int tempAtta
     this->tempEvasion += tempEvasion;
 }
 
-void PlayerStats::resetTempStats() {
+void PlayerStats::reset_temp_stats() {
     if(this->currentHealthPoints > this->healthPoints) {
         this->currentHealthPoints = this->healthPoints;
     }
@@ -62,16 +62,47 @@ void PlayerStats::resetTempStats() {
     this->tempEvasion = 0;
 }
 
-short int PlayerStats::get_tempAttack() {
-    return this->tempAttack;
+void PlayerStats::gain_stats_from_equip(short int healthPoints, short int attack, short int strength, short int defense,
+                                        short int luck, short int evasion, short int dmgBonus, short int dmgReduction) {
+    this->healthPoints += healthPoints;
+    this->attack += attack;
+    this->strength += strength;
+    this->defense += defense;
+    this->luck += luck;
+    this->evasion += evasion;
+    this->dmgBonus += dmgBonus;
+    this->dmgReduction += dmgReduction;
 }
 
-short int PlayerStats::get_tempStrength() {
-    return this->tempStrength;
+void PlayerStats::lose_stats_from_unequip(short int healthPoints, short int attack, short int strength, short int defense,
+                                          short int luck, short int evasion, short int dmgBonus, short int dmgReduction) {
+    this->healthPoints -= healthPoints;
+    if(this->currentHealthPoints > this->healthPoints) {
+        this->currentHealthPoints = this->healthPoints;
+    }
+    this->attack -= attack;
+    this->strength -= strength;
+    this->defense -= defense;
+    this->luck -= luck;
+    this->evasion -= evasion;
+    this->dmgBonus -= dmgBonus;
+    this->dmgReduction -= dmgReduction;
 }
 
-short int PlayerStats::get_tempLuck() {
-    return this->tempLuck;
+short int PlayerStats::get_attack() {
+    return this->attack + this->tempAttack;
+}
+
+short int PlayerStats::get_strength() {
+    return this->strength + this->tempStrength;
+}
+
+short int PlayerStats::get_luck() {
+    return this->luck + this->tempLuck;
+}
+
+short int PlayerStats::get_dmgBonus() {
+    return this->dmgBonus;
 }
 
 void PlayerStats::get_stats() {
@@ -79,9 +110,9 @@ void PlayerStats::get_stats() {
 
     ownStats += std::to_string(currentHealthPoints) + " health points out of " + std::to_string(healthPoints) + ". ";
     if(currentHealthPoints <= 10) ownStats += "You're on death's door.\n";
-    else if(currentHealthPoints <= 20) ownStats += "You've lost a lot of blood and feel weak.\n";
+    else if(currentHealthPoints <= 20) ownStats += "You have lost a lot of blood and feel weak.\n";
     else if(currentHealthPoints <= 30) ownStats += "You're wounded and in pain.\n";
-    else if(currentHealthPoints <= 40) ownStats += "You've seen better days.\n";
+    else if(currentHealthPoints <= 40) ownStats += "You have seen better days.\n";
     else if(currentHealthPoints <= 50) ownStats += "The pain is barely manageable.\n";
     else if(currentHealthPoints <= 60) ownStats += "You still feel alright.\n";
     else if(currentHealthPoints <= 70) ownStats += "You're injured and in pain.\n";
@@ -101,7 +132,7 @@ void PlayerStats::get_stats() {
 
     ownStats += std::to_string(strength) + " total strength. ";
     if(strength <= 10) ownStats += "You feel extremely weak.\n";
-    else if(strength <= 20) ownStats += "Your muscle aren't at all that developed.\n";
+    else if(strength <= 20) ownStats += "Your muscle are not at all that developed.\n";
     else if(strength <= 30) ownStats += "You regret not training your muscles.\n";
     else if(strength <= 40) ownStats += "You can probably lift a boulder.\n";
     else if(strength <= 60) ownStats += "You're strong enough not to worry about getting pinned down by an enemy.\n";
@@ -131,7 +162,7 @@ void PlayerStats::get_stats() {
 
     ownStats += std::to_string(evasion) + " total evasion. ";
     if(evasion <= 10) ownStats += "You're barely able to dodge a slow falling tree.\n";
-    else if(evasion <= 20) ownStats += "You aren't agile at all.\n";
+    else if(evasion <= 20) ownStats += "You are not agile at all.\n";
     else if(evasion <= 30) ownStats += "You're agile enough to sometimes avoid a slow attack.\n";
     else if(evasion <= 40) ownStats += "You're starting to feel more agile.\n";
     else if(evasion <= 60) ownStats += "You're agile enough to rarely avoid attacks.\n";

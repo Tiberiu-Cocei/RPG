@@ -10,7 +10,7 @@ class EnemyStats : public Stats
         EnemyStats(short int, short int, short int, short int, short int);
         ~EnemyStats();
         void get_stats();
-        bool take_damage(short int, short int, short int);
+        bool take_damage(short int, short int, short int, short int);
         void gain_health(short int);
 };
 

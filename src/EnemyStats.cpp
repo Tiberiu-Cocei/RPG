@@ -7,14 +7,14 @@ EnemyStats::EnemyStats(short int healthPoints, short int attack, short int stren
 {
 }
 
-bool EnemyStats::take_damage(short int attack, short int strength, short int luck) {
+bool EnemyStats::take_damage(short int attack, short int strength, short int luck, short int dmgBonus) {
     short int evade = rand() % 50 + 1 - luck/10 + this->evasion/5  - attack/10;
     if(evade > 42) {
         std::cout<<"Your enemy has avoided the attack.\n";
         return false;
     }
     else {
-        short int damage = strength/1.8f - this->defense/3.5f;
+        short int damage = dmgBonus + strength/1.8f - this->defense/3.5f;
         if(damage < 0) {
             damage = 0;
         }

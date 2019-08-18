@@ -34,35 +34,46 @@
 
 1565807629 d:\informatica\git\rpg\include\enemy.h
 
-1565898654 source:d:\informatica\git\rpg\src\stats.cpp
+1566117160 source:d:\informatica\git\rpg\src\stats.cpp
 	"Stats.h"
 	<string.h>
 	<iostream>
 
-1565972113 d:\informatica\git\rpg\include\stats.h
+1566117146 d:\informatica\git\rpg\include\stats.h
 
-1566035917 source:d:\informatica\git\rpg\src\playerstats.cpp
+1566117116 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
 
-1566035574 d:\informatica\git\rpg\include\playerstats.h
+1566125296 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
-1565981768 source:d:\informatica\git\rpg\src\enemystats.cpp
+1566124628 source:d:\informatica\git\rpg\src\enemystats.cpp
 	"EnemyStats.h"
 	<string.h>
 	<iostream>
 
-1565972108 d:\informatica\git\rpg\include\enemystats.h
+1566124610 d:\informatica\git\rpg\include\enemystats.h
 	<Stats.h>
 
-1566082336 source:d:\informatica\git\rpg\src\item.cpp
+1566117857 source:d:\informatica\git\rpg\src\item.cpp
 	"Item.h"
 	<string.h>
 	<iostream>
 
-1566082268 d:\informatica\git\rpg\include\item.h
+1566123529 d:\informatica\git\rpg\include\item.h
 	<string>
 	"PlayerStats.h"
+
+1566123569 source:d:\informatica\git\rpg\src\consumableitem.cpp
+	"ConsumableItem.h"
+	<string.h>
+	<iostream>
+	"PlayerStats.h"
+
+1566123572 d:\informatica\git\rpg\include\consumableitem.h
+	<Item.h>
+	"PlayerStats.h"
+	<string>
 

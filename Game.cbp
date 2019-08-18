@@ -37,6 +37,7 @@
 		<Unit filename="include/ConsumableItem.h" />
 		<Unit filename="include/Enemy.h" />
 		<Unit filename="include/EnemyStats.h" />
+		<Unit filename="include/EquipableItem.h" />
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/PlayerStats.h" />
 		<Unit filename="include/Stats.h" />
@@ -44,6 +45,7 @@
 		<Unit filename="src/ConsumableItem.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/EnemyStats.cpp" />
+		<Unit filename="src/EquipableItem.cpp" />
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/PlayerStats.cpp" />
 		<Unit filename="src/Stats.cpp" />
