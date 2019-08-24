@@ -18,7 +18,7 @@
 1565825442 d:\informatica\game\game\include\functions.h
 	<iostream>
 
-1566657276 source:d:\informatica\git\rpg\main.cpp
+1566683050 source:d:\informatica\git\rpg\main.cpp
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -30,6 +30,8 @@
 	"EnemyStats.h"
 	"EquipableItem.h"
 	"EquipableItemList.h"
+	"ConsumableItemList.h"
+	"Equipment.h"
 
 1565807496 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
@@ -43,12 +45,12 @@
 
 1566593307 d:\informatica\git\rpg\include\stats.h
 
-1566633507 source:d:\informatica\git\rpg\src\playerstats.cpp
+1566683161 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
 
-1566593953 d:\informatica\git\rpg\include\playerstats.h
+1566681467 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
 1566593055 source:d:\informatica\git\rpg\src\enemystats.cpp
@@ -64,7 +66,7 @@
 	<string.h>
 	<iostream>
 
-1566657031 d:\informatica\git\rpg\include\item.h
+1566681492 d:\informatica\git\rpg\include\item.h
 	<string>
 	"PlayerStats.h"
 
@@ -79,18 +81,18 @@
 	"PlayerStats.h"
 	<string>
 
-1566657148 source:d:\informatica\git\rpg\src\equipableitem.cpp
+1566683393 source:d:\informatica\git\rpg\src\equipableitem.cpp
 	"EquipableItem.h"
 	<string.h>
 	<iostream>
 	"PlayerStats.h"
 
-1566657131 d:\informatica\git\rpg\include\equipableitem.h
+1566683429 d:\informatica\git\rpg\include\equipableitem.h
 	<Item.h>
 	<string>
 	"PlayerStats.h"
 
-1566667299 source:d:\informatica\git\rpg\src\equipableitemlist.cpp
+1566684456 source:d:\informatica\git\rpg\src\equipableitemlist.cpp
 	"EquipableItemList.h"
 
 1566667026 d:\informatica\git\rpg\include\equipableitemlist.h
@@ -101,4 +103,15 @@
 
 1566667033 d:\informatica\git\rpg\include\consumableitemlist.h
 	"ConsumableItem.h"
+
+1566683708 d:\informatica\git\rpg\include\equipment.h
+	"EquipableItem.h"
+	<iostream>
+	<string.h>
+	"PlayerStats.h"
+
+1566684012 source:d:\informatica\git\rpg\src\equipment.cpp
+	"Equipment.h"
+	<iostream>
+	<string.h>
 

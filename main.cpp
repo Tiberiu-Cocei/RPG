@@ -10,6 +10,7 @@
 #include "EquipableItem.h"
 #include "EquipableItemList.h"
 #include "ConsumableItemList.h"
+#include "Equipment.h"
 
 int main()
 {
@@ -24,9 +25,11 @@ int main()
   commandMapping.insert(std::make_pair("move west", 4));
   commandMapping.insert(std::make_pair("move south", 5));
   commandMapping.insert(std::make_pair("my stats", 6));
+  commandMapping.insert(std::make_pair("my equipment", 7));
   commandMapping.insert(std::make_pair("exit", 100));
 
   PlayerStats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
+  Equipment * equipment = new Equipment(playerStats);
   EquipableItemList * equipableItemList = new EquipableItemList();
   ConsumableItemList * consumableItemList = new ConsumableItemList();
 
@@ -43,7 +46,7 @@ int main()
   int x = 5, y = 5, commandKey;
 
   std::string command, directions;
-  std::cout<<"Write \"help\" to view all the commands.\n";
+  std::cout<<"Write 'help' to view all the commands.\n";
 
   while (strcmp(command.c_str(), "exit"))
   {
@@ -77,7 +80,7 @@ int main()
       }
       switch(commandKey) {
           case 1 :
-            std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats'.\n";
+            std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats', 'my equipment'.\n";
             break;
           case 2 :
             if (roomLayout[x-1][y] == 1) {
@@ -116,7 +119,10 @@ int main()
             }
             break;
           case 6 :
-            playerStats->get_stats();
+            equipment->get_player_stats()->get_stats();
+            break;
+          case 7 :
+            equipment->get_equipment();
             break;
           case 100 :
             std::cout<<"Exiting the game.\n";

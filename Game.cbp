@@ -40,6 +40,7 @@
 		<Unit filename="include/EnemyStats.h" />
 		<Unit filename="include/EquipableItem.h" />
 		<Unit filename="include/EquipableItemList.h" />
+		<Unit filename="include/Equipment.h" />
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/PlayerStats.h" />
 		<Unit filename="include/Stats.h" />
@@ -50,6 +51,7 @@
 		<Unit filename="src/EnemyStats.cpp" />
 		<Unit filename="src/EquipableItem.cpp" />
 		<Unit filename="src/EquipableItemList.cpp" />
+		<Unit filename="src/Equipment.cpp" />
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/PlayerStats.cpp" />
 		<Unit filename="src/Stats.cpp" />

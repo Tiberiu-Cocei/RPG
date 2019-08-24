@@ -5,6 +5,8 @@
 PlayerStats::PlayerStats(short int healthPoints, short int attack, short int strength, short int defense, short int luck, short int evasion)
 : Stats(healthPoints, attack, strength, defense, luck, evasion)
 {
+    dmgBonus = 0;
+    dmgReduction = 0;
 }
 
 bool PlayerStats::take_damage(short int attack, short int strength, short int luck, short int dmgBonus) {
@@ -176,6 +178,8 @@ void PlayerStats::get_stats() {
     else if(evasion <= 80) ownStats += "You're agile enough to often avoid attacks.\n";
     else if(evasion <= 100) ownStats += "You feel very agile, being able to evade even the fastest attacks.\n";
     else ownStats += "Even the most trained and accurate enemies have a hard time hitting you.\n";
+
+    ownStats += std::to_string(dmgBonus) + " damage bonus and " + std::to_string(dmgReduction) + " damage reduction.\n";
 
     std::cout<<ownStats;
 }
