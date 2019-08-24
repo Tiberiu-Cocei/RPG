@@ -12,15 +12,16 @@ ConsumableItem::ConsumableItem(short int healing, short int healthBoost, short i
 }
 
 void ConsumableItem::find_item() {
-    std::cout << this->findDescription << std::endl;
+    std::cout << get_find_description() << std::endl;
 }
 
-void ConsumableItem::use_item(PlayerStats& playerStats) {
-    std::cout << this->useDescription << std::endl;
+void ConsumableItem::use_item(PlayerStats*& playerStats) {
+    std::cout << get_use_description() << std::endl;
     if(this->healing != 0) {
-        playerStats.gain_health(this->healing);
+        playerStats->gain_health(this->healing);
     }
-    playerStats.modify_temp_stats(this->healthBoost, this->attackBoost, this->strengthBoost, this->defenseBoost, this->luckBoost, this->evasionBoost);
+    playerStats->modify_temp_stats(get_health_boost(), get_attack_boost(), get_strength_boost(),
+                                  get_defense_boost(), get_luck_boost(), get_evasion_boost());
 }
 
 ConsumableItem::~ConsumableItem()

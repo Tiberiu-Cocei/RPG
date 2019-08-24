@@ -8,41 +8,43 @@ EnemyStats::EnemyStats(short int healthPoints, short int attack, short int stren
 }
 
 bool EnemyStats::take_damage(short int attack, short int strength, short int luck, short int dmgBonus) {
-    short int evade = rand() % 50 + 1 - luck/10 + this->evasion/5  - attack/10;
+    short int evade = rand() % 50 + 1 - luck/10 + get_evasion()/5  - attack/10;
     if(evade > 42) {
         std::cout<<"Your enemy has avoided the attack.\n";
         return false;
     }
     else {
-        short int damage = dmgBonus + strength/1.8f - this->defense/3.5f;
+        short int damage = dmgBonus + strength/1.8f - get_defense()/3.5f;
         if(damage < 0) {
             damage = 0;
         }
-        this->currentHealthPoints -= damage;
+        set_current_health_points(get_current_health_points() - damage);
         std::cout<<"The enemy has suffered " + std::to_string(damage);
-        if(this->currentHealthPoints <= 0) {
+        if(get_current_health_points() <= 0) {
             std::cout<<" damage and has died.\n";
-            this->currentHealthPoints = 0;
+            set_current_health_points(0);
             return true;
         }
-        std::cout<<" damage and has " + std::to_string(currentHealthPoints) + " health points left.\n";
+        std::cout<<" damage and has " + std::to_string(get_current_health_points()) + " health points left.\n";
         return false;
     }
 }
 
 void EnemyStats::gain_health(short int healing) {
-    if(this->currentHealthPoints + healing >= this->healthPoints) {
-        this->currentHealthPoints = this->healthPoints;
+    if(get_current_health_points() + healing >= get_health_points()) {
+        set_current_health_points(get_health_points());
     }
     else {
-        this->currentHealthPoints += healing;
+        set_current_health_points(get_current_health_points() + healing);
     }
-    std::cout<<"The enemy gained " + std::to_string(healing) + " health for a total of " + std::to_string(currentHealthPoints) + ".\n";
+    std::cout<<"The enemy gained " + std::to_string(healing) + " health for a total of " + std::to_string(get_current_health_points()) + ".\n";
 }
 
 void EnemyStats::get_stats() {
     std::string enemyStats = "The stats of your enemy are :\n";
 
+    short int currentHealthPoints = get_current_health_points();
+    short int healthPoints = get_health_points();
     enemyStats += std::to_string(currentHealthPoints) + " health points out of " + std::to_string(healthPoints) + ". ";
     if(currentHealthPoints <= healthPoints/10) enemyStats += "They're almost dead.\n";
     else if(currentHealthPoints <= healthPoints/5) enemyStats += "They're missing chunks of themselves.\n";
@@ -52,6 +54,7 @@ void EnemyStats::get_stats() {
     else if(currentHealthPoints <= healthPoints/1.1f) enemyStats += "They're hurt.\n";
     else enemyStats += "You feel better than ever.\n";
 
+    short int attack = get_attack();
     enemyStats += std::to_string(attack) + " total attack. ";
     if(attack <= 10) enemyStats += "They're incredibly inaccurate.\n";
     else if(attack <= 20) enemyStats += "They seem as if they're drunk.\n";
@@ -62,6 +65,7 @@ void EnemyStats::get_stats() {
     else if(attack <= 100) enemyStats += "They're experienced and should not be taken lightly.\n";
     else enemyStats += "They have fought countless times and know what your next move is going to be most of the time.\n";
 
+    short int strength = get_strength();
     enemyStats += std::to_string(strength) + " total strength. ";
     if(strength <= 10) enemyStats += "They seem to be extremely weak.\n";
     else if(strength <= 30) enemyStats += "They seem weak.\n";
@@ -71,6 +75,7 @@ void EnemyStats::get_stats() {
     else if(strength <= 100) enemyStats += "They are strong and dangerous.\n";
     else enemyStats += "They're much stronger than most enemies that you have encountered before.\n";
 
+    short int defense = get_defense();
     enemyStats += std::to_string(defense) + " total defense. ";
     if(defense <= 10) enemyStats += "They lack any kind of defense.\n";
     else if(defense <= 20) enemyStats += "Their defenses are fragile and weak.\n";
@@ -81,6 +86,7 @@ void EnemyStats::get_stats() {
     else if(defense <= 100) enemyStats += "Their defense is on par with armor made using the most expensive of materials.\n";
     else enemyStats += "Their defense is of legend and extremely hard to penetrate.\n";
 
+    short int evasion = get_evasion();
     enemyStats += std::to_string(evasion) + " total evasion. ";
     if(evasion <= 10) enemyStats += "They are extremely unlikely to be able to evade any type of attack.\n";
     else if(evasion <= 20) enemyStats += "Untrained and unskilled, they're not likely to dodge.\n";

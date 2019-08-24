@@ -10,11 +10,11 @@ class EquipableItem : public Item
     public:
         EquipableItem(short int, short int, short int, short int, short int, short int, short int, short int, std::string, std::string, std::string);
         ~EquipableItem();
-        void use_item(PlayerStats& playerStats);
-        void unequip_item(PlayerStats& playerStats);
+        void use_item(PlayerStats*& playerStats);
+        void unequip_item(PlayerStats*& playerStats);
         void find_item();
 
-    protected:
+    private:
         short int dmgBonus;
         short int dmgReduction;
 };

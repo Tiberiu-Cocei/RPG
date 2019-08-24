@@ -17,6 +17,42 @@ Item::Item(short int healthBoost, short int attackBoost, short int strengthBoost
     this->maxStack = maxStack;
 }
 
+std::string Item::get_name() {
+    return this->name;
+}
+
+std::string Item::get_find_description() {
+    return this->findDescription;
+}
+
+std::string Item::get_use_description() {
+    return this->useDescription;
+}
+
+short int Item::get_health_boost() {
+    return this->healthBoost;
+}
+
+short int Item::get_attack_boost() {
+    return this->attackBoost;
+}
+
+short int Item::get_strength_boost() {
+    return this->strengthBoost;
+}
+
+short int Item::get_defense_boost() {
+    return this->defenseBoost;
+}
+
+short int Item::get_luck_boost() {
+    return this->luckBoost;
+}
+
+short int Item::get_evasion_boost() {
+    return this->evasionBoost;
+}
+
 Item::~Item()
 {
 }

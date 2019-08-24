@@ -13,19 +13,19 @@ EquipableItem::EquipableItem(short int dmgBonus, short int dmgReduction, short i
 }
 
 void EquipableItem::find_item() {
-    std::cout << this->findDescription << std::endl;
+    std::cout << get_find_description() << std::endl;
 }
 
-void EquipableItem::use_item(PlayerStats& playerStats) {
-    std::cout << this->useDescription << std::endl;
-    playerStats.gain_stats_from_equip(this->healthBoost, this->attackBoost, this->strengthBoost, this->defenseBoost,
-                                      this->luckBoost, this->evasionBoost, this->dmgBonus, this->dmgReduction);
+void EquipableItem::use_item(PlayerStats*& playerStats) {
+    std::cout << get_use_description() << std::endl;
+    playerStats->gain_stats_from_equip(get_health_boost(), get_attack_boost(), get_strength_boost(), get_defense_boost(),
+                                      get_luck_boost(), get_evasion_boost(), this->dmgBonus, this->dmgReduction);
 }
 
-void EquipableItem::unequip_item(PlayerStats& playerStats) {
-    std::cout << "You have unequipped the " + this->name + ".\n";
-    playerStats.lose_stats_from_unequip(this->healthBoost, this->attackBoost, this->strengthBoost, this->defenseBoost,
-                                        this->luckBoost, this->evasionBoost, this->dmgBonus, this->dmgReduction);
+void EquipableItem::unequip_item(PlayerStats*& playerStats) {
+    std::cout << "You have unequipped the " + get_name() + ".\n";
+    playerStats->lose_stats_from_unequip(get_health_boost(), get_attack_boost(), get_strength_boost(),get_defense_boost(),
+                                        get_luck_boost(), get_evasion_boost(), this->dmgBonus, this->dmgReduction);
 }
 
 EquipableItem::~EquipableItem()

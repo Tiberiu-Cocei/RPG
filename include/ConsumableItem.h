@@ -11,9 +11,9 @@ class ConsumableItem : public Item
         ConsumableItem(short int, short int, short int, short int, short int, short int, short int, short int, std::string, std::string, std::string);
         ~ConsumableItem();
         void find_item();
-        void use_item(PlayerStats& playerStats);
+        void use_item(PlayerStats*& playerStats);
 
-    protected:
+    private:
         short int healing;
 };
 

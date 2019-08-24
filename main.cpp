@@ -7,6 +7,7 @@
 #include <map>
 #include "PlayerStats.h"
 #include "EnemyStats.h"
+#include "EquipableItem.h"
 
 int main()
 {
@@ -23,7 +24,7 @@ int main()
   commandMapping.insert(std::make_pair("my stats", 6));
   commandMapping.insert(std::make_pair("exit", 100));
 
-  Stats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
+  PlayerStats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
 
   bool roomLayout[7][7] = {
       { 0, 0, 0, 0, 0, 0, 0 },

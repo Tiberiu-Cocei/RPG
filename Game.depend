@@ -18,7 +18,7 @@
 1565825442 d:\informatica\game\game\include\functions.h
 	<iostream>
 
-1566033252 source:d:\informatica\git\rpg\main.cpp
+1566633207 source:d:\informatica\git\rpg\main.cpp
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -28,28 +28,29 @@
 	<map>
 	"PlayerStats.h"
 	"EnemyStats.h"
+	"EquipableItem.h"
 
 1565807496 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
 
-1565807629 d:\informatica\git\rpg\include\enemy.h
+1566591553 d:\informatica\git\rpg\include\enemy.h
 
-1566117160 source:d:\informatica\git\rpg\src\stats.cpp
+1566591836 source:d:\informatica\git\rpg\src\stats.cpp
 	"Stats.h"
 	<string.h>
 	<iostream>
 
-1566117146 d:\informatica\git\rpg\include\stats.h
+1566593307 d:\informatica\git\rpg\include\stats.h
 
-1566117116 source:d:\informatica\git\rpg\src\playerstats.cpp
+1566633507 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
 
-1566125296 d:\informatica\git\rpg\include\playerstats.h
+1566593953 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
-1566124628 source:d:\informatica\git\rpg\src\enemystats.cpp
+1566593055 source:d:\informatica\git\rpg\src\enemystats.cpp
 	"EnemyStats.h"
 	<string.h>
 	<iostream>
@@ -57,23 +58,34 @@
 1566124610 d:\informatica\git\rpg\include\enemystats.h
 	<Stats.h>
 
-1566117857 source:d:\informatica\git\rpg\src\item.cpp
+1566594817 source:d:\informatica\git\rpg\src\item.cpp
 	"Item.h"
 	<string.h>
 	<iostream>
 
-1566123529 d:\informatica\git\rpg\include\item.h
+1566633173 d:\informatica\git\rpg\include\item.h
 	<string>
 	"PlayerStats.h"
 
-1566123569 source:d:\informatica\git\rpg\src\consumableitem.cpp
+1566633474 source:d:\informatica\git\rpg\src\consumableitem.cpp
 	"ConsumableItem.h"
 	<string.h>
 	<iostream>
 	"PlayerStats.h"
 
-1566123572 d:\informatica\git\rpg\include\consumableitem.h
+1566633368 d:\informatica\git\rpg\include\consumableitem.h
 	<Item.h>
 	"PlayerStats.h"
 	<string>
+
+1566633404 source:d:\informatica\git\rpg\src\equipableitem.cpp
+	"EquipableItem.h"
+	<string.h>
+	<iostream>
+	"PlayerStats.h"
+
+1566633417 d:\informatica\git\rpg\include\equipableitem.h
+	<Item.h>
+	<string>
+	"PlayerStats.h"
 

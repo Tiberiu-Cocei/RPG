@@ -8,8 +8,6 @@ class Enemy
         Enemy();
         virtual ~Enemy();
 
-    protected:
-
     private:
 };
 
