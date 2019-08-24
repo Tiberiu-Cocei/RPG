@@ -4,9 +4,9 @@
 #include "PlayerStats.h"
 
 EquipableItem::EquipableItem(short int dmgBonus, short int dmgReduction, short int healthBoost, short int attackBoost, short int strengthBoost,
-                               short int defenseBoost, short int luckBoost, short int evasionBoost,
+                               short int defenseBoost, short int luckBoost, short int evasionBoost, short int weight,
                                std::string name, std::string findDescription, std::string useDescription)
-: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, name, findDescription, useDescription, 1)
+: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription)
 {
     this->dmgBonus = dmgBonus;
     this->dmgReduction = dmgReduction;

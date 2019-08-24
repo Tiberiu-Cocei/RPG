@@ -3,7 +3,7 @@
 #include <iostream>
 
 Item::Item(short int healthBoost, short int attackBoost, short int strengthBoost, short int defenseBoost, short int luckBoost,
-           short int evasionBoost,std::string name, std::string findDescription, std::string useDescription, short int maxStack)
+           short int evasionBoost, short int weight, std::string name, std::string findDescription, std::string useDescription)
 {
     this->healthBoost = healthBoost;
     this->attackBoost = attackBoost;
@@ -11,10 +11,10 @@ Item::Item(short int healthBoost, short int attackBoost, short int strengthBoost
     this->defenseBoost = defenseBoost;
     this->luckBoost = luckBoost;
     this->evasionBoost = evasionBoost;
+    this->weight = weight;
     this->name += name;
     this->findDescription += findDescription;
     this->useDescription += useDescription;
-    this->maxStack = maxStack;
 }
 
 std::string Item::get_name() {
@@ -51,6 +51,10 @@ short int Item::get_luck_boost() {
 
 short int Item::get_evasion_boost() {
     return this->evasionBoost;
+}
+
+short int Item::get_weight() {
+    return this->weight;
 }
 
 Item::~Item()

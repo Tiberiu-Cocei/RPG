@@ -8,6 +8,8 @@
 #include "PlayerStats.h"
 #include "EnemyStats.h"
 #include "EquipableItem.h"
+#include "EquipableItemList.h"
+#include "ConsumableItemList.h"
 
 int main()
 {
@@ -25,6 +27,8 @@ int main()
   commandMapping.insert(std::make_pair("exit", 100));
 
   PlayerStats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
+  EquipableItemList * equipableItemList = new EquipableItemList();
+  ConsumableItemList * consumableItemList = new ConsumableItemList();
 
   bool roomLayout[7][7] = {
       { 0, 0, 0, 0, 0, 0, 0 },

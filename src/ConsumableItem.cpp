@@ -4,9 +4,9 @@
 #include "PlayerStats.h"
 
 ConsumableItem::ConsumableItem(short int healing, short int healthBoost, short int attackBoost, short int strengthBoost,
-                               short int defenseBoost, short int luckBoost, short int evasionBoost, short int maxStack,
+                               short int defenseBoost, short int luckBoost, short int evasionBoost, short int weight,
                                std::string name, std::string findDescription, std::string useDescription)
-: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, name, findDescription, useDescription, maxStack)
+: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription)
 {
     this->healing = healing;
 }
