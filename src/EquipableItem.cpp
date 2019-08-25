@@ -3,8 +3,8 @@
 #include <iostream>
 #include "PlayerStats.h"
 
-EquipableItem::EquipableItem(short int dmgBonus, short int dmgReduction, short int healthBoost, short int attackBoost, short int strengthBoost,
-                               short int defenseBoost, short int luckBoost, short int evasionBoost, short int weight, short int equipmentType,
+EquipableItem::EquipableItem(int dmgBonus, int dmgReduction, int healthBoost, int attackBoost, int strengthBoost,
+                               int defenseBoost, int luckBoost, int evasionBoost, int weight, int equipmentType,
                                std::string name, std::string findDescription, std::string useDescription)
 : Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription)
 {
@@ -29,15 +29,15 @@ void EquipableItem::unequip_item(PlayerStats*& playerStats) {
                                         get_luck_boost(), get_evasion_boost(), this->dmgBonus, this->dmgReduction);
 }
 
-short int EquipableItem::get_dmg_bonus() {
+int EquipableItem::get_dmg_bonus() {
     return this->dmgBonus;
 }
 
-short int EquipableItem::get_dmg_reduction() {
+int EquipableItem::get_dmg_reduction() {
     return this->dmgReduction;
 }
 
-short int EquipableItem::get_equipment_type() {
+int EquipableItem::get_equipment_type() {
     return this->equipmentType;
 }
 

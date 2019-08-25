@@ -8,13 +8,14 @@
 class ConsumableItem : public Item
 {
     public:
-        ConsumableItem(short int, short int, short int, short int, short int, short int, short int, short int, std::string, std::string, std::string);
+        ConsumableItem(int, int, int, int, int, int, int, int, std::string, std::string, std::string);
         ~ConsumableItem();
         void find_item();
-        void use_item(PlayerStats*& playerStats);
+        void use_item(PlayerStats*&);
+        int get_healing();
 
     private:
-        short int healing;
+        int healing;
 };
 
 #endif

@@ -11,6 +11,7 @@
 #include "EquipableItemList.h"
 #include "ConsumableItemList.h"
 #include "Equipment.h"
+#include "Inventory.h"
 
 int main()
 {
@@ -25,13 +26,17 @@ int main()
   commandMapping.insert(std::make_pair("move west", 4));
   commandMapping.insert(std::make_pair("move south", 5));
   commandMapping.insert(std::make_pair("my stats", 6));
-  commandMapping.insert(std::make_pair("my equipment", 7));
+  commandMapping.insert(std::make_pair("equipment", 7));
+  commandMapping.insert(std::make_pair("inventory", 8));
+  commandMapping.insert(std::make_pair("use item", 9));
+  commandMapping.insert(std::make_pair("drop item", 10));
   commandMapping.insert(std::make_pair("exit", 100));
 
   PlayerStats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
   Equipment * equipment = new Equipment(playerStats);
   EquipableItemList * equipableItemList = new EquipableItemList();
   ConsumableItemList * consumableItemList = new ConsumableItemList();
+  Inventory * inventory = new Inventory();
 
   bool roomLayout[7][7] = {
       { 0, 0, 0, 0, 0, 0, 0 },
@@ -43,14 +48,14 @@ int main()
       { 0, 0, 0, 0, 0, 0, 0 }
   };
   //initial coordinates (bottom-right corner)
-  int x = 5, y = 5, commandKey;
+  int x = 5, y = 5, commandKey, itemIndexInt;
 
-  std::string command, directions;
+  std::string command, directions, itemIndex;
   std::cout<<"Write 'help' to view all the commands.\n";
 
   while (strcmp(command.c_str(), "exit"))
   {
-      std::cout << "---------------------------------------------------------\n";
+      std::cout << "\n---------------------------------------------------------\n\n";
       directions.clear();
       directions += "The direction(s) you can move in are:";
       if (roomLayout[x-1][y] == 1) {
@@ -80,7 +85,7 @@ int main()
       }
       switch(commandKey) {
           case 1 :
-            std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats', 'my equipment'.\n";
+            std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats', 'equipment', 'inventory', 'use item', 'drop item'.\n";
             break;
           case 2 :
             if (roomLayout[x-1][y] == 1) {
@@ -123,6 +128,31 @@ int main()
             break;
           case 7 :
             equipment->get_equipment();
+            break;
+          case 8 :
+            inventory->show_inventory();
+            break;
+          case 9 :
+            inventory->show_inventory();
+            std::cout<<"Enter the number of the item you wish to use: ";
+            try {
+                getline (std::cin, itemIndex);
+                itemIndexInt = stoi(itemIndex);
+                inventory->use_item(itemIndexInt, equipment);
+            } catch(const std::invalid_argument& error) {
+                std::cerr << "Not a number.\n";
+            }
+            break;
+          case 10 :
+            inventory->show_inventory();
+            std::cout<<"Enter the number of the item you wish to drop: ";
+            try {
+                getline (std::cin, itemIndex);
+                itemIndexInt = stoi(itemIndex);
+                inventory->drop_item(itemIndexInt);
+            } catch(const std::invalid_argument& error) {
+                std::cerr << "Not a number.\n";
+            }
             break;
           case 100 :
             std::cout<<"Exiting the game.\n";

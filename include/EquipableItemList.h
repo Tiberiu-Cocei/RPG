@@ -7,7 +7,7 @@ class EquipableItemList
     public:
         EquipableItemList();
         ~EquipableItemList();
-        EquipableItem* get_equipable_item(short int index);
+        EquipableItem* get_equipable_item(int);
 };
 
 #endif

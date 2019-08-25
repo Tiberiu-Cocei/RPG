@@ -3,8 +3,8 @@
 #include <iostream>
 #include "PlayerStats.h"
 
-ConsumableItem::ConsumableItem(short int healing, short int healthBoost, short int attackBoost, short int strengthBoost,
-                               short int defenseBoost, short int luckBoost, short int evasionBoost, short int weight,
+ConsumableItem::ConsumableItem(int healing, int healthBoost, int attackBoost, int strengthBoost,
+                               int defenseBoost, int luckBoost, int evasionBoost, int weight,
                                std::string name, std::string findDescription, std::string useDescription)
 : Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription)
 {
@@ -22,6 +22,10 @@ void ConsumableItem::use_item(PlayerStats*& playerStats) {
     }
     playerStats->modify_temp_stats(get_health_boost(), get_attack_boost(), get_strength_boost(),
                                   get_defense_boost(), get_luck_boost(), get_evasion_boost());
+}
+
+int ConsumableItem::get_healing() {
+    return this->healing;
 }
 
 ConsumableItem::~ConsumableItem()

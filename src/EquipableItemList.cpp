@@ -4,7 +4,7 @@ EquipableItemList::EquipableItemList()
 {
 }
 
-EquipableItem* EquipableItemList::get_equipable_item(short int index) {
+EquipableItem* EquipableItemList::get_equipable_item(int index) {
     switch(index) {
         //1-50: helmets
         case 1 :

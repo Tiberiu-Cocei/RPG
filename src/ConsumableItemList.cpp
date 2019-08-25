@@ -4,7 +4,7 @@ ConsumableItemList::ConsumableItemList()
 {
 }
 
-ConsumableItem* ConsumableItemList::get_consumable_item(short int index) {
+ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
     switch(index) {
         //1-50: healing potions
         case 1 :

@@ -7,7 +7,7 @@ class ConsumableItemList
     public:
         ConsumableItemList();
         ~ConsumableItemList();
-        ConsumableItem* get_consumable_item(short int index);
+        ConsumableItem* get_consumable_item(int);
 };
 
 #endif

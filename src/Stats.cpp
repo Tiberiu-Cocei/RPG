@@ -2,7 +2,7 @@
 #include <string.h>
 #include <iostream>
 
-Stats::Stats(short int healthPoints, short int attack, short int strength, short int defense, short int luck, short int evasion)
+Stats::Stats(int healthPoints, int attack, int strength, int defense, int luck, int evasion)
 {
     this->healthPoints = healthPoints;
     this->currentHealthPoints = healthPoints;
@@ -13,59 +13,59 @@ Stats::Stats(short int healthPoints, short int attack, short int strength, short
     this->evasion = evasion;
 }
 
-void Stats::set_health_points(short int healthPoints) {
+void Stats::set_health_points(int healthPoints) {
     this->healthPoints = healthPoints;
 }
 
-short int Stats::get_health_points() {
+int Stats::get_health_points() {
     return this->healthPoints;
 }
 
-void Stats::set_current_health_points(short int currentHealthPoints) {
+void Stats::set_current_health_points(int currentHealthPoints) {
     this->currentHealthPoints = currentHealthPoints;
 }
 
-short int Stats::get_current_health_points() {
+int Stats::get_current_health_points() {
     return this->currentHealthPoints;
 }
 
-void Stats::set_attack(short int attack) {
+void Stats::set_attack(int attack) {
     this->attack = attack;
 }
 
-short int Stats::get_attack() {
+int Stats::get_attack() {
     return this->attack;
 }
 
-void Stats::set_strength(short int strength) {
+void Stats::set_strength(int strength) {
     this->strength = strength;
 }
 
-short int Stats::get_strength() {
+int Stats::get_strength() {
     return this->strength;
 }
 
-void Stats::set_defense(short int defense) {
+void Stats::set_defense(int defense) {
     this->defense = defense;
 }
 
-short int Stats::get_defense() {
+int Stats::get_defense() {
     return this->defense;
 }
 
-void Stats::set_luck(short int luck) {
+void Stats::set_luck(int luck) {
     this->luck = luck;
 }
 
-short int Stats::get_luck() {
+int Stats::get_luck() {
     return this->luck;
 }
 
-void Stats::set_evasion(short int evasion) {
+void Stats::set_evasion(int evasion) {
     this->evasion = evasion;
 }
 
-short int Stats::get_evasion() {
+int Stats::get_evasion() {
     return this->evasion;
 }
 

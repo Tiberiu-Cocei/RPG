@@ -7,11 +7,11 @@
 class EnemyStats : public Stats
 {
     public:
-        EnemyStats(short int, short int, short int, short int, short int);
+        EnemyStats(int, int, int, int, int);
         ~EnemyStats();
         void get_stats();
-        bool take_damage(short int, short int, short int, short int);
-        void gain_health(short int);
+        bool take_damage(int, int, int, int);
+        void gain_health(int);
 };
 
 #endif

@@ -7,29 +7,29 @@
 class PlayerStats : public Stats
 {
     public:
-        PlayerStats(short int, short int, short int, short int, short int, short int);
+        PlayerStats(int, int, int, int, int, int);
         ~PlayerStats();
         void get_stats();
-        short int get_total_attack();
-        short int get_total_strength();
-        short int get_total_luck();
-        short int get_dmgBonus();
-        bool take_damage(short int, short int, short int, short int);
-        void gain_health(short int);
-        void modify_temp_stats(short int, short int, short int, short int, short int, short int);
+        int get_total_attack();
+        int get_total_strength();
+        int get_total_luck();
+        int get_dmgBonus();
+        bool take_damage(int, int, int, int);
+        void gain_health(int);
+        void modify_temp_stats(int, int, int, int, int, int);
         void reset_temp_stats();
-        void gain_stats_from_equip(short int, short int, short int, short int, short int, short int, short int, short int);
-        void lose_stats_from_unequip(short int, short int, short int, short int, short int, short int, short int, short int);
+        void gain_stats_from_equip(int, int, int, int, int, int, int, int);
+        void lose_stats_from_unequip(int, int, int, int, int, int, int, int);
 
     private:
-        short int tempHealthPoints;
-        short int tempAttack;
-        short int tempStrength;
-        short int tempDefense;
-        short int tempLuck;
-        short int tempEvasion;
-        short int dmgBonus;
-        short int dmgReduction;
+        int tempHealthPoints;
+        int tempAttack;
+        int tempStrength;
+        int tempDefense;
+        int tempLuck;
+        int tempEvasion;
+        int dmgBonus;
+        int dmgReduction;
 };
 
 #endif

@@ -2,8 +2,8 @@
 #include <string.h>
 #include <iostream>
 
-Item::Item(short int healthBoost, short int attackBoost, short int strengthBoost, short int defenseBoost, short int luckBoost,
-           short int evasionBoost, short int weight, std::string name, std::string findDescription, std::string useDescription)
+Item::Item(int healthBoost, int attackBoost, int strengthBoost, int defenseBoost, int luckBoost,
+           int evasionBoost, int weight, std::string name, std::string findDescription, std::string useDescription)
 {
     this->healthBoost = healthBoost;
     this->attackBoost = attackBoost;
@@ -29,31 +29,31 @@ std::string Item::get_use_description() {
     return this->useDescription;
 }
 
-short int Item::get_health_boost() {
+int Item::get_health_boost() {
     return this->healthBoost;
 }
 
-short int Item::get_attack_boost() {
+int Item::get_attack_boost() {
     return this->attackBoost;
 }
 
-short int Item::get_strength_boost() {
+int Item::get_strength_boost() {
     return this->strengthBoost;
 }
 
-short int Item::get_defense_boost() {
+int Item::get_defense_boost() {
     return this->defenseBoost;
 }
 
-short int Item::get_luck_boost() {
+int Item::get_luck_boost() {
     return this->luckBoost;
 }
 
-short int Item::get_evasion_boost() {
+int Item::get_evasion_boost() {
     return this->evasionBoost;
 }
 
-short int Item::get_weight() {
+int Item::get_weight() {
     return this->weight;
 }
 
