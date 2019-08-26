@@ -18,7 +18,7 @@
 1565825442 d:\informatica\game\game\include\functions.h
 	<iostream>
 
-1566755456 source:d:\informatica\git\rpg\main.cpp
+1566853702 source:d:\informatica\git\rpg\main.cpp
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -33,11 +33,19 @@
 	"ConsumableItemList.h"
 	"Equipment.h"
 	"Inventory.h"
-
-1565807496 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
 
-1566591553 d:\informatica\git\rpg\include\enemy.h
+1566853111 source:d:\informatica\git\rpg\src\enemy.cpp
+	"Enemy.h"
+
+1566853083 d:\informatica\git\rpg\include\enemy.h
+	"EnemyStats.h"
+	"ConsumableItem.h"
+	"EquipableItem.h"
+	<iostream>
+	<string.h>
+	<vector>
+	"Inventory.h"
 
 1566731882 source:d:\informatica\git\rpg\src\stats.cpp
 	"Stats.h"

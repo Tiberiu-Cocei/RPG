@@ -12,6 +12,7 @@
 #include "ConsumableItemList.h"
 #include "Equipment.h"
 #include "Inventory.h"
+#include "Enemy.h"
 
 int main()
 {
