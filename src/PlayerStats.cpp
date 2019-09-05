@@ -22,7 +22,7 @@ bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus) 
         return false;
     }
     else {
-        int damage = dmgBonus + strength/2.3f - get_defense()/3.2f - this->tempDefense/3.2f - this->dmgReduction;
+        int damage = dmgBonus + strength/1.4f - get_defense()/2.9f - this->tempDefense/2.9f - this->dmgReduction;
         if(damage < 0) {
             damage = 0;
         }
@@ -50,13 +50,25 @@ void PlayerStats::gain_health(int healing) {
 }
 
 void PlayerStats::modify_temp_stats(int tempHealthPoints, int tempAttack, int tempStrength, int tempDefense, int tempLuck, int tempEvasion) {
-    this->tempHealthPoints += tempHealthPoints;
-    set_current_health_points(get_current_health_points() + tempHealthPoints);
-    this->tempAttack += tempAttack;
-    this->tempStrength += tempStrength;
-    this->tempDefense += tempDefense;
-    this->tempLuck += tempLuck;
-    this->tempEvasion += tempEvasion;
+    if(this->tempHealthPoints < tempHealthPoints) {
+        set_current_health_points(get_current_health_points() + tempHealthPoints - this->tempHealthPoints);
+        this->tempHealthPoints = tempHealthPoints;
+    }
+    if(this->tempAttack < tempAttack) {
+        this->tempAttack = tempAttack;
+    }
+    if(this->tempStrength < tempStrength) {
+        this->tempStrength = tempStrength;
+    }
+    if(this->tempDefense < tempDefense) {
+        this->tempDefense = tempDefense;
+    }
+    if(this->tempLuck < tempLuck) {
+        this->tempLuck = tempLuck;
+    }
+    if(this->tempEvasion < tempEvasion) {
+        this->tempEvasion = tempEvasion;
+    }
 }
 
 void PlayerStats::reset_temp_stats() {
@@ -172,7 +184,7 @@ void PlayerStats::get_stats() {
     else if(luck <= 40) ownStats += "You don't feel like you're particularly lucky.\n";
     else if(luck <= 60) ownStats += "Lucky things sometimes happen to you.\n";
     else if(luck <= 80) ownStats += "Luck seems to be on your side.\n";
-    else if(luck <= 100) ownStats += "Through pure luck you manage to often strike vital points.\n";
+    else if(luck <= 100) ownStats += "Through pure luck you manage to avoid precise attacks.\n";
     else ownStats += "You feel as if there's a divine intervention every time you fight.\n";
 
     int evasion = get_evasion();

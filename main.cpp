@@ -13,10 +13,17 @@
 #include "Equipment.h"
 #include "Inventory.h"
 #include "Enemy.h"
+#include <windows.h>
 
 int main()
 {
+  //generating random seed
   srand (time(NULL));
+
+  //changing console text color
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  int colorText = 14;
+  SetConsoleTextAttribute(hConsole, colorText);
 
   //command string-int mapping for the switch case
   std::map<std::string, int> commandMapping;
@@ -38,6 +45,21 @@ int main()
   EquipableItemList * equipableItemList = new EquipableItemList();
   ConsumableItemList * consumableItemList = new ConsumableItemList();
   Inventory * inventory = new Inventory();
+
+  EnemyStats* enemyStats = new EnemyStats(30,10,23,7,12);
+  std::vector<EquipableItem*> equipableItems;
+  equipableItems.push_back(equipableItemList->get_equipable_item(1));
+  equipableItems.push_back(equipableItemList->get_equipable_item(2));
+  std::vector<ConsumableItem*> consumableItems;
+  consumableItems.push_back(consumableItemList->get_consumable_item(1));
+  consumableItems.push_back(consumableItemList->get_consumable_item(1));
+  consumableItems.push_back(consumableItemList->get_consumable_item(1));
+  consumableItems.push_back(consumableItemList->get_consumable_item(1));
+  Enemy* enemy = new Enemy(enemyStats, "Shrek", "The swamp rumbles", "It's all ogre now", consumableItems, equipableItems, 100, 2000);
+  enemy->enemy_attack(playerStats);
+  enemy->enemy_attack(playerStats);
+  enemy->enemy_defend(playerStats);
+  enemy->enemy_defend(playerStats);
 
   bool roomLayout[7][7] = {
       { 0, 0, 0, 0, 0, 0, 0 },

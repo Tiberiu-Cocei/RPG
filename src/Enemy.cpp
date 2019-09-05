@@ -58,58 +58,63 @@ void Enemy::enemy_encounter() {
     std::cout<<"You are fighting a level " + std::to_string(combatLevel) + " " + name + "!\n";
 }
 
-void Enemy::normal_death(int randomRoll, Inventory*& inventory) {
+void Enemy::enemy_death(Inventory*& inventory) {
     std::cout<<"\n"<<this->deathDescription<<"\n";
-    ConsumableItem* itemDrop;
+    int randomRoll = rand() % 100 + 1;
+    ConsumableItem* consumableItemDrop = NULL;
+    EquipableItem* equipableItemDrop = NULL;
     if(randomRoll > 1 && randomRoll <= 25) {
-        itemDrop = consumableDrops.at(0);
+        consumableItemDrop = consumableDrops.at(0);
     }
     else if(randomRoll > 25 && randomRoll <= 50) {
-        itemDrop = consumableDrops.at(1);
+        consumableItemDrop = consumableDrops.at(1);
     }
     else if(randomRoll > 50 && randomRoll <= 75) {
-        itemDrop = consumableDrops.at(2);
+        consumableItemDrop = consumableDrops.at(2);
     }
     else if(randomRoll > 75 && randomRoll <= 85) {
-        itemDrop = consumableDrops.at(3);
+        consumableItemDrop = consumableDrops.at(3);
     }
-    else {
-        itemDrop = new ConsumableItem(0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM");
-    }
-    std::cout<<"You have found a " + itemDrop->get_name() + ". Do you wish to pick it up? (Yes/no) ";
-    std::string command;
-    getline(std::cin,command);
-    if(command.compare("Yes") == 0 || command.compare("yes") == 0) {
-        inventory->pickup_item(itemDrop);
-    }
-    else{
-        std::cout<<"You drop the item to the ground and move on.\n";
-    }
-}
+    else if(randomRoll > 85 && randomRoll <= 95) {
 
-void Enemy::rare_death(int randomRoll, Inventory*& inventory) {
-    std::cout<<"\n"<<this->deathDescription<<"\n";
-    EquipableItem* itemDrop;
-    if(randomRoll > 85 && randomRoll <= 95) {
-        itemDrop = equipableDrops.at(0);
+        equipableItemDrop = equipableDrops.at(0);
     }
     else if(randomRoll > 95 && randomRoll <= 100) {
-        itemDrop = equipableDrops.at(1);
+        equipableItemDrop = equipableDrops.at(1);
     }
-    else {
-        itemDrop = new EquipableItem(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM");
+    if(consumableItemDrop != NULL) {
+        std::cout<<"You have found a " + consumableItemDrop->get_name() + ". Do you wish to pick it up? (Yes/no) ";
+        std::string command;
+        getline(std::cin,command);
+        if(command.compare("Yes") == 0 || command.compare("yes") == 0) {
+            inventory->pickup_item(consumableItemDrop);
+        }
+        else {
+            std::cout<<"You drop the item to the ground and move on.\n";
+        }
     }
-    std::cout<<"You have found a " + itemDrop->get_name() + ". Do you wish to pick it up? (Yes/no) ";
-    std::string command;
-    getline(std::cin,command);
-    if(command.compare("Yes") == 0 || command.compare("yes") == 0) {
-        inventory->pickup_item(itemDrop);
-    }
-    else{
-        std::cout<<"You drop the item to the ground and move on.\n";
+    else if(equipableItemDrop != NULL) {
+        std::cout<<"You have found a " + equipableItemDrop->get_name() + ". Do you wish to pick it up? (Yes/no) ";
+        std::string command;
+        getline(std::cin,command);
+        if(command.compare("Yes") == 0 || command.compare("yes") == 0) {
+            inventory->pickup_item(equipableItemDrop);
+        }
+        else {
+            std::cout<<"You drop the item to the ground and move on.\n";
+        }
     }
 }
 
 Enemy::~Enemy()
 {
+    delete this->enemyStats;
+    for(auto consumableItem : consumableDrops)
+    {
+        delete consumableItem;
+    }
+    for(auto equipableItem : equipableDrops)
+    {
+        delete equipableItem;
+    }
 }

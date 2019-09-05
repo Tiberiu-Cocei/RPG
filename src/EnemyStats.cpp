@@ -14,7 +14,7 @@ bool EnemyStats::take_damage(int attack, int strength, int luck, int dmgBonus) {
         return false;
     }
     else {
-        int damage = dmgBonus + strength/1.8f - get_defense()/3.5f;
+        int damage = dmgBonus + strength/1.5f - get_defense()/3.1f;
         if(damage < 0) {
             damage = 0;
         }

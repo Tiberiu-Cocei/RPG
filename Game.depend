@@ -18,7 +18,7 @@
 1565825442 d:\informatica\game\game\include\functions.h
 	<iostream>
 
-1566853702 source:d:\informatica\git\rpg\main.cpp
+1567704517 source:d:\informatica\git\rpg\main.cpp
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -34,11 +34,12 @@
 	"Equipment.h"
 	"Inventory.h"
 	"Enemy.h"
+	<windows.h>
 
-1566853111 source:d:\informatica\git\rpg\src\enemy.cpp
+1567704039 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
 
-1566853083 d:\informatica\git\rpg\include\enemy.h
+1567703548 d:\informatica\git\rpg\include\enemy.h
 	"EnemyStats.h"
 	"ConsumableItem.h"
 	"EquipableItem.h"
@@ -54,7 +55,7 @@
 
 1566732192 d:\informatica\git\rpg\include\stats.h
 
-1566743216 source:d:\informatica\git\rpg\src\playerstats.cpp
+1567273409 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
@@ -62,7 +63,7 @@
 1566732132 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
-1566731608 source:d:\informatica\git\rpg\src\enemystats.cpp
+1567271127 source:d:\informatica\git\rpg\src\enemystats.cpp
 	"EnemyStats.h"
 	<string.h>
 	<iostream>
@@ -101,13 +102,13 @@
 	<string>
 	"PlayerStats.h"
 
-1566731660 source:d:\informatica\git\rpg\src\equipableitemlist.cpp
+1567350050 source:d:\informatica\git\rpg\src\equipableitemlist.cpp
 	"EquipableItemList.h"
 
 1566738578 d:\informatica\git\rpg\include\equipableitemlist.h
 	"EquipableItem.h"
 
-1566731533 source:d:\informatica\git\rpg\src\consumableitemlist.cpp
+1567695675 source:d:\informatica\git\rpg\src\consumableitemlist.cpp
 	"ConsumableItemList.h"
 
 1566738600 d:\informatica\git\rpg\include\consumableitemlist.h
@@ -124,7 +125,7 @@
 	<iostream>
 	<string.h>
 
-1566755382 source:d:\informatica\git\rpg\src\inventory.cpp
+1567273953 source:d:\informatica\git\rpg\src\inventory.cpp
 	"Inventory.h"
 	<iostream>
 	<string.h>
@@ -134,4 +135,16 @@
 	"ConsumableItem.h"
 	"Equipment.h"
 	<vector>
+
+1567696189 source:d:\informatica\git\rpg\src\enemylist.cpp
+	"EnemyList.h"
+
+1567695895 d:\informatica\git\rpg\include\enemylist.h
+	"Enemy.h"
+	<vector>
+	<iostream>
+	<string.h>
+	"EnemyStats.h"
+	"EquipableItemList.h"
+	"ConsumableItemList.h"
 

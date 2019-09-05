@@ -4,8 +4,8 @@
 
 Inventory::Inventory()
 {
-    this->currentWeight = 3;
-    this->maxWeight = 30;
+    this->currentWeight = 14;
+    this->maxWeight = 40;
     consumableItems.push_back(new ConsumableItem(20, 0, 0, 0, 0, 0, 0, 1,
                                "Healing Potion I", "You have found a poorly made healing potion.",
                                "You drink the healing potion. It has a terrible taste and its texture almost makes you vomit."));

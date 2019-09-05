@@ -27,8 +27,7 @@ class Enemy
         void enemy_attack(PlayerStats*&);
         void enemy_defend(PlayerStats*&);
         void enemy_encounter();
-        void normal_death(int, Inventory*&); //if random value is between 1 and 85
-        void rare_death(int, Inventory*&); //if random value is between 86 and 100
+        void enemy_death(Inventory*&);
 
     private:
         EnemyStats* enemyStats;
