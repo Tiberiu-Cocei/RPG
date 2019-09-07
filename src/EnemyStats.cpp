@@ -41,7 +41,7 @@ void EnemyStats::gain_health(int healing) {
 }
 
 void EnemyStats::get_stats() {
-    std::string enemyStats = "The stats of your enemy are :\n";
+    std::string enemyStats = "The stats of your enemy are:\n";
 
     int currentHealthPoints = get_current_health_points();
     int healthPoints = get_health_points();

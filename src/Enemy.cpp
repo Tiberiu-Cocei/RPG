@@ -45,12 +45,12 @@ int Enemy::get_xp() {
     return this->xp;
 }
 
-void Enemy::enemy_attack(PlayerStats*& playerStats) {
-    playerStats->take_damage(enemyStats->get_attack(), enemyStats->get_strength(), enemyStats->get_luck(), 0);
+bool Enemy::enemy_attack(PlayerStats*& playerStats) {
+    return playerStats->take_damage(enemyStats->get_attack(), enemyStats->get_strength(), enemyStats->get_luck(), 0);
 }
 
-void Enemy::enemy_defend(PlayerStats*& playerStats) {
-    this->enemyStats->take_damage(playerStats->get_attack(), playerStats->get_strength(), playerStats->get_luck(), playerStats->get_dmgBonus());
+bool Enemy::enemy_defend(PlayerStats*& playerStats) {
+    return this->enemyStats->take_damage(playerStats->get_attack(), playerStats->get_strength(), playerStats->get_luck(), playerStats->get_dmgBonus());
 }
 
 void Enemy::enemy_encounter() {

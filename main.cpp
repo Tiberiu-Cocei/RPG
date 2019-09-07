@@ -14,6 +14,7 @@
 #include "Inventory.h"
 #include "Enemy.h"
 #include <windows.h>
+#include "Combat.h"
 
 int main()
 {
@@ -56,10 +57,8 @@ int main()
   consumableItems.push_back(consumableItemList->get_consumable_item(1));
   consumableItems.push_back(consumableItemList->get_consumable_item(1));
   Enemy* enemy = new Enemy(enemyStats, "Shrek", "The swamp rumbles", "It's all ogre now", consumableItems, equipableItems, 100, 2000);
-  enemy->enemy_attack(playerStats);
-  enemy->enemy_attack(playerStats);
-  enemy->enemy_defend(playerStats);
-  enemy->enemy_defend(playerStats);
+  Combat* combat = new Combat();
+  combat->encounter(equipment, inventory, enemy);
 
   bool roomLayout[7][7] = {
       { 0, 0, 0, 0, 0, 0, 0 },
@@ -98,7 +97,6 @@ int main()
       getline (std::cin, command);
       std::transform(command.begin(), command.end(), command.begin(),
         [](unsigned char c){ return std::tolower(c); });
-//      std::cout << "Your command is " << command << std::endl;
       commandMappingIterator = commandMapping.find(command);
       if(commandMappingIterator != commandMapping.end()) {
           commandKey = commandMappingIterator->second;

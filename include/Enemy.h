@@ -24,8 +24,8 @@ class Enemy
         int get_combat_level();
         int get_xp();
 
-        void enemy_attack(PlayerStats*&);
-        void enemy_defend(PlayerStats*&);
+        bool enemy_attack(PlayerStats*&);
+        bool enemy_defend(PlayerStats*&);
         void enemy_encounter();
         void enemy_death(Inventory*&);
 
