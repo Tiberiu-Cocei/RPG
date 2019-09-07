@@ -40,13 +40,13 @@ int main()
   commandMapping.insert(std::make_pair("drop item", 10));
   commandMapping.insert(std::make_pair("exit", 100));
 
-  PlayerStats * playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
+  PlayerStats * playerStats = new PlayerStats(100, 47, 47, 52, 44, 53); //32,32
   Equipment * equipment = new Equipment(playerStats);
   EquipableItemList * equipableItemList = new EquipableItemList();
   ConsumableItemList * consumableItemList = new ConsumableItemList();
   Inventory * inventory = new Inventory();
 
-  EnemyStats* enemyStats = new EnemyStats(30,10,23,7,12);
+  EnemyStats* enemyStats = new EnemyStats(225, 42, 47, 33, 32);
   std::vector<EquipableItem*> equipableItems;
   equipableItems.push_back(equipableItemList->get_equipable_item(1));
   equipableItems.push_back(equipableItemList->get_equipable_item(2));

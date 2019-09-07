@@ -63,23 +63,23 @@ void Enemy::enemy_death(Inventory*& inventory) {
     int randomRoll = rand() % 100 + 1;
     ConsumableItem* consumableItemDrop = NULL;
     EquipableItem* equipableItemDrop = NULL;
-    if(randomRoll > 1 && randomRoll <= 25) {
+    if(randomRoll > 1 && randomRoll <= 15) {
         consumableItemDrop = consumableDrops.at(0);
     }
-    else if(randomRoll > 25 && randomRoll <= 50) {
+    else if(randomRoll > 15 && randomRoll <= 35) {
         consumableItemDrop = consumableDrops.at(1);
     }
-    else if(randomRoll > 50 && randomRoll <= 75) {
+    else if(randomRoll > 35 && randomRoll <= 60) {
         consumableItemDrop = consumableDrops.at(2);
     }
-    else if(randomRoll > 75 && randomRoll <= 85) {
+    else if(randomRoll > 60 && randomRoll <= 70) {
         consumableItemDrop = consumableDrops.at(3);
     }
-    else if(randomRoll > 85 && randomRoll <= 95) {
+    else if(randomRoll > 70 && randomRoll <= 85) {
 
         equipableItemDrop = equipableDrops.at(0);
     }
-    else if(randomRoll > 95 && randomRoll <= 100) {
+    else if(randomRoll > 85 && randomRoll <= 100) {
         equipableItemDrop = equipableDrops.at(1);
     }
     if(consumableItemDrop != NULL) {
