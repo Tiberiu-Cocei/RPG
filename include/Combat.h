@@ -20,8 +20,8 @@ class Combat
 
         std::map<std::string, int> combatMapping;
         std::map<std::string, int>::iterator combatMappingIterator;
-        std::string command, itemIndex;
-        int commandKey, itemIndexInt;
+        std::string commandKey, itemIndex;
+        int commandValue, itemIndexInt;
         bool isDead;
 };
 
