@@ -18,17 +18,17 @@ bool Combat::encounter(Equipment*& player, Inventory*& inventory, Enemy*& enemy)
     enemy->enemy_encounter();
     while(1) {
         std::cout << "\nEnter command: ";
-        getline (std::cin, command);
-        std::transform(command.begin(), command.end(), command.begin(),
+        getline (std::cin, commandKey);
+        std::transform(commandKey.begin(), commandKey.end(), commandKey.begin(),
           [](unsigned char c){ return std::tolower(c); });
-        combatMappingIterator = combatMapping.find(command);
+        combatMappingIterator = combatMapping.find(commandKey);
         if(combatMappingIterator != combatMapping.end()) {
-            commandKey = combatMappingIterator->second;
+            commandValue = combatMappingIterator->second;
         }
         else {
-            commandKey = 0;
+            commandValue = 0;
         }
-        switch(commandKey) {
+        switch(commandValue) {
           case 1 :
             std::cout<<"The possible commands are: 'attack', 'escape', 'my stats', 'enemy stats', 'equipment', 'inventory', 'use item'.\n";
             break;
@@ -47,8 +47,8 @@ bool Combat::encounter(Equipment*& player, Inventory*& inventory, Enemy*& enemy)
           case 3 :
             {
                 int escapeRoll = rand() % 100 + 1;
-                if(escapeRoll > 50) {
-                    std::cout<<"You successfully escape from your enemy and return to the same place.\n";
+                if(escapeRoll > 30) {
+                    std::cout<<"You successfully escape and make your way back.\n";
                     return false;
                 }
                 else {

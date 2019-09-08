@@ -45,6 +45,7 @@
 		<Unit filename="include/Equipment.h" />
 		<Unit filename="include/Inventory.h" />
 		<Unit filename="include/Item.h" />
+		<Unit filename="include/Level.h" />
 		<Unit filename="include/PlayerStats.h" />
 		<Unit filename="include/Stats.h" />
 		<Unit filename="main.cpp" />
@@ -59,6 +60,7 @@
 		<Unit filename="src/Equipment.cpp" />
 		<Unit filename="src/Inventory.cpp" />
 		<Unit filename="src/Item.cpp" />
+		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/PlayerStats.cpp" />
 		<Unit filename="src/Stats.cpp" />
 		<Extensions>

@@ -15,6 +15,8 @@
 #include "Enemy.h"
 #include <windows.h>
 #include "Combat.h"
+#include <array>
+#define _WIN32_WINNT 0x0500
 
 int main()
 {
@@ -25,6 +27,10 @@ int main()
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   int colorText = 14;
   SetConsoleTextAttribute(hConsole, colorText);
+
+  //changing console size
+  HWND console = GetConsoleWindow();
+  MoveWindow(console, 255, 90, 1100, 700, TRUE);
 
   //command string-int mapping for the switch case
   std::map<std::string, int> commandMapping;
@@ -58,59 +64,59 @@ int main()
   consumableItems.push_back(consumableItemList->get_consumable_item(1));
   Enemy* enemy = new Enemy(enemyStats, "Shrek", "The swamp rumbles", "It's all ogre now", consumableItems, equipableItems, 100, 2000);
   Combat* combat = new Combat();
-  combat->encounter(equipment, inventory, enemy);
+  //combat->encounter(equipment, inventory, enemy);
 
-  bool roomLayout[7][7] = {
-      { 0, 0, 0, 0, 0, 0, 0 },
-      { 0, 0, 0, 1, 1, 1, 0 },
-      { 0, 1, 1, 1, 0, 0, 0 },
-      { 0, 1, 0, 0, 0, 0, 0 },
-      { 0, 1, 1, 1, 1, 0, 0 },
-      { 0, 0, 0, 0, 1, 1, 0 },
-      { 0, 0, 0, 0, 0, 0, 0 }
+  std::array<char, 49> roomLayout = {
+       '0', '0', '0', '0', '0', '0', '0',
+       '0', '0', '0', '1', '1', '1', '0',
+       '0', '1', '1', '1', '0', '0', '0',
+       '0', '1', '0', '0', '0', '0', '0',
+       '0', '1', '1', '1', '1', '0', '0',
+       '0', '0', '0', '0', '1', '1', '0',
+       '0', '0', '0', '0', '0', '0', '0'
   };
   //initial coordinates (bottom-right corner)
-  int x = 5, y = 5, commandKey, itemIndexInt;
+  int x = 40, commandValue, itemIndexInt;
 
-  std::string command, directions, itemIndex;
+  std::string commandKey, directions, itemIndex;
   std::cout<<"Write 'help' to view all the commands.\n";
 
-  while (strcmp(command.c_str(), "exit"))
+  while (strcmp(commandKey.c_str(), "exit"))
   {
       std::cout << "\n---------------------------------------------------------\n\n";
       directions.clear();
       directions += "The direction(s) you can move in are:";
-      if (roomLayout[x-1][y] == 1) {
+      if (roomLayout.at(x-7) == '1') {
         directions += " north";
       }
-      if (roomLayout[x][y+1] == 1) {
+      if (roomLayout.at(x+1) == '1') {
         directions += " east";
       }
-      if (roomLayout[x+1][y] == 1) {
+      if (roomLayout.at(x+7) == '1') {
         directions += " south";
       }
-      if (roomLayout[x][y-1] == 1) {
+      if (roomLayout.at(x-1) == '1') {
         directions += " west";
       }
       std::cout << directions << std::endl;
       std::cout << "Enter command: ";
-      getline (std::cin, command);
-      std::transform(command.begin(), command.end(), command.begin(),
+      getline (std::cin, commandKey);
+      std::transform(commandKey.begin(), commandKey.end(), commandKey.begin(),
         [](unsigned char c){ return std::tolower(c); });
-      commandMappingIterator = commandMapping.find(command);
+      commandMappingIterator = commandMapping.find(commandKey);
       if(commandMappingIterator != commandMapping.end()) {
-          commandKey = commandMappingIterator->second;
+          commandValue = commandMappingIterator->second;
       }
       else {
-          commandKey = 0;
+          commandValue = 0;
       }
-      switch(commandKey) {
+      switch(commandValue) {
           case 1 :
             std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats', 'equipment', 'inventory', 'use item', 'drop item'.\n";
             break;
           case 2 :
-            if (roomLayout[x-1][y] == 1) {
-              x--;
+            if (roomLayout.at(x-7) == '1') {
+              x-=7;
               std::cout<<"You have moved north.\n";
             }
             else {
@@ -118,8 +124,8 @@ int main()
             }
             break;
           case 3 :
-            if (roomLayout[x][y+1] == 1) {
-              y++;
+            if (roomLayout.at(x+1) == '1') {
+              x++;
               std::cout<<"You have moved east.\n";
             }
             else {
@@ -127,8 +133,8 @@ int main()
             }
             break;
           case 4 :
-            if (roomLayout[x][y-1] == 1) {
-              y--;
+            if (roomLayout.at(x-1) == '1') {
+              x--;
               std::cout<<"You have moved west.\n";
             }
             else {
@@ -136,8 +142,8 @@ int main()
             }
             break;
           case 5 :
-            if (roomLayout[x+1][y] == 1) {
-              x++;
+            if (roomLayout.at(x+7) == '1') {
+              x+=7;
               std::cout<<"You have moved south.\n";
             }
             else {
@@ -181,8 +187,8 @@ int main()
           default :
             std::cout<<"Unknown command. Write \"help\" to view all the commands.\n";
       }
-      if(commandKey > 1 && commandKey < 6) {
-        std::cout << "Your current coordinates are : " << x << " " << y << std::endl;
+      if(commandValue > 1 && commandValue < 6) {
+        std::cout << "Your current coordinates are : " << x/7 + 1 << " " << x%7 + 1 << std::endl;
       }
   }
   return 0;
