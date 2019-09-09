@@ -130,7 +130,7 @@ void PlayerStats::get_stats() {
     std::string ownStats = "Your current stats are:\n";
 
     int currentHealthPoints = get_current_health_points();
-    int healthPoints = get_health_points();
+    int healthPoints = get_health_points() + tempHealthPoints;
     ownStats += std::to_string(currentHealthPoints) + " health points out of " + std::to_string(healthPoints) + ". ";
     if(currentHealthPoints <= 10) ownStats += "You're on death's door.\n";
     else if(currentHealthPoints <= 20) ownStats += "You have lost a lot of blood and feel weak.\n";
@@ -143,7 +143,7 @@ void PlayerStats::get_stats() {
     else if(currentHealthPoints <= 100) ownStats += "You feel fine.\n";
     else ownStats += "You feel better than ever.\n";
 
-    int attack = get_attack();
+    int attack = get_attack() + tempAttack;
     ownStats += std::to_string(attack) + " total attack. ";
     if(attack <= 10) ownStats += "You feel extremely disoriented.\n";
     else if(attack <= 20) ownStats += "You feel as if you're drunk.\n";
@@ -154,18 +154,18 @@ void PlayerStats::get_stats() {
     else if(attack <= 100) ownStats += "You can anticipate your opponents movements and strike with ease.\n";
     else ownStats += "You have mastered the art of attacking a target.\n";
 
-    int strength = get_strength();
+    int strength = get_strength() + tempStrength;
     ownStats += std::to_string(strength) + " total strength. ";
     if(strength <= 10) ownStats += "You feel extremely weak.\n";
-    else if(strength <= 20) ownStats += "Your muscle are not at all that developed.\n";
+    else if(strength <= 20) ownStats += "Your muscle are not developed.\n";
     else if(strength <= 30) ownStats += "You regret not training your muscles.\n";
     else if(strength <= 40) ownStats += "You can probably lift a boulder.\n";
-    else if(strength <= 60) ownStats += "You're strong enough not to worry about getting pinned down by an enemy.\n";
+    else if(strength <= 60) ownStats += "You're strong enough to fist fight a weaker enemy.\n";
     else if(strength <= 80) ownStats += "Your muscles are pronounced and developed.\n";
     else if(strength <= 100) ownStats += "You feel very strong and your muscles look sculpted.\n";
     else ownStats += "You could be confused with a pillar man.\n";
 
-    int defense = get_defense();
+    int defense = get_defense() + tempDefense;
     ownStats += std::to_string(defense) + " total defense. ";
     if(defense <= 10) ownStats += "Your reflexes are very slow.\n";
     else if(defense <= 20) ownStats += "You lack eye-hand coordination.\n";
@@ -176,7 +176,7 @@ void PlayerStats::get_stats() {
     else if(defense <= 100) ownStats += "Your defenses make you very hard to be killed.\n";
     else ownStats += "You're a walking fortress that can take head-on any foe.\n";
 
-    int luck = get_luck();
+    int luck = get_luck() + tempLuck;
     ownStats += std::to_string(luck) + " total luck. ";
     if(luck <= 10) ownStats += "You're afraid the ceiling will give in and kill you.\n";
     else if(luck <= 20) ownStats += "You feel cursed.\n";
@@ -187,7 +187,7 @@ void PlayerStats::get_stats() {
     else if(luck <= 100) ownStats += "Through pure luck you manage to avoid precise attacks.\n";
     else ownStats += "You feel as if there's a divine intervention every time you fight.\n";
 
-    int evasion = get_evasion();
+    int evasion = get_evasion() + tempEvasion;
     ownStats += std::to_string(evasion) + " total evasion. ";
     if(evasion <= 10) ownStats += "You're barely able to dodge a slow falling tree.\n";
     else if(evasion <= 20) ownStats += "You are not agile at all.\n";

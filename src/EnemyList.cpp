@@ -114,6 +114,16 @@ Enemy* EnemyList::get_enemy(int index) {
             equipableDrops.push_back(equipableItemList->get_equipable_item(253));
             return new Enemy(enemyStats, "Mad scientist", "\"So you're the one who has been killing my creations. Beautiful, weren't they? Until you killed them, that is. It's alright, I can start over again. And I shall begin with you!\" Once the scientist finished his sentence, he started to convulse aggressively. With each twist, his body mutated and grew in size.",
                              "\"I was.. beautiful. You could have been too..\" The scientist finally succumbs to his wounds, the way forward now open.", consumableDrops, equipableDrops, 53, 1500);
+        default :
+            enemyStats = new EnemyStats(100, 100, 100, 100, 100);
+            consumableDrops.push_back(consumableItemList->get_consumable_item(0));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(0));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(0));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(0));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(0));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(0));
+            return new Enemy(enemyStats, "ERROR_ENEMY", "ERROR_ENEMY",
+                             "ERROR_ENEMY", consumableDrops, equipableDrops, 0, 0);
     }
 }
 

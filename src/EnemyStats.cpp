@@ -40,6 +40,10 @@ void EnemyStats::gain_health(int healing) {
     std::cout<<"The enemy gained " + std::to_string(healing) + " health for a total of " + std::to_string(get_current_health_points()) + ".\n";
 }
 
+void EnemyStats::reset_stats() {
+    set_current_health_points(get_health_points());
+}
+
 void EnemyStats::get_stats() {
     std::string enemyStats = "The stats of your enemy are:\n";
 

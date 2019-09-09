@@ -12,7 +12,7 @@ class Combat
     public:
         Combat();
         ~Combat();
-        bool encounter(Equipment*&, Inventory*&, Enemy*&);
+        bool encounter(Equipment*&, Inventory*&, Enemy*&, bool = false);
 
     private:
         //void player_turn(Equipment*&, Inventory*&, Enemy*&);

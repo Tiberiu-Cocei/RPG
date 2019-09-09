@@ -7,6 +7,8 @@
 #include <Enemy.h>
 #include <vector>
 #include <array>
+#include <windows.h>
+#include <Combat.h>
 
 
 class Level
@@ -15,8 +17,19 @@ class Level
         Level(std::string, std::string, std::string, int, EquipableItem*, ConsumableItem*,
               std::vector<Enemy*>, std::array<char, 225>, int, int, int, int);
         ~Level();
+        void begin_level();
+        void end_level();
+        std::string get_possible_directions(int);
+        bool move_in_direction(int&, char, Equipment*&, Inventory*&);
 
     private:
+        bool generic_room(int, Equipment*&, Inventory*&);
+        bool boss_room(Equipment*&, Inventory*&);
+        void fountain_room(Equipment*&);
+        void equipable_treasure_room(Inventory*&);
+        void consumable_treasure_room(Inventory*&);
+        void direction_details(std::string&, int);
+
         std::string levelName;
         std::string beginDesc;
         std::string endDesc;
@@ -33,6 +46,7 @@ class Level
         bool isFountainUsed;
         bool isEquipableTreasureTaken;
         bool isConsumableTreasureTaken;
+        Combat* combat;
 };
 
 #endif

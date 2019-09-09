@@ -14,7 +14,7 @@ Combat::Combat()
     combatMapping.insert(std::make_pair("use item", 8));
 }
 
-bool Combat::encounter(Equipment*& player, Inventory*& inventory, Enemy*& enemy) {
+bool Combat::encounter(Equipment*& player, Inventory*& inventory, Enemy*& enemy, bool isBoss) {
     enemy->enemy_encounter();
     while(1) {
         std::cout << "\nEnter command: ";
@@ -37,23 +37,37 @@ bool Combat::encounter(Equipment*& player, Inventory*& inventory, Enemy*& enemy)
             isDead = enemy->enemy_defend(player->get_player_stats());
             if(isDead == true) {
                 enemy->enemy_death(inventory);
+                player->get_player_stats()->reset_temp_stats();
+                enemy->get_enemy_stats()->reset_stats();
                 return false;
             }
             else {
                 isDead = enemy_turn(player->get_player_stats(), enemy);
-                if(isDead == true) return true;
+                if(isDead == true) {
+                    enemy->get_enemy_stats()->reset_stats();
+                    return true;
+                }
             }
             break;
           case 3 :
             {
                 int escapeRoll = rand() % 100 + 1;
-                if(escapeRoll > 30) {
+                if(escapeRoll > 30 && isBoss == false) {
                     std::cout<<"You successfully escape and make your way back.\n";
+                    player->get_player_stats()->reset_temp_stats();
+                    enemy->get_enemy_stats()->reset_stats();
                     return false;
                 }
-                else {
+                else if(escapeRoll <=30 && isBoss == false) {
+                    std::cout<<"You failed to escape from your enemy!\n";
                     isDead = enemy_turn(player->get_player_stats(), enemy);
-                    if(isDead == true) return true;
+                    if(isDead == true) {
+                        enemy->get_enemy_stats()->reset_stats();
+                        return true;
+                    }
+                }
+                else {
+                    std::cout<<"It's too late to think about running!\n";
                 }
                 break;
             }
@@ -80,7 +94,10 @@ bool Combat::encounter(Equipment*& player, Inventory*& inventory, Enemy*& enemy)
                 std::cerr << "Not a number.\n";
             }
             isDead = enemy_turn(player->get_player_stats(), enemy);
-            if(isDead == true) return true;
+            if(isDead == true) {
+                enemy->get_enemy_stats()->reset_stats();
+                return true;
+            }
             break;
           default :
             std::cout<<"Unknown command. Write \"help\" to view all the commands.\n";

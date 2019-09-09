@@ -18,7 +18,7 @@
 1565825442 d:\informatica\game\game\include\functions.h
 	<iostream>
 
-1567976653 source:d:\informatica\git\rpg\main.cpp
+1568038396 source:d:\informatica\git\rpg\main.cpp
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -38,10 +38,10 @@
 	"Combat.h"
 	<array>
 
-1567880697 source:d:\informatica\git\rpg\src\enemy.cpp
+1568038380 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
 
-1567880705 d:\informatica\git\rpg\include\enemy.h
+1568038381 d:\informatica\git\rpg\include\enemy.h
 	"EnemyStats.h"
 	"ConsumableItem.h"
 	"EquipableItem.h"
@@ -57,7 +57,7 @@
 
 1566732192 d:\informatica\git\rpg\include\stats.h
 
-1567273409 source:d:\informatica\git\rpg\src\playerstats.cpp
+1568016406 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
@@ -65,12 +65,12 @@
 1566732132 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
-1567882005 source:d:\informatica\git\rpg\src\enemystats.cpp
+1568038333 source:d:\informatica\git\rpg\src\enemystats.cpp
 	"EnemyStats.h"
 	<string.h>
 	<iostream>
 
-1566731951 d:\informatica\git\rpg\include\enemystats.h
+1568038101 d:\informatica\git\rpg\include\enemystats.h
 	<Stats.h>
 
 1566731715 source:d:\informatica\git\rpg\src\item.cpp
@@ -127,7 +127,7 @@
 	<iostream>
 	<string.h>
 
-1567273953 source:d:\informatica\git\rpg\src\inventory.cpp
+1568016321 source:d:\informatica\git\rpg\src\inventory.cpp
 	"Inventory.h"
 	<iostream>
 	<string.h>
@@ -138,7 +138,7 @@
 	"Equipment.h"
 	<vector>
 
-1567849472 source:d:\informatica\git\rpg\src\enemylist.cpp
+1568033439 source:d:\informatica\git\rpg\src\enemylist.cpp
 	"EnemyList.h"
 
 1567695895 d:\informatica\git\rpg\include\enemylist.h
@@ -150,12 +150,12 @@
 	"EquipableItemList.h"
 	"ConsumableItemList.h"
 
-1567967981 source:d:\informatica\git\rpg\src\combat.cpp
+1568038306 source:d:\informatica\git\rpg\src\combat.cpp
 	"Combat.h"
 	<algorithm>
 	<windows.h>
 
-1567967761 d:\informatica\git\rpg\include\combat.h
+1568034850 d:\informatica\git\rpg\include\combat.h
 	"Enemy.h"
 	"Equipment.h"
 	<iostream>
@@ -163,10 +163,10 @@
 	"Inventory.h"
 	<map>
 
-1567971762 source:d:\informatica\git\rpg\src\level.cpp
+1568037830 source:d:\informatica\git\rpg\src\level.cpp
 	"Level.h"
 
-1567971743 d:\informatica\git\rpg\include\level.h
+1568036972 d:\informatica\git\rpg\include\level.h
 	<iostream>
 	<string.h>
 	<ConsumableItem.h>
@@ -174,4 +174,6 @@
 	<Enemy.h>
 	<vector>
 	<array>
+	<windows.h>
+	<Combat.h>
 

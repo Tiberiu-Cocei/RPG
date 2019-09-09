@@ -12,6 +12,7 @@ class EnemyStats : public Stats
         void get_stats();
         bool take_damage(int, int, int, int);
         void gain_health(int);
+        void reset_stats();
 };
 
 #endif
