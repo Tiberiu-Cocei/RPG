@@ -2,7 +2,7 @@
 
 Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, int textColorNr, EquipableItem* treasureEquipable,
              ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout, int bossCoordinates,
-             int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates)
+             int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates)
 {
     this->levelName = levelName;
     this->beginDesc = beginDesc;
@@ -16,11 +16,14 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     this->fountainCoordinates = fountainCoordinates;
     this->equipableTreasureCoordinates = equipableTreasureCoordinates;
     this->consumableTreasureCoordinates = consumableTreasureCoordinates;
+    this->initialCoordinates = initialCoordinates;
     this->isBossBeaten = false;
     this->isFountainUsed = false;
     this->isEquipableTreasureTaken = false;
     this->isConsumableTreasureTaken = false;
     combat = new Combat();
+
+    //changing console text color
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, this->textColorNr);
 }
@@ -37,13 +40,13 @@ void Level::end_level() {
 
 void Level::direction_details(std::string& directions, int coordinates) {
     if(roomLayout.at(coordinates) == 'B') {
-        directions += ": boss room";
+        directions += "(boss room)";
     }
     else if(roomLayout.at(coordinates) == 'T') {
-        directions += ": treasure room";
+        directions += "(treasure room)";
     }
     else if(roomLayout.at(coordinates) == 'F') {
-        directions += ": fountain room";
+        directions += "(fountain room)";
     }
 }
 
@@ -114,25 +117,28 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
 }
 
 bool Level::generic_room(int coordinates, Equipment*& player, Inventory*& inventory) {
-    bool playerDeath;
-    int valueForEncounter = rand() % 100 + coordinates + 1;
-    Enemy* enemy;
-    if(valueForEncounter < 120) {
-        enemy = enemyList.at(4);
-    }
-    else if(valueForEncounter < 200) {
-        enemy = enemyList.at(3);
-    }
-    else {
-        valueForEncounter = rand() % 100 + 1;
-        if(valueForEncounter <= 50) {
-            enemy = enemyList.at(2);
+    int encounterChance = rand() % 10 + 1;
+    bool playerDeath = false;
+    if(encounterChance == 2 || encounterChance == 5 || encounterChance == 8) {
+        int valueForEncounter = rand() % 100 + coordinates + 1;
+        Enemy* enemy;
+        if(valueForEncounter < 120) {
+            enemy = enemyList.at(4);
+        }
+        else if(valueForEncounter < 200) {
+            enemy = enemyList.at(3);
         }
         else {
-            enemy = enemyList.at(1);
+            valueForEncounter = rand() % 100 + 1;
+            if(valueForEncounter <= 50) {
+                enemy = enemyList.at(2);
+            }
+            else {
+                enemy = enemyList.at(1);
+            }
         }
+        playerDeath = combat->encounter(player, inventory, enemy);
     }
-    playerDeath = combat->encounter(player, inventory, enemy);
     return playerDeath;
 }
 

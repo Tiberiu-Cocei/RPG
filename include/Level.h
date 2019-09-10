@@ -15,7 +15,7 @@ class Level
 {
     public:
         Level(std::string, std::string, std::string, int, EquipableItem*, ConsumableItem*,
-              std::vector<Enemy*>, std::array<char, 225>, int, int, int, int);
+              std::vector<Enemy*>, std::array<char, 225>, int, int, int, int, int);
         ~Level();
         void begin_level();
         void end_level();
@@ -42,6 +42,7 @@ class Level
         int fountainCoordinates;
         int equipableTreasureCoordinates;
         int consumableTreasureCoordinates;
+        int initialCoordinates;
         bool isBossBeaten;
         bool isFountainUsed;
         bool isEquipableTreasureTaken;

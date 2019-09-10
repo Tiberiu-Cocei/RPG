@@ -39,6 +39,7 @@ bool Combat::encounter(Equipment*& player, Inventory*& inventory, Enemy*& enemy,
                 enemy->enemy_death(inventory);
                 player->get_player_stats()->reset_temp_stats();
                 enemy->get_enemy_stats()->reset_stats();
+                player->get_player_stats()->gain_experience(enemy->get_xp());
                 return false;
             }
             else {

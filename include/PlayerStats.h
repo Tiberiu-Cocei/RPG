@@ -20,6 +20,7 @@ class PlayerStats : public Stats
         void reset_temp_stats();
         void gain_stats_from_equip(int, int, int, int, int, int, int, int);
         void lose_stats_from_unequip(int, int, int, int, int, int, int, int);
+        void gain_experience(int);
 
     private:
         int tempHealthPoints;
@@ -30,6 +31,7 @@ class PlayerStats : public Stats
         int tempEvasion;
         int dmgBonus;
         int dmgReduction;
+        int experience;
 };
 
 #endif

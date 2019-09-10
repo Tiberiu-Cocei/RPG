@@ -18,7 +18,7 @@
 1565825442 d:\informatica\game\game\include\functions.h
 	<iostream>
 
-1568038396 source:d:\informatica\git\rpg\main.cpp
+1568115475 source:d:\informatica\git\rpg\main.cpp
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -37,6 +37,7 @@
 	<windows.h>
 	"Combat.h"
 	<array>
+	"LevelList.h"
 
 1568038380 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
@@ -57,12 +58,12 @@
 
 1566732192 d:\informatica\git\rpg\include\stats.h
 
-1568016406 source:d:\informatica\git\rpg\src\playerstats.cpp
+1568065465 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
 
-1566732132 d:\informatica\git\rpg\include\playerstats.h
+1568064200 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
 1568038333 source:d:\informatica\git\rpg\src\enemystats.cpp
@@ -138,7 +139,7 @@
 	"Equipment.h"
 	<vector>
 
-1568033439 source:d:\informatica\git\rpg\src\enemylist.cpp
+1568065860 source:d:\informatica\git\rpg\src\enemylist.cpp
 	"EnemyList.h"
 
 1567695895 d:\informatica\git\rpg\include\enemylist.h
@@ -150,7 +151,7 @@
 	"EquipableItemList.h"
 	"ConsumableItemList.h"
 
-1568038306 source:d:\informatica\git\rpg\src\combat.cpp
+1568065954 source:d:\informatica\git\rpg\src\combat.cpp
 	"Combat.h"
 	<algorithm>
 	<windows.h>
@@ -163,10 +164,10 @@
 	"Inventory.h"
 	<map>
 
-1568037830 source:d:\informatica\git\rpg\src\level.cpp
+1568115449 source:d:\informatica\git\rpg\src\level.cpp
 	"Level.h"
 
-1568036972 d:\informatica\git\rpg\include\level.h
+1568107805 d:\informatica\git\rpg\include\level.h
 	<iostream>
 	<string.h>
 	<ConsumableItem.h>
@@ -176,4 +177,17 @@
 	<array>
 	<windows.h>
 	<Combat.h>
+
+1568065800 source:d:\informatica\git\rpg\src\levellist.cpp
+	"LevelList.h"
+	<vector>
+	<iostream>
+	<string.h>
+	<array>
+
+1568064820 d:\informatica\git\rpg\include\levellist.h
+	"Level.h"
+	"ConsumableItemList.h"
+	"EquipableItemList.h"
+	"EnemyList.h"
 

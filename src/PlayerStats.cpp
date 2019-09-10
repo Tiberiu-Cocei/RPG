@@ -13,6 +13,12 @@ PlayerStats::PlayerStats(int healthPoints, int attack, int strength, int defense
     tempEvasion = 0;
     dmgBonus = 0;
     dmgReduction = 0;
+    experience = 0;
+}
+
+void PlayerStats::gain_experience(int experience) {
+    std::cout<<"You have gained " + std::to_string(experience) + " experience from the encounter!\n";
+    this->experience += experience;
 }
 
 bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus) {
@@ -199,6 +205,7 @@ void PlayerStats::get_stats() {
     else ownStats += "Even the most trained and accurate enemies have a hard time hitting you.\n";
 
     ownStats += std::to_string(dmgBonus) + " damage bonus and " + std::to_string(dmgReduction) + " damage reduction.\n";
+    ownStats += "You have " + std::to_string(experience) + " experience points.\n";
 
     std::cout<<ownStats;
 }

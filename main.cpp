@@ -17,16 +17,12 @@
 #include "Combat.h"
 #include <array>
 #define _WIN32_WINNT 0x0500
+#include "LevelList.h"
 
 int main()
 {
   //generating random seed
   srand (time(NULL));
-
-  //changing console text color
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  int colorText = 14;
-  SetConsoleTextAttribute(hConsole, colorText);
 
   //changing console size
   HWND console = GetConsoleWindow();
@@ -65,6 +61,11 @@ int main()
   Enemy* enemy = new Enemy(enemyStats, "Shrek", "The swamp rumbles", "It's all ogre now", consumableItems, equipableItems, 100, 2000);
   Combat* combat = new Combat();
   //combat->encounter(equipment, inventory, enemy);
+  LevelList* levelList = new LevelList();
+  Level* level = levelList->get_level(1);
+  int cord = 198;
+  //level->move_in_direction(cord, 'N', equipment, inventory);
+  //std::cout<<level->get_possible_directions(198);
 
   std::array<char, 49> roomLayout = {
        '0', '0', '0', '0', '0', '0', '0',
