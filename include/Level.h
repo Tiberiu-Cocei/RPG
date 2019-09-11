@@ -24,6 +24,7 @@ class Level
         int get_initial_coordinates();
         int get_boss_coordinates();
         bool is_boss_beaten();
+        void show_user_map();
 
     private:
         bool boss_warning();
@@ -33,7 +34,9 @@ class Level
         void equipable_treasure_room(Inventory*&);
         void consumable_treasure_room(Inventory*&);
         void direction_details(std::string&, int);
+        void update_user_map(int);
 
+        HANDLE hConsole;
         std::string levelName;
         std::string beginDesc;
         std::string endDesc;
@@ -42,6 +45,7 @@ class Level
         ConsumableItem* treasureConsumable;
         std::vector<Enemy*> enemyList;
         std::array<char, 225> roomLayout;
+        std::array<char, 225> userMap;
         int bossCoordinates;
         int fountainCoordinates;
         int equipableTreasureCoordinates;

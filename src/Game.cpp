@@ -7,7 +7,7 @@ Game::Game()
 
     //changing console size
     HWND console = GetConsoleWindow();
-    MoveWindow(console, 255, 90, 1100, 700, TRUE);
+    MoveWindow(console, 205, 90, 1200, 700, TRUE);
 
     commandMapping.insert(std::make_pair("help", 1));
     commandMapping.insert(std::make_pair("move north", 2));
@@ -19,6 +19,7 @@ Game::Game()
     commandMapping.insert(std::make_pair("inventory", 8));
     commandMapping.insert(std::make_pair("use item", 9));
     commandMapping.insert(std::make_pair("drop item", 10));
+    commandMapping.insert(std::make_pair("map", 11));
     commandMapping.insert(std::make_pair("exit", 100));
 
     playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
@@ -59,7 +60,7 @@ void Game::play() {
       }
       switch(commandValue) {
           case 1 :
-            std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats', 'equipment', 'inventory', 'use item', 'drop item'.\n";
+            std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats', 'equipment', 'inventory', 'use item', 'drop item', 'map'.\n";
             break;
           case 2 :
             gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, inventory);
@@ -103,6 +104,9 @@ void Game::play() {
             } catch(const std::invalid_argument& error) {
                 std::cerr << "Not a number.\n";
             }
+            break;
+          case 11 :
+            level->show_user_map();
             break;
           case 100 :
             std::cout<<"Exiting the game.\n";

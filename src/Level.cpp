@@ -23,9 +23,58 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     this->isConsumableTreasureTaken = false;
     combat = new Combat();
 
+    userMap = {
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
+            };
+    userMap.at(initialCoordinates) = 'H';
+    userMap.at(initialCoordinates + 1) = roomLayout.at(initialCoordinates + 1);
+    userMap.at(initialCoordinates - 1) = roomLayout.at(initialCoordinates - 1);
+    userMap.at(initialCoordinates + 15) = roomLayout.at(initialCoordinates + 15);
+    userMap.at(initialCoordinates - 15) = roomLayout.at(initialCoordinates - 15);
+
     //changing console text color
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, this->textColorNr);
+}
+
+void Level::update_user_map(int coordinates) {
+    userMap.at(coordinates + 1) = roomLayout.at(initialCoordinates + 1);
+    userMap.at(coordinates - 1) = roomLayout.at(initialCoordinates - 1);
+    userMap.at(coordinates + 15) = roomLayout.at(initialCoordinates + 15);
+    userMap.at(coordinates - 15) = roomLayout.at(initialCoordinates - 15);
+    userMap.at(coordinates) = 'H';
+}
+
+void Level::show_user_map() {
+    std::cout<<"O - open area, T - treasure room, F - fountain room, B - boss room, X - unreachable\n";
+    for(int i = 0; i<15; i++) {
+        for(int j = 0; j<15; j++) {
+            if(userMap.at(i*15 + j) != 'H') {
+                std::cout<<userMap.at(i*15 + j)<<" ";
+            }
+            else {
+                SetConsoleTextAttribute(this->hConsole, 45);
+                std::cout<<" ";
+                SetConsoleTextAttribute(this->hConsole, this->textColorNr);
+                std::cout<<" ";
+            }
+        }
+        std::cout<<std::endl;
+    }
 }
 
 int Level::get_initial_coordinates() {
@@ -99,10 +148,12 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
                     bossFight = boss_warning();
                     if(bossFight == true) {
                         coordinates-=15;
+                        update_user_map(coordinates);
                     }
                }
                else {
                     coordinates-=15;
+                    update_user_map(coordinates);
                }
            }
            else {
@@ -115,10 +166,12 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
                     bossFight = boss_warning();
                     if(bossFight == true) {
                         coordinates++;
+                        update_user_map(coordinates);
                     }
                }
                else {
                     coordinates++;
+                    update_user_map(coordinates);
                }
            }
            else {
@@ -131,10 +184,12 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
                     bossFight = boss_warning();
                     if(bossFight == true) {
                         coordinates+=15;
+                        update_user_map(coordinates);
                     }
                }
                else {
                     coordinates+=15;
+                    update_user_map(coordinates);
                }
            }
            else {
@@ -147,10 +202,12 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
                     bossFight = boss_warning();
                     if(bossFight == true) {
                         coordinates--;
+                        update_user_map(coordinates);
                     }
                }
                else {
                     coordinates--;
+                    update_user_map(coordinates);
                }
            }
            else {
