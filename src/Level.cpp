@@ -52,10 +52,10 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
 }
 
 void Level::update_user_map(int coordinates) {
-    userMap.at(coordinates + 1) = roomLayout.at(initialCoordinates + 1);
-    userMap.at(coordinates - 1) = roomLayout.at(initialCoordinates - 1);
-    userMap.at(coordinates + 15) = roomLayout.at(initialCoordinates + 15);
-    userMap.at(coordinates - 15) = roomLayout.at(initialCoordinates - 15);
+    userMap.at(coordinates + 1) = roomLayout.at(coordinates + 1);
+    userMap.at(coordinates - 1) = roomLayout.at(coordinates - 1);
+    userMap.at(coordinates + 15) = roomLayout.at(coordinates + 15);
+    userMap.at(coordinates - 15) = roomLayout.at(coordinates - 15);
     userMap.at(coordinates) = 'H';
 }
 
