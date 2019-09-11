@@ -21,8 +21,12 @@ class Level
         void end_level();
         std::string get_possible_directions(int);
         bool move_in_direction(int&, char, Equipment*&, Inventory*&);
+        int get_initial_coordinates();
+        int get_boss_coordinates();
+        bool is_boss_beaten();
 
     private:
+        bool boss_warning();
         bool generic_room(int, Equipment*&, Inventory*&);
         bool boss_room(Equipment*&, Inventory*&);
         void fountain_room(Equipment*&);

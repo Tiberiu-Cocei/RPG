@@ -109,12 +109,4 @@ void Enemy::enemy_death(Inventory*& inventory) {
 Enemy::~Enemy()
 {
     delete this->enemyStats;
-    for(auto consumableItem : consumableDrops)
-    {
-        delete consumableItem;
-    }
-    for(auto equipableItem : equipableDrops)
-    {
-        delete equipableItem;
-    }
 }

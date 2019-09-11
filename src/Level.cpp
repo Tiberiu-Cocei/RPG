@@ -28,6 +28,10 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     SetConsoleTextAttribute(hConsole, this->textColorNr);
 }
 
+int Level::get_initial_coordinates() {
+    return initialCoordinates;
+}
+
 void Level::begin_level() {
     std::cout<<beginDesc<<"\n\n";
     std::cout<<"You are now playing the level: " + levelName + ".\n\n";
@@ -71,26 +75,86 @@ std::string Level::get_possible_directions(int coordinates) { //todo: say in str
     return directions;
 }
 
+bool Level::boss_warning() {
+    if(isBossBeaten == false) {
+        std::cout<<"You are about to enter the boss room. Escape is not an option when fighting. Are you sure you want to continue?\n";
+        std::string command;
+        getline(std::cin, command);
+        if(command == "Yes" || command == "yes") {
+            return true;
+        }
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 bool Level::move_in_direction(int& coordinates, char direction, Equipment*& player, Inventory*& inventory) {
+    bool bossFight = false;
     switch(direction) {
         case('N') :
            if (roomLayout.at(coordinates - 15) != 'X') {
-               coordinates-=15;
+               if(coordinates - 15 == bossCoordinates) {
+                    bossFight = boss_warning();
+                    if(bossFight == true) {
+                        coordinates-=15;
+                    }
                }
+               else {
+                    coordinates-=15;
+               }
+           }
+           else {
+               std::cout<<"You cannot move north.";
+           }
            break;
         case('E') :
            if (roomLayout.at(coordinates + 1) != 'X') {
-               coordinates++;
+               if(coordinates + 1 == bossCoordinates) {
+                    bossFight = boss_warning();
+                    if(bossFight == true) {
+                        coordinates++;
+                    }
+               }
+               else {
+                    coordinates++;
+               }
+           }
+           else {
+               std::cout<<"You cannot move east.";
            }
            break;
         case('S') :
            if (roomLayout.at(coordinates + 15) != 'X') {
-               coordinates+=15;
+               if(coordinates + 15 == bossCoordinates) {
+                    bossFight = boss_warning();
+                    if(bossFight == true) {
+                        coordinates+=15;
+                    }
+               }
+               else {
+                    coordinates+=15;
+               }
+           }
+           else {
+               std::cout<<"You cannot move south.";
            }
            break;
         case('W') :
            if (roomLayout.at(coordinates - 1) != 'X') {
-               coordinates--;
+               if(coordinates - 1 == bossCoordinates) {
+                    bossFight = boss_warning();
+                    if(bossFight == true) {
+                        coordinates--;
+                    }
+               }
+               else {
+                    coordinates--;
+               }
+           }
+           else {
+               std::cout<<"You cannot move west.";
            }
            break;
         default :
@@ -123,18 +187,18 @@ bool Level::generic_room(int coordinates, Equipment*& player, Inventory*& invent
         int valueForEncounter = rand() % 100 + coordinates + 1;
         Enemy* enemy;
         if(valueForEncounter < 120) {
-            enemy = enemyList.at(4);
+            enemy = enemyList.at(3);
         }
         else if(valueForEncounter < 200) {
-            enemy = enemyList.at(3);
+            enemy = enemyList.at(2);
         }
         else {
             valueForEncounter = rand() % 100 + 1;
             if(valueForEncounter <= 50) {
-                enemy = enemyList.at(2);
+                enemy = enemyList.at(1);
             }
             else {
-                enemy = enemyList.at(1);
+                enemy = enemyList.at(0);
             }
         }
         playerDeath = combat->encounter(player, inventory, enemy);
@@ -145,7 +209,7 @@ bool Level::generic_room(int coordinates, Equipment*& player, Inventory*& invent
 bool Level::boss_room(Equipment*& player, Inventory*& inventory) {
     if(isBossBeaten == false) {
         bool playerDeath = false;
-        Enemy* boss = enemyList.at(5);
+        Enemy* boss = enemyList.at(4);
         playerDeath = combat->encounter(player, inventory, boss, true);
         if(playerDeath == false) {
             this->isBossBeaten = true;
@@ -191,7 +255,7 @@ void Level::equipable_treasure_room(Inventory*& inventory) {
 void Level::consumable_treasure_room(Inventory*& inventory) {
     if(isConsumableTreasureTaken == false) {
         std::cout<<"You place your hand on the door to the treasure room. It lights up and the doors open shortly after. You go inside and find in"
-                 <<" the middle of the room the " << treasureEquipable->get_name() << ". Do you take it?\n";
+                 <<" the middle of the room the " << treasureConsumable->get_name() << ". Do you take it?\n";
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
@@ -202,6 +266,14 @@ void Level::consumable_treasure_room(Inventory*& inventory) {
     else {
         std::cout<<"The treasure room has lost its glow since you took the item. There's nothing more left to be done here.\n";
     }
+}
+
+int Level::get_boss_coordinates() {
+    return bossCoordinates;
+}
+
+bool Level::is_boss_beaten() {
+    return isBossBeaten;
 }
 
 Level::~Level()

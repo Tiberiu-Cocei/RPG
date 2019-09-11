@@ -43,6 +43,7 @@
 		<Unit filename="include/EquipableItem.h" />
 		<Unit filename="include/EquipableItemList.h" />
 		<Unit filename="include/Equipment.h" />
+		<Unit filename="include/Game.h" />
 		<Unit filename="include/Inventory.h" />
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/Level.h" />
@@ -59,6 +60,7 @@
 		<Unit filename="src/EquipableItem.cpp" />
 		<Unit filename="src/EquipableItemList.cpp" />
 		<Unit filename="src/Equipment.cpp" />
+		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Inventory.cpp" />
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/Level.cpp" />

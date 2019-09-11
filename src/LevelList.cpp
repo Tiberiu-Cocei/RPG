@@ -21,7 +21,7 @@ Level* LevelList::get_level(int index) {
     switch(index) {
         case 1 :
             levelName = "Monster cave";
-            beginDesc = "You enter the cave. Behind you see the elders watch you. Feeling your hesitation, they remind you of what you must do. \nNot having much of a choice, you press on. After a couple of steps the cave entrance closes itself. \nYour only source of light is the torches that are laid along the cave walls. \nFor a moment, you wonder who or what placed them.";
+            beginDesc = "You enter the cave. Behind you see the elders watch you. Feeling your hesitation, they remind you of what you must do. \nNot having much of a choice, you press on. After a couple of steps the cave entrance closes itself. \nYour only source of light is the torches that are laid along the cave walls. For a moment, you wonder who or what placed them.";
             endDesc = "With the abomination now dead, the way forward is wide open. It seems like you're going to have to venture deeper into the mines. \nBefore you do so, you grab a torch, fearing that there won't be any more of them down there.";
             textColorNr = 14;
             treasureEquipable = equipableList->get_equipable_item(261);
