@@ -1,7 +1,7 @@
 # RPG
 v0.1 First playable version  
-v0.2 Secret rooms  
-v0.3 User map  
+v0.2 User map  
+v0.3 Secret rooms  
 v0.4 Perks  
 v0.5 Abilities  
 v0.6 Save/Load  
