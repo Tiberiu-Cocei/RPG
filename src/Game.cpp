@@ -114,9 +114,6 @@ void Game::play() {
           default :
             std::cout<<"Unknown command. Write \"help\" to view all the commands.\n";
       }
-      if(commandValue > 1 && commandValue < 6) {
-        std::cout << "Your current coordinates are : " << currentCoordinates/15 + 1 << " " << currentCoordinates%15 + 1 << std::endl;
-      }
       if(currentCoordinates == level->get_boss_coordinates() && true == level->is_boss_beaten()) {
         std::cout<<"\nDo you wish to go to the next level?\n";
         std::string nextLevel;

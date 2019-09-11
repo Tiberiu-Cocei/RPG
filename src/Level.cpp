@@ -2,7 +2,8 @@
 
 Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, int textColorNr, EquipableItem* treasureEquipable,
              ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout, int bossCoordinates,
-             int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates)
+             int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates,
+             int clueCoordinates, int secretCoordinates, std::string clueDesc, EquipableItem* secretEquipable)
 {
     this->levelName = levelName;
     this->beginDesc = beginDesc;
@@ -17,10 +18,15 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     this->equipableTreasureCoordinates = equipableTreasureCoordinates;
     this->consumableTreasureCoordinates = consumableTreasureCoordinates;
     this->initialCoordinates = initialCoordinates;
+    this->clueCoordinates = clueCoordinates;
+    this->secretCoordinates = secretCoordinates;
     this->isBossBeaten = false;
     this->isFountainUsed = false;
     this->isEquipableTreasureTaken = false;
     this->isConsumableTreasureTaken = false;
+    this->isSecretItemTaken = false;
+    this->clueDesc = clueDesc;
+    this->secretEquipable = secretEquipable;
     combat = new Combat();
 
     userMap = {
@@ -41,7 +47,12 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
                 ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
             };
     userMap.at(initialCoordinates) = 'H';
-    userMap.at(initialCoordinates + 1) = roomLayout.at(initialCoordinates + 1);
+    if(roomLayout.at(initialCoordinates + 1) != 'S') {
+        userMap.at(initialCoordinates + 1) = roomLayout.at(initialCoordinates + 1);
+    }
+    else {
+        userMap.at(initialCoordinates + 1) = 'X';
+    }
     userMap.at(initialCoordinates - 1) = roomLayout.at(initialCoordinates - 1);
     userMap.at(initialCoordinates + 15) = roomLayout.at(initialCoordinates + 15);
     userMap.at(initialCoordinates - 15) = roomLayout.at(initialCoordinates - 15);
@@ -51,16 +62,59 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     SetConsoleTextAttribute(hConsole, this->textColorNr);
 }
 
+void Level::clue_room() {
+    std::cout<<"\nWritten on the wall in darkness that does not yield to light you read:\n\n";
+    SetConsoleTextAttribute(this->hConsole, 80);
+    std::cout<<clueDesc<<"\n";
+    SetConsoleTextAttribute(this->hConsole, this->textColorNr);
+}
+
+void Level::secret_room(Inventory*& inventory) {
+    if(isSecretItemTaken == false) {
+        std::cout<<"\nYou place your hand on the wall. To your surprise, it goes right through. You go through the wall and find"
+                 <<"\nin the middle of the hidden section of the cave the " << secretEquipable->get_name() << ". Do you take it?\n";
+        std::string command;
+        getline(std::cin, command);
+        if(command == "Yes" || command == "yes") {
+            inventory->pickup_item(secretEquipable);
+            isSecretItemTaken = true;
+        }
+    }
+    else {
+        std::cout<<"There is nothing more for you in this place.\n";
+    }
+}
+
 void Level::update_user_map(int coordinates) {
-    userMap.at(coordinates + 1) = roomLayout.at(coordinates + 1);
-    userMap.at(coordinates - 1) = roomLayout.at(coordinates - 1);
-    userMap.at(coordinates + 15) = roomLayout.at(coordinates + 15);
-    userMap.at(coordinates - 15) = roomLayout.at(coordinates - 15);
+    if(roomLayout.at(coordinates + 1) != 'S') {
+        userMap.at(coordinates + 1) = roomLayout.at(coordinates + 1);
+    }
+    else {
+        userMap.at(coordinates + 1) = 'X';
+    }
+    if(roomLayout.at(coordinates - 1) != 'S') {
+        userMap.at(coordinates - 1) = roomLayout.at(coordinates - 1);
+    }
+    else {
+        userMap.at(coordinates - 1) = 'X';
+    }
+    if(roomLayout.at(coordinates + 15) != 'S') {
+        userMap.at(coordinates + 15) = roomLayout.at(coordinates + 15);
+    }
+    else {
+        userMap.at(coordinates + 15) = 'X';
+    }
+    if(roomLayout.at(coordinates - 15) != 'S') {
+        userMap.at(coordinates - 15) = roomLayout.at(coordinates - 15);
+    }
+    else {
+        userMap.at(coordinates - 15) = 'X';
+    }
     userMap.at(coordinates) = 'H';
 }
 
 void Level::show_user_map() {
-    std::cout<<"O - open area, T - treasure room, F - fountain room, B - boss room, X - unreachable\n";
+    std::cout<<"O - open area, T - treasure room, F - fountain room, C - clue room, B - boss room, X - unreachable\n";
     for(int i = 0; i<15; i++) {
         for(int j = 0; j<15; j++) {
             if(userMap.at(i*15 + j) != 'H') {
@@ -101,23 +155,26 @@ void Level::direction_details(std::string& directions, int coordinates) {
     else if(roomLayout.at(coordinates) == 'F') {
         directions += "(fountain room)";
     }
+    else if(roomLayout.at(coordinates) == 'C') {
+        directions += "(clue room)";
+    }
 }
 
 std::string Level::get_possible_directions(int coordinates) { //todo: say in string if its a special room
     std::string directions = "The direction(s) you can move in are:";
-    if (roomLayout.at(coordinates - 15) != 'X') {
+    if (roomLayout.at(coordinates - 15) != 'X' && roomLayout.at(coordinates - 15) != 'S') {
         directions += " north";
         direction_details(directions, coordinates - 15);
     }
-    if (roomLayout.at(coordinates + 1) != 'X') {
+    if (roomLayout.at(coordinates + 1) != 'X' && roomLayout.at(coordinates + 1) != 'S') {
         directions += " east";
         direction_details(directions, coordinates + 1);
     }
-    if (roomLayout.at(coordinates + 15) != 'X') {
+    if (roomLayout.at(coordinates + 15) != 'X' && roomLayout.at(coordinates + 15) != 'S') {
         directions += " south";
         direction_details(directions, coordinates + 15);
     }
-    if (roomLayout.at(coordinates - 1) != 'X') {
+    if (roomLayout.at(coordinates - 1) != 'X' && roomLayout.at(coordinates - 1) != 'S') {
         directions += " west";
         direction_details(directions, coordinates - 1);
     }
@@ -234,6 +291,12 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
     else if(coordinates == consumableTreasureCoordinates) {
         consumable_treasure_room(inventory);
     }
+    else if(coordinates == clueCoordinates) {
+        clue_room();
+    }
+    else if(coordinates == secretCoordinates) {
+        secret_room(inventory);
+    }
     return playerDeath;
 }
 
@@ -241,6 +304,7 @@ bool Level::generic_room(int coordinates, Equipment*& player, Inventory*& invent
     int encounterChance = rand() % 10 + 1;
     bool playerDeath = false;
     if(encounterChance == 2 || encounterChance == 5 || encounterChance == 8) {
+        std::cout<<"\n";
         int valueForEncounter = rand() % 100 + coordinates + 1;
         Enemy* enemy;
         if(valueForEncounter < 120) {
@@ -295,7 +359,7 @@ void Level::fountain_room(Equipment*& player) {
 
 void Level::equipable_treasure_room(Inventory*& inventory) {
     if(isEquipableTreasureTaken == false) {
-        std::cout<<"You place your hand on the door to the treasure room. It lights up and the doors open shortly after. You go inside and find in"
+        std::cout<<"You place your hand on the door to the treasure room. It brightens up in a golden light and it opens shortly after. You go inside and find in"
                  <<" the middle of the room the " << treasureEquipable->get_name() << ". Do you take it?\n";
         std::string command;
         getline(std::cin, command);
@@ -305,7 +369,7 @@ void Level::equipable_treasure_room(Inventory*& inventory) {
         }
     }
     else {
-        std::cout<<"The treasure room has lost its glow since you took the item. There's nothing more left to be done here.\n";
+        std::cout<<"You bask in the warm golden light of the treasure room. There's nothing more left to be done here.\n";
     }
 }
 

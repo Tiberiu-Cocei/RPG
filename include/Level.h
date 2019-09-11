@@ -15,7 +15,7 @@ class Level
 {
     public:
         Level(std::string, std::string, std::string, int, EquipableItem*, ConsumableItem*,
-              std::vector<Enemy*>, std::array<char, 225>, int, int, int, int, int);
+              std::vector<Enemy*>, std::array<char, 225>, int, int, int, int, int, int, int, std::string, EquipableItem*);
         ~Level();
         void begin_level();
         void end_level();
@@ -34,14 +34,18 @@ class Level
         void equipable_treasure_room(Inventory*&);
         void consumable_treasure_room(Inventory*&);
         void direction_details(std::string&, int);
+        void clue_room();
+        void secret_room(Inventory*&);
         void update_user_map(int);
 
         HANDLE hConsole;
         std::string levelName;
         std::string beginDesc;
         std::string endDesc;
+        std::string clueDesc;
         int textColorNr;
         EquipableItem* treasureEquipable;
+        EquipableItem* secretEquipable;
         ConsumableItem* treasureConsumable;
         std::vector<Enemy*> enemyList;
         std::array<char, 225> roomLayout;
@@ -51,10 +55,13 @@ class Level
         int equipableTreasureCoordinates;
         int consumableTreasureCoordinates;
         int initialCoordinates;
+        int clueCoordinates;
+        int secretCoordinates;
         bool isBossBeaten;
         bool isFountainUsed;
         bool isEquipableTreasureTaken;
         bool isConsumableTreasureTaken;
+        bool isSecretItemTaken;
         Combat* combat;
 };
 

@@ -33,7 +33,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Skeleton", "From the darkness of the cave something leaps towards you. \nYou realize that it's a skeleton, something that should not be capable of standing let alone fighting. \nYou prepare yourself for battle!",
                              "The bones that form the skeleton break and fall to the ground.", consumableDrops, equipableDrops, 18, 10);
         case 3:
-            enemyStats = new EnemyStats(45, 12, 36, 26, 11);
+            enemyStats = new EnemyStats(45, 12, 36, 14, 11);
             consumableDrops.push_back(consumableItemList->get_consumable_item(100));
             consumableDrops.push_back(consumableItemList->get_consumable_item(101));
             consumableDrops.push_back(consumableItemList->get_consumable_item(1));
@@ -43,7 +43,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Giant Rat", "You hear loud squeaking noises come from somewhere near you. You prepare yourself for battle. \nMoments later, a giant rat jumps in front of you!",
                              "The giant rat falls over, dying shortly after.", consumableDrops, equipableDrops, 21, 20);
         case 4:
-            enemyStats = new EnemyStats(60, 23, 37, 16, 23);
+            enemyStats = new EnemyStats(50, 23, 37, 18, 23);
             consumableDrops.push_back(consumableItemList->get_consumable_item(103));
             consumableDrops.push_back(consumableItemList->get_consumable_item(104));
             consumableDrops.push_back(consumableItemList->get_consumable_item(1));
@@ -53,7 +53,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Hobgoblin", "You see a weakly goblin trip on a rock and fall to the ground. \nIt turns around whimpering and pleading, to your confusion. \nThen you see the reason: a Hobgoblin towering above it. It raises its weapon to kill the goblin when it notices you. \nThe goblin escapes, and the hobgoblin charges towards you. You prepare for combat!",
                              "The hobgoblin falls with a loud thud, never to get up again.", consumableDrops, equipableDrops, 26, 35);
         case 5:
-            enemyStats = new EnemyStats(150, 25, 45, 25, 15);
+            enemyStats = new EnemyStats(150, 25, 43, 25, 15);
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
