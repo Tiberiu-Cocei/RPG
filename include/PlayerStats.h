@@ -29,6 +29,7 @@ class PlayerStats : public Stats
         int get_temp_attack();
         int get_temp_strength();
         int get_temp_luck();
+        int get_hp_regen();
 
     private:
         int tempHealthPoints;

@@ -39,7 +39,9 @@ bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inven
                 enemy->enemy_death(inventory);
                 player->get_player_stats()->reset_temp_stats();
                 enemy->get_enemy_stats()->reset_stats();
-                player->get_player_stats()->regen_health();
+                if(player->get_player_stats()->get_hp_regen() !=0) {
+                    player->get_player_stats()->regen_health();
+                }
                 player->get_player_stats()->gain_experience(enemy->get_xp());
                 return false;
             }

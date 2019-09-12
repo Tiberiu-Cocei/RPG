@@ -258,6 +258,10 @@ int PlayerStats::get_temp_luck() {
     return this->tempLuck;
 }
 
+int PlayerStats::get_hp_regen() {
+    return this->hpRegen;
+}
+
 PlayerStats::~PlayerStats()
 {
 }
