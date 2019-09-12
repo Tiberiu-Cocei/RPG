@@ -22,7 +22,7 @@ void PlayerStats::gain_experience(int experience) {
 }
 
 bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus) {
-    int evade = rand() % 50 + 1 + get_luck()/10 + get_evasion()/5  - attack/10 + this->tempLuck/10 + this->tempEvasion/5;
+    int evade = rand() % 50 + 1 + get_luck()/10 + get_evasion()/3.5  - attack/10 + this->tempLuck/10 + this->tempEvasion/3.5;
     if(evade > 42) {
         std::cout<<"You have avoided the attack.\n";
         return false;
@@ -199,7 +199,7 @@ void PlayerStats::get_stats() {
     else if(evasion <= 20) ownStats += "You are not agile at all.\n";
     else if(evasion <= 30) ownStats += "You're agile enough to avoid a sluggish attack.\n";
     else if(evasion <= 40) ownStats += "You're starting to feel more agile.\n";
-    else if(evasion <= 60) ownStats += "You're agile enough to rarely avoid attacks.\n";
+    else if(evasion <= 60) ownStats += "You're agile enough to avoid the attacks of inexperienced foes.\n";
     else if(evasion <= 80) ownStats += "You're agile enough to often avoid attacks.\n";
     else if(evasion <= 100) ownStats += "You feel very agile, being able to evade even the fastest attacks.\n";
     else ownStats += "Even the most trained and accurate enemies have a hard time hitting you.\n";

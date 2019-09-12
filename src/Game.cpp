@@ -20,6 +20,10 @@ Game::Game()
     commandMapping.insert(std::make_pair("use item", 9));
     commandMapping.insert(std::make_pair("drop item", 10));
     commandMapping.insert(std::make_pair("map", 11));
+    commandMapping.insert(std::make_pair("go north", 12));
+    commandMapping.insert(std::make_pair("go east", 13));
+    commandMapping.insert(std::make_pair("go west", 14));
+    commandMapping.insert(std::make_pair("go south", 15));
     commandMapping.insert(std::make_pair("exit", 100));
 
     playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
@@ -60,18 +64,22 @@ void Game::play() {
       }
       switch(commandValue) {
           case 1 :
-            std::cout<<"The possible commands are: 'exit', 'move north/south/west/east', 'my stats', 'equipment', 'inventory', 'use item', 'drop item', 'map'.\n";
+            std::cout<<"The possible commands are: 'exit', 'go/move north/south/west/east', 'my stats', 'equipment', 'inventory', 'use item', 'drop item', 'map'.\n";
             break;
           case 2 :
+          case 12 :
             gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, inventory);
             break;
           case 3 :
+          case 13 :
             gameOver = level->move_in_direction(currentCoordinates, 'E', equipment, inventory);
             break;
           case 4 :
+          case 14 :
             gameOver = level->move_in_direction(currentCoordinates, 'W', equipment, inventory);
             break;
           case 5 :
+          case 15 :
             gameOver = level->move_in_direction(currentCoordinates, 'S', equipment, inventory);
             break;
           case 6 :

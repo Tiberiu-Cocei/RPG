@@ -38,6 +38,10 @@ class Level
         void secret_room(Inventory*&);
         void update_user_map(int);
 
+        const int valuesForDirections[4] = {-15, 1, 15, -1};
+        const std::string stringForDirections[4] = {"north", "east", "south", "west"};
+        std::map<char, int> directionalMapping;
+        std::map<char, int>::iterator directionalMappingIterator;
         HANDLE hConsole;
         std::string levelName;
         std::string beginDesc;

@@ -29,6 +29,11 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     this->secretEquipable = secretEquipable;
     combat = new Combat();
 
+    directionalMapping.insert(std::make_pair('N',-15));
+    directionalMapping.insert(std::make_pair('E',1));
+    directionalMapping.insert(std::make_pair('S',15));
+    directionalMapping.insert(std::make_pair('W',-1));
+
     userMap = {
                 ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
                 ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
@@ -86,29 +91,13 @@ void Level::secret_room(Inventory*& inventory) {
 }
 
 void Level::update_user_map(int coordinates) {
-    if(roomLayout.at(coordinates + 1) != 'S') {
-        userMap.at(coordinates + 1) = roomLayout.at(coordinates + 1);
-    }
-    else {
-        userMap.at(coordinates + 1) = 'X';
-    }
-    if(roomLayout.at(coordinates - 1) != 'S') {
-        userMap.at(coordinates - 1) = roomLayout.at(coordinates - 1);
-    }
-    else {
-        userMap.at(coordinates - 1) = 'X';
-    }
-    if(roomLayout.at(coordinates + 15) != 'S') {
-        userMap.at(coordinates + 15) = roomLayout.at(coordinates + 15);
-    }
-    else {
-        userMap.at(coordinates + 15) = 'X';
-    }
-    if(roomLayout.at(coordinates - 15) != 'S') {
-        userMap.at(coordinates - 15) = roomLayout.at(coordinates - 15);
-    }
-    else {
-        userMap.at(coordinates - 15) = 'X';
+    for(int i = 0; i < 4; i++) {
+        if(roomLayout.at(coordinates + valuesForDirections[i]) != 'S') {
+        userMap.at(coordinates + valuesForDirections[i]) = roomLayout.at(coordinates + valuesForDirections[i]);
+        }
+        else {
+            userMap.at(coordinates + valuesForDirections[i]) = 'X';
+        }
     }
     userMap.at(coordinates) = 'H';
 }
@@ -160,23 +149,13 @@ void Level::direction_details(std::string& directions, int coordinates) {
     }
 }
 
-std::string Level::get_possible_directions(int coordinates) { //todo: say in string if its a special room
+std::string Level::get_possible_directions(int coordinates) {
     std::string directions = "The direction(s) you can move in are:";
-    if (roomLayout.at(coordinates - 15) != 'X' && roomLayout.at(coordinates - 15) != 'S') {
-        directions += " north";
-        direction_details(directions, coordinates - 15);
-    }
-    if (roomLayout.at(coordinates + 1) != 'X' && roomLayout.at(coordinates + 1) != 'S') {
-        directions += " east";
-        direction_details(directions, coordinates + 1);
-    }
-    if (roomLayout.at(coordinates + 15) != 'X' && roomLayout.at(coordinates + 15) != 'S') {
-        directions += " south";
-        direction_details(directions, coordinates + 15);
-    }
-    if (roomLayout.at(coordinates - 1) != 'X' && roomLayout.at(coordinates - 1) != 'S') {
-        directions += " west";
-        direction_details(directions, coordinates - 1);
+    for(int i = 0; i < 4; i++) {
+        if (roomLayout.at(coordinates + valuesForDirections[i]) != 'X' && roomLayout.at(coordinates + valuesForDirections[i]) != 'S') {
+            directions += " " + stringForDirections[i];
+            direction_details(directions, coordinates + valuesForDirections[i]);
+        }
     }
     return directions;
 }
@@ -198,83 +177,26 @@ bool Level::boss_warning() {
 
 bool Level::move_in_direction(int& coordinates, char direction, Equipment*& player, Inventory*& inventory) {
     bool bossFight = false;
-    switch(direction) {
-        case('N') :
-           if (roomLayout.at(coordinates - 15) != 'X') {
-               if(coordinates - 15 == bossCoordinates) {
-                    bossFight = boss_warning();
-                    if(bossFight == true) {
-                        coordinates-=15;
-                        update_user_map(coordinates);
-                    }
-               }
-               else {
-                    coordinates-=15;
-                    update_user_map(coordinates);
-               }
-           }
-           else {
-               std::cout<<"You cannot move north.";
-           }
-           break;
-        case('E') :
-           if (roomLayout.at(coordinates + 1) != 'X') {
-               if(coordinates + 1 == bossCoordinates) {
-                    bossFight = boss_warning();
-                    if(bossFight == true) {
-                        coordinates++;
-                        update_user_map(coordinates);
-                    }
-               }
-               else {
-                    coordinates++;
-                    update_user_map(coordinates);
-               }
-           }
-           else {
-               std::cout<<"You cannot move east.";
-           }
-           break;
-        case('S') :
-           if (roomLayout.at(coordinates + 15) != 'X') {
-               if(coordinates + 15 == bossCoordinates) {
-                    bossFight = boss_warning();
-                    if(bossFight == true) {
-                        coordinates+=15;
-                        update_user_map(coordinates);
-                    }
-               }
-               else {
-                    coordinates+=15;
-                    update_user_map(coordinates);
-               }
-           }
-           else {
-               std::cout<<"You cannot move south.";
-           }
-           break;
-        case('W') :
-           if (roomLayout.at(coordinates - 1) != 'X') {
-               if(coordinates - 1 == bossCoordinates) {
-                    bossFight = boss_warning();
-                    if(bossFight == true) {
-                        coordinates--;
-                        update_user_map(coordinates);
-                    }
-               }
-               else {
-                    coordinates--;
-                    update_user_map(coordinates);
-               }
-           }
-           else {
-               std::cout<<"You cannot move west.";
-           }
-           break;
-        default :
-           std::cout<<"Invalid direction.\n";
-           return false;
+    directionalMappingIterator = directionalMapping.find(direction);
+    int directionValue = directionalMappingIterator->second;
+
+    if (roomLayout.at(coordinates + directionValue) != 'X') {
+        if(coordinates + directionValue == bossCoordinates) {
+            bossFight = boss_warning();
+            if(bossFight == true) {
+                coordinates+= directionValue;
+                update_user_map(coordinates);
+            }
+        }
+        else {
+            coordinates+= + directionValue;
+            update_user_map(coordinates);
+        }
     }
+    else {
+        std::cout<<"You cannot move north.";
+    }
+
     bool playerDeath = false;
     if(roomLayout.at(coordinates) == 'O') {
         playerDeath = generic_room(coordinates, player, inventory);
@@ -348,7 +270,7 @@ void Level::fountain_room(Equipment*& player) {
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
-            player->get_player_stats()->gain_health(150);
+            player->get_player_stats()->gain_health(250);
             this->isFountainUsed = true;
         }
     }
@@ -375,7 +297,7 @@ void Level::equipable_treasure_room(Inventory*& inventory) {
 
 void Level::consumable_treasure_room(Inventory*& inventory) {
     if(isConsumableTreasureTaken == false) {
-        std::cout<<"You place your hand on the door to the treasure room. It lights up and the doors open shortly after. You go inside and find in"
+        std::cout<<"You place your hand on the door to the treasure room. It lights up it opens shortly after. You go inside and find in"
                  <<" the middle of the room the " << treasureConsumable->get_name() << ". Do you take it?\n";
         std::string command;
         getline(std::cin, command);
@@ -401,6 +323,7 @@ Level::~Level()
 {
     if(isEquipableTreasureTaken == false) delete treasureEquipable;
     if(isConsumableTreasureTaken == false) delete treasureConsumable;
+    if(isSecretItemTaken == false) delete secretEquipable;
     delete combat;
     for(auto enemy : enemyList)
     {
