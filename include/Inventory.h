@@ -15,6 +15,7 @@ class Inventory
         void drop_item(int);
         void pickup_item(ConsumableItem*);
         void pickup_item(EquipableItem*);
+        void gain_max_weight(int);
 
     private:
         std::vector<ConsumableItem*> consumableItems;

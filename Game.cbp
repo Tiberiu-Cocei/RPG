@@ -48,6 +48,8 @@
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/Level.h" />
 		<Unit filename="include/LevelList.h" />
+		<Unit filename="include/Perk.h" />
+		<Unit filename="include/PerkList.h" />
 		<Unit filename="include/PlayerStats.h" />
 		<Unit filename="include/Stats.h" />
 		<Unit filename="main.cpp" />
@@ -65,6 +67,8 @@
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/LevelList.cpp" />
+		<Unit filename="src/Perk.cpp" />
+		<Unit filename="src/PerkList.cpp" />
 		<Unit filename="src/PlayerStats.cpp" />
 		<Unit filename="src/Stats.cpp" />
 		<Extensions>

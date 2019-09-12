@@ -14,6 +14,9 @@ PlayerStats::PlayerStats(int healthPoints, int attack, int strength, int defense
     dmgBonus = 0;
     dmgReduction = 0;
     experience = 0;
+    hpRegen = 0;
+    bonusHealing = 0;
+    escapeBonus = 0;
 }
 
 void PlayerStats::gain_experience(int experience) {
@@ -208,6 +211,51 @@ void PlayerStats::get_stats() {
     ownStats += "You have " + std::to_string(experience) + " experience points.\n";
 
     std::cout<<ownStats;
+}
+
+int PlayerStats::get_experience() {
+    return this->experience;
+}
+
+void PlayerStats::gain_stats_from_perk(int xpCost, int dmgBonus, int dmgReduction, int healthPoints, int attack, int strength, int defense,
+                                       int luck, int evasion, int hpRegen, int bonusHealing, int escapeBonus) {
+    this->experience -= xpCost;
+    this->dmgBonus += dmgBonus;
+    this->dmgReduction += dmgReduction;
+    this->hpRegen += hpRegen;
+    this->bonusHealing += bonusHealing;
+    this->escapeBonus += escapeBonus;
+    set_health_points(get_health_points() + healthPoints);
+    set_current_health_points(get_current_health_points() + healthPoints);
+    set_attack(get_attack() + attack);
+    set_strength(get_strength() + strength);
+    set_defense(get_defense() + defense);
+    set_luck(get_luck() + luck);
+    set_evasion(get_evasion() + evasion);
+}
+
+void PlayerStats::regen_health() {
+    gain_health(hpRegen);
+}
+
+int PlayerStats::get_bonus_healing() {
+    return bonusHealing;
+}
+
+int PlayerStats::get_escape_bonus() {
+    return escapeBonus;
+}
+
+int PlayerStats::get_temp_attack() {
+    return this->tempAttack;
+}
+
+int PlayerStats::get_temp_strength() {
+    return this->tempStrength;
+}
+
+int PlayerStats::get_temp_luck() {
+    return this->tempLuck;
 }
 
 PlayerStats::~PlayerStats()

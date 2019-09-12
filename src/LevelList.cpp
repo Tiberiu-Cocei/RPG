@@ -3,12 +3,14 @@
 #include <iostream>
 #include <string.h>
 #include <array>
+#include "Perk.h"
 
 LevelList::LevelList()
 {
     this->equipableList = new EquipableItemList();
     this->consumableList = new ConsumableItemList();
     this->enemyList = new EnemyList();
+    this->perkList = new PerkList();
 }
 
 Level* LevelList::get_level(int index) {
@@ -18,6 +20,7 @@ Level* LevelList::get_level(int index) {
     EquipableItem* secretEquipable;
     ConsumableItem* treasureConsumable;
     std::vector<Enemy*> enemies;
+    std::vector<Perk*> fountainPerks;
     std::array<char, 225> roomLayout;
     switch(index) {
         case 1 :
@@ -33,6 +36,14 @@ Level* LevelList::get_level(int index) {
             enemies.push_back(enemyList->get_enemy(3));
             enemies.push_back(enemyList->get_enemy(4));
             enemies.push_back(enemyList->get_enemy(5));
+            fountainPerks.push_back(perkList->get_perk(1));
+            fountainPerks.push_back(perkList->get_perk(2));
+            fountainPerks.push_back(perkList->get_perk(3));
+            fountainPerks.push_back(perkList->get_perk(4));
+            fountainPerks.push_back(perkList->get_perk(5));
+            fountainPerks.push_back(perkList->get_perk(6));
+            fountainPerks.push_back(perkList->get_perk(7));
+            fountainPerks.push_back(perkList->get_perk(8));
             roomLayout = {
                 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
                 'X', 'X', 'O', 'O', 'O', 'X', 'X', 'X', 'X', 'X', 'O', 'O', 'B', 'X', 'X',
@@ -60,7 +71,7 @@ Level* LevelList::get_level(int index) {
             clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee in these p'rilous times. \nFrom whence thee beganeth, walketh towards wh're the darkness reclaim the landeth as the travelling lamp sets.";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout,
                              bossCoordinates, fountainCoordinates, equipableTreasureCoordinates, consumableTreasureCoordinates,
-                             initialCoordinates, clueCoordinates, secretCoordinates, clueDesc, secretEquipable);
+                             initialCoordinates, clueCoordinates, secretCoordinates, clueDesc, secretEquipable, fountainPerks);
 
         case 2 :
             levelName = "Scientist's Lair";
@@ -75,6 +86,14 @@ Level* LevelList::get_level(int index) {
             enemies.push_back(enemyList->get_enemy(13));
             enemies.push_back(enemyList->get_enemy(14));
             enemies.push_back(enemyList->get_enemy(15));
+            fountainPerks.push_back(perkList->get_perk(11));
+            fountainPerks.push_back(perkList->get_perk(12));
+            fountainPerks.push_back(perkList->get_perk(13));
+            fountainPerks.push_back(perkList->get_perk(14));
+            fountainPerks.push_back(perkList->get_perk(15));
+            fountainPerks.push_back(perkList->get_perk(16));
+            fountainPerks.push_back(perkList->get_perk(17));
+            fountainPerks.push_back(perkList->get_perk(18));
             roomLayout = {
                 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
                 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'B', 'O', 'O', 'O', 'X', 'X',
@@ -102,7 +121,7 @@ Level* LevelList::get_level(int index) {
             clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee in these p'rilous times. \nFrom whence thee w're shower'd by golden lighteth, walketh towards wh're the meek reside.";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout,
                              bossCoordinates, fountainCoordinates, equipableTreasureCoordinates, consumableTreasureCoordinates,
-                             initialCoordinates, clueCoordinates, secretCoordinates, clueDesc, secretEquipable);
+                             initialCoordinates, clueCoordinates, secretCoordinates, clueDesc, secretEquipable, fountainPerks);
 
         default :
             levelName = "ERROR_LEVEL";
@@ -117,6 +136,7 @@ Level* LevelList::get_level(int index) {
             enemies.push_back(enemyList->get_enemy(0));
             enemies.push_back(enemyList->get_enemy(0));
             enemies.push_back(enemyList->get_enemy(0));
+            fountainPerks.push_back(perkList->get_perk(0));
             roomLayout = {
                 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
                 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
@@ -144,7 +164,7 @@ Level* LevelList::get_level(int index) {
             clueDesc = "ERROR_LEVEL";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout,
                              bossCoordinates, fountainCoordinates, equipableTreasureCoordinates, consumableTreasureCoordinates,
-                             initialCoordinates, clueCoordinates, secretCoordinates, clueDesc, secretEquipable);
+                             initialCoordinates, clueCoordinates, secretCoordinates, clueDesc, secretEquipable, fountainPerks);
     }
 }
 

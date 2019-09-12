@@ -50,7 +50,10 @@ bool Enemy::enemy_attack(PlayerStats*& playerStats) {
 }
 
 bool Enemy::enemy_defend(PlayerStats*& playerStats) {
-    return this->enemyStats->take_damage(playerStats->get_attack(), playerStats->get_strength(), playerStats->get_luck(), playerStats->get_dmgBonus());
+    return this->enemyStats->take_damage(playerStats->get_attack() + playerStats->get_temp_attack(),
+                                         playerStats->get_strength() + playerStats->get_temp_strength(),
+                                         playerStats->get_luck() + playerStats->get_temp_luck(),
+                                         playerStats->get_dmgBonus());
 }
 
 void Enemy::enemy_encounter() {

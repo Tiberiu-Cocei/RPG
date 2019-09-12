@@ -114,6 +114,10 @@ void Inventory::treat_max_weight_case(int itemWeight) {
     }
 }
 
+void Inventory::gain_max_weight(int maxWeight) {
+    this->maxWeight += maxWeight;
+}
+
 Inventory::~Inventory()
 {
 }

@@ -7,7 +7,7 @@ Game::Game()
 
     //changing console size
     HWND console = GetConsoleWindow();
-    MoveWindow(console, 205, 90, 1200, 700, TRUE);
+    MoveWindow(console, 155, 35, 1300, 800, TRUE);
 
     commandMapping.insert(std::make_pair("help", 1));
     commandMapping.insert(std::make_pair("move north", 2));
@@ -24,6 +24,8 @@ Game::Game()
     commandMapping.insert(std::make_pair("go east", 13));
     commandMapping.insert(std::make_pair("go west", 14));
     commandMapping.insert(std::make_pair("go south", 15));
+    commandMapping.insert(std::make_pair("perks", 16));
+    commandMapping.insert(std::make_pair("attune perk", 17));
     commandMapping.insert(std::make_pair("exit", 100));
 
     playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
@@ -64,23 +66,23 @@ void Game::play() {
       }
       switch(commandValue) {
           case 1 :
-            std::cout<<"The possible commands are: 'exit', 'go/move north/south/west/east', 'my stats', 'equipment', 'inventory', 'use item', 'drop item', 'map'.\n";
+            std::cout<<"The possible commands are: 'exit', 'go/move north/south/west/east', 'my stats', 'equipment', 'perks', 'attune perk', 'inventory', \n'use item', 'drop item', 'map'.\n";
             break;
           case 2 :
           case 12 :
-            gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, playerPerks, inventory);
             break;
           case 3 :
           case 13 :
-            gameOver = level->move_in_direction(currentCoordinates, 'E', equipment, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'E', equipment, playerPerks, inventory);
             break;
           case 4 :
           case 14 :
-            gameOver = level->move_in_direction(currentCoordinates, 'W', equipment, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'W', equipment, playerPerks, inventory);
             break;
           case 5 :
           case 15 :
-            gameOver = level->move_in_direction(currentCoordinates, 'S', equipment, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'S', equipment, playerPerks, inventory);
             break;
           case 6 :
             equipment->get_player_stats()->get_stats();
@@ -115,6 +117,36 @@ void Game::play() {
             break;
           case 11 :
             level->show_user_map();
+            break;
+          case 16:
+          {
+            int perkIndex = 1;
+            if(playerPerks.size() == 0) {
+                std::cout<<"You do not know any perks at the moment. The elders did mention something about a fountain of knowledge..\n";
+            }
+            else {
+                for(auto playerPerk : playerPerks) {
+                    std::cout<< perkIndex++ << ": ";
+                    playerPerk->display_perk(level->get_text_color_number());
+                }
+            }
+            break;
+          }
+          case 17:
+            std::cout<<"Enter the number of the perk you wish to attune: ";
+            try {
+                std::string perkIndex;
+                getline (std::cin, perkIndex);
+                int perkIndexInt = stoi(perkIndex);
+                if(perkIndexInt > 0 && perkIndexInt < playerPerks.size()) {
+                    playerPerks.at(perkIndexInt - 1)->attune_perk(playerStats, inventory);
+                }
+                else {
+                    std::cout<<"Invalid perk index.\n";
+                }
+            } catch(const std::invalid_argument& error) {
+                std::cerr << "Not a number.\n";
+            }
             break;
           case 100 :
             std::cout<<"Exiting the game.\n";

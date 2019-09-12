@@ -3,7 +3,7 @@
 Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, int textColorNr, EquipableItem* treasureEquipable,
              ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout, int bossCoordinates,
              int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates,
-             int clueCoordinates, int secretCoordinates, std::string clueDesc, EquipableItem* secretEquipable)
+             int clueCoordinates, int secretCoordinates, std::string clueDesc, EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks)
 {
     this->levelName = levelName;
     this->beginDesc = beginDesc;
@@ -27,6 +27,7 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     this->isSecretItemTaken = false;
     this->clueDesc = clueDesc;
     this->secretEquipable = secretEquipable;
+    this->fountainPerks = fountainPerks;
     combat = new Combat();
 
     directionalMapping.insert(std::make_pair('N',-15));
@@ -63,7 +64,6 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     userMap.at(initialCoordinates - 15) = roomLayout.at(initialCoordinates - 15);
 
     //changing console text color
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, this->textColorNr);
 }
 
@@ -77,7 +77,7 @@ void Level::clue_room() {
 void Level::secret_room(Inventory*& inventory) {
     if(isSecretItemTaken == false) {
         std::cout<<"\nYou place your hand on the wall. To your surprise, it goes right through. You go through the wall and find"
-                 <<"\nin the middle of the hidden section of the cave the " << secretEquipable->get_name() << ". Do you take it?\n";
+                 <<"\nin the middle of the hidden section of the cave the " << secretEquipable->get_name() << ". Do you take it? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
@@ -162,7 +162,7 @@ std::string Level::get_possible_directions(int coordinates) {
 
 bool Level::boss_warning() {
     if(isBossBeaten == false) {
-        std::cout<<"You are about to enter the boss room. Escape is not an option when fighting. Are you sure you want to continue?\n";
+        std::cout<<"You are about to enter the boss room. Escape is not an option when fighting. Are you sure you want to continue? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
@@ -175,7 +175,7 @@ bool Level::boss_warning() {
     }
 }
 
-bool Level::move_in_direction(int& coordinates, char direction, Equipment*& player, Inventory*& inventory) {
+bool Level::move_in_direction(int& coordinates, char direction, Equipment*& player, std::vector<Perk*>& playerPerks, Inventory*& inventory) {
     bool bossFight = false;
     directionalMappingIterator = directionalMapping.find(direction);
     int directionValue = directionalMappingIterator->second;
@@ -194,18 +194,18 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
         }
     }
     else {
-        std::cout<<"You cannot move north.";
+        std::cout<<"You cannot move in that direction.";
     }
 
     bool playerDeath = false;
     if(roomLayout.at(coordinates) == 'O') {
-        playerDeath = generic_room(coordinates, player, inventory);
+        playerDeath = generic_room(coordinates, player, playerPerks, inventory);
     }
     else if(coordinates == bossCoordinates) {
-        playerDeath = boss_room(player, inventory);
+        playerDeath = boss_room(player, playerPerks, inventory);
     }
     else if(coordinates == fountainCoordinates) {
-        fountain_room(player);
+        fountain_room(player, playerPerks);
     }
     else if(coordinates == equipableTreasureCoordinates) {
         equipable_treasure_room(inventory);
@@ -222,7 +222,7 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
     return playerDeath;
 }
 
-bool Level::generic_room(int coordinates, Equipment*& player, Inventory*& inventory) {
+bool Level::generic_room(int coordinates, Equipment*& player, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
     int encounterChance = rand() % 10 + 1;
     bool playerDeath = false;
     if(encounterChance == 2 || encounterChance == 5 || encounterChance == 8) {
@@ -244,16 +244,16 @@ bool Level::generic_room(int coordinates, Equipment*& player, Inventory*& invent
                 enemy = enemyList.at(0);
             }
         }
-        playerDeath = combat->encounter(player, inventory, enemy);
+        playerDeath = combat->encounter(player, playerPerks, inventory, enemy);
     }
     return playerDeath;
 }
 
-bool Level::boss_room(Equipment*& player, Inventory*& inventory) {
+bool Level::boss_room(Equipment*& player, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
     if(isBossBeaten == false) {
         bool playerDeath = false;
         Enemy* boss = enemyList.at(4);
-        playerDeath = combat->encounter(player, inventory, boss, true);
+        playerDeath = combat->encounter(player, playerPerks, inventory, boss, true);
         if(playerDeath == false) {
             this->isBossBeaten = true;
         }
@@ -264,14 +264,18 @@ bool Level::boss_room(Equipment*& player, Inventory*& inventory) {
     }
 }
 
-void Level::fountain_room(Equipment*& player) {
+void Level::fountain_room(Equipment*& player, std::vector<Perk*> &playerPerks) {
     if(isFountainUsed == false) {
-        std::cout<<"You have reached the fountain room. Do you wish to accept its gift now?\n";
+        std::cout<<"You have reached the fountain room. Do you wish to accept its gift now? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
             player->get_player_stats()->gain_health(250);
+            for(auto perk : fountainPerks) {
+                playerPerks.push_back(perk);
+            }
             this->isFountainUsed = true;
+            std::cout<<"The fountain has bestowed its knowledge upon you. You may now attune new perks.\n";
         }
     }
     else {
@@ -282,7 +286,7 @@ void Level::fountain_room(Equipment*& player) {
 void Level::equipable_treasure_room(Inventory*& inventory) {
     if(isEquipableTreasureTaken == false) {
         std::cout<<"You place your hand on the door to the treasure room. It brightens up in a golden light and it opens shortly after. You go inside and find in"
-                 <<" the middle of the room the " << treasureEquipable->get_name() << ". Do you take it?\n";
+                 <<" the middle of the room the " << treasureEquipable->get_name() << ". Do you take it? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
@@ -298,7 +302,7 @@ void Level::equipable_treasure_room(Inventory*& inventory) {
 void Level::consumable_treasure_room(Inventory*& inventory) {
     if(isConsumableTreasureTaken == false) {
         std::cout<<"You place your hand on the door to the treasure room. It lights up it opens shortly after. You go inside and find in"
-                 <<" the middle of the room the " << treasureConsumable->get_name() << ". Do you take it?\n";
+                 <<" the middle of the room the " << treasureConsumable->get_name() << ". Do you take it? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
@@ -319,14 +323,22 @@ bool Level::is_boss_beaten() {
     return isBossBeaten;
 }
 
+int Level::get_text_color_number() {
+    return textColorNr;
+}
+
 Level::~Level()
 {
     if(isEquipableTreasureTaken == false) delete treasureEquipable;
     if(isConsumableTreasureTaken == false) delete treasureConsumable;
     if(isSecretItemTaken == false) delete secretEquipable;
+    if(isFountainUsed == false) {
+        for(auto fountainPerk : fountainPerks) {
+            delete fountainPerk;
+        }
+    }
     delete combat;
-    for(auto enemy : enemyList)
-    {
+    for(auto enemy : enemyList) {
         delete enemy;
     }
 }

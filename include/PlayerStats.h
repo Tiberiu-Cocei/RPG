@@ -21,6 +21,14 @@ class PlayerStats : public Stats
         void gain_stats_from_equip(int, int, int, int, int, int, int, int);
         void lose_stats_from_unequip(int, int, int, int, int, int, int, int);
         void gain_experience(int);
+        int get_experience();
+        void gain_stats_from_perk(int, int, int, int, int, int, int, int, int, int, int, int);
+        void regen_health();
+        int get_bonus_healing();
+        int get_escape_bonus();
+        int get_temp_attack();
+        int get_temp_strength();
+        int get_temp_luck();
 
     private:
         int tempHealthPoints;
@@ -32,6 +40,9 @@ class PlayerStats : public Stats
         int dmgBonus;
         int dmgReduction;
         int experience;
+        int hpRegen;
+        int bonusHealing;
+        int escapeBonus;
 };
 
 #endif

@@ -18,7 +18,7 @@ void ConsumableItem::find_item() {
 void ConsumableItem::use_item(PlayerStats*& playerStats) {
     std::cout << get_use_description() << std::endl;
     if(this->healing != 0) {
-        playerStats->gain_health(this->healing);
+        playerStats->gain_health(this->healing + playerStats->get_bonus_healing());
     }
     playerStats->modify_temp_stats(get_health_boost(), get_attack_boost(), get_strength_boost(),
                                   get_defense_boost(), get_luck_boost(), get_evasion_boost());

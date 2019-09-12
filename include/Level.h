@@ -9,28 +9,30 @@
 #include <array>
 #include <windows.h>
 #include <Combat.h>
+#include "Perk.h"
 
 
 class Level
 {
     public:
         Level(std::string, std::string, std::string, int, EquipableItem*, ConsumableItem*,
-              std::vector<Enemy*>, std::array<char, 225>, int, int, int, int, int, int, int, std::string, EquipableItem*);
+              std::vector<Enemy*>, std::array<char, 225>, int, int, int, int, int, int, int, std::string, EquipableItem*, std::vector<Perk*>);
         ~Level();
         void begin_level();
         void end_level();
         std::string get_possible_directions(int);
-        bool move_in_direction(int&, char, Equipment*&, Inventory*&);
+        bool move_in_direction(int&, char, Equipment*&, std::vector<Perk*>&, Inventory*&);
         int get_initial_coordinates();
         int get_boss_coordinates();
         bool is_boss_beaten();
         void show_user_map();
+        int get_text_color_number();
 
     private:
         bool boss_warning();
-        bool generic_room(int, Equipment*&, Inventory*&);
-        bool boss_room(Equipment*&, Inventory*&);
-        void fountain_room(Equipment*&);
+        bool generic_room(int, Equipment*&, std::vector<Perk*>&, Inventory*&);
+        bool boss_room(Equipment*&, std::vector<Perk*>&, Inventory*&);
+        void fountain_room(Equipment*&, std::vector<Perk*>&);
         void equipable_treasure_room(Inventory*&);
         void consumable_treasure_room(Inventory*&);
         void direction_details(std::string&, int);
@@ -42,7 +44,7 @@ class Level
         const std::string stringForDirections[4] = {"north", "east", "south", "west"};
         std::map<char, int> directionalMapping;
         std::map<char, int>::iterator directionalMappingIterator;
-        HANDLE hConsole;
+        const HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         std::string levelName;
         std::string beginDesc;
         std::string endDesc;
@@ -67,6 +69,7 @@ class Level
         bool isConsumableTreasureTaken;
         bool isSecretItemTaken;
         Combat* combat;
+        std::vector<Perk*> fountainPerks;
 };
 
 #endif

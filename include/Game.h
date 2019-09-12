@@ -12,6 +12,7 @@
 #include "Equipment.h"
 #include "Inventory.h"
 #include "LevelList.h"
+#include "Perk.h"
 #define _WIN32_WINNT 0x0500
 
 class Game
@@ -35,6 +36,7 @@ class Game
         Inventory * inventory;
         LevelList * levelList;
         Level * level;
+        std::vector<Perk*> playerPerks;
 };
 
 #endif
