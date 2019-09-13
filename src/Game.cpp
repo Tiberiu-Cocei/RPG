@@ -138,7 +138,7 @@ void Game::play() {
                 std::string perkIndex;
                 getline (std::cin, perkIndex);
                 int perkIndexInt = stoi(perkIndex);
-                if(perkIndexInt > 0 && perkIndexInt < playerPerks.size()) {
+                if(perkIndexInt > 0 && perkIndexInt <= playerPerks.size()) {
                     playerPerks.at(perkIndexInt - 1)->attune_perk(playerStats, inventory);
                 }
                 else {

@@ -30,7 +30,7 @@
 	<array>
 	"Game.h"
 
-1568325494 source:d:\informatica\git\rpg\src\enemy.cpp
+1568364206 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
 
 1568038381 d:\informatica\git\rpg\include\enemy.h
@@ -49,12 +49,12 @@
 
 1566732192 d:\informatica\git\rpg\include\stats.h
 
-1568328810 source:d:\informatica\git\rpg\src\playerstats.cpp
+1568362933 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
 
-1568328784 d:\informatica\git\rpg\include\playerstats.h
+1568362970 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
 1568286763 source:d:\informatica\git\rpg\src\enemystats.cpp
@@ -65,7 +65,7 @@
 1568038101 d:\informatica\git\rpg\include\enemystats.h
 	<Stats.h>
 
-1568284677 source:d:\informatica\git\rpg\src\item.cpp
+1568364427 source:d:\informatica\git\rpg\src\item.cpp
 	"Item.h"
 	<string.h>
 	<iostream>
@@ -114,12 +114,12 @@
 	<string.h>
 	"PlayerStats.h"
 
-1566749347 source:d:\informatica\git\rpg\src\equipment.cpp
+1568364348 source:d:\informatica\git\rpg\src\equipment.cpp
 	"Equipment.h"
 	<iostream>
 	<string.h>
 
-1568312438 source:d:\informatica\git\rpg\src\inventory.cpp
+1568364393 source:d:\informatica\git\rpg\src\inventory.cpp
 	"Inventory.h"
 	<iostream>
 	<string.h>
@@ -142,7 +142,7 @@
 	"EquipableItemList.h"
 	"ConsumableItemList.h"
 
-1568328837 source:d:\informatica\git\rpg\src\combat.cpp
+1568363332 source:d:\informatica\git\rpg\src\combat.cpp
 	"Combat.h"
 	<algorithm>
 	<windows.h>
@@ -157,7 +157,7 @@
 	<vector>
 	<map>
 
-1568323369 source:d:\informatica\git\rpg\src\level.cpp
+1568364535 source:d:\informatica\git\rpg\src\level.cpp
 	"Level.h"
 
 1568319525 d:\informatica\git\rpg\include\level.h
@@ -187,7 +187,7 @@
 	"EnemyList.h"
 	"PerkList.h"
 
-1568325713 source:d:\informatica\git\rpg\src\game.cpp
+1568363568 source:d:\informatica\git\rpg\src\game.cpp
 	"Game.h"
 
 1568318480 d:\informatica\git\rpg\include\game.h
@@ -205,10 +205,10 @@
 	"LevelList.h"
 	"Perk.h"
 
-1568325056 source:d:\informatica\git\rpg\src\perk.cpp
+1568363247 source:d:\informatica\git\rpg\src\perk.cpp
 	"Perk.h"
 
-1568325039 d:\informatica\git\rpg\include\perk.h
+1568363008 d:\informatica\git\rpg\include\perk.h
 	<iostream>
 	<string.h>
 	"PlayerStats.h"
@@ -218,6 +218,6 @@
 1568322030 d:\informatica\git\rpg\include\perklist.h
 	"Perk.h"
 
-1568322043 source:d:\informatica\git\rpg\src\perklist.cpp
+1568363122 source:d:\informatica\git\rpg\src\perklist.cpp
 	"PerkList.h"
 

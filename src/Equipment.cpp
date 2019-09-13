@@ -2,9 +2,8 @@
 #include <iostream>
 #include <string.h>
 
-Equipment::Equipment(PlayerStats* playerStats)
+Equipment::Equipment(PlayerStats* playerStats) : playerStats(playerStats)
 {
-    this->playerStats = playerStats;
     this->helmet = new EquipableItem(0, 0, 0, 0, 0, 0, 2, 1, 1, 1,
                                "Leather helmet", "You have found a crudely made leather helmet.", "Equipped the leather helmet.");
     this->body = new EquipableItem(0, 0, 0, 0, 0, 2, 0, 1, 2, 2,

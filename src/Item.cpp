@@ -4,6 +4,7 @@
 
 Item::Item(int healthBoost, int attackBoost, int strengthBoost, int defenseBoost, int luckBoost,
            int evasionBoost, int weight, std::string name, std::string findDescription, std::string useDescription)
+           : name(name), findDescription(findDescription), useDescription(useDescription)
 {
     this->healthBoost = healthBoost;
     this->attackBoost = attackBoost;
@@ -12,9 +13,6 @@ Item::Item(int healthBoost, int attackBoost, int strengthBoost, int defenseBoost
     this->luckBoost = luckBoost;
     this->evasionBoost = evasionBoost;
     this->weight = weight;
-    this->name += name;
-    this->findDescription += findDescription;
-    this->useDescription += useDescription;
 }
 
 std::string Item::get_name() {

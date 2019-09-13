@@ -4,15 +4,10 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
              ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout, int bossCoordinates,
              int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates,
              int clueCoordinates, int secretCoordinates, std::string clueDesc, EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks)
+             : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), treasureEquipable(treasureEquipable), treasureConsumable(treasureConsumable),
+               enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc), secretEquipable(secretEquipable), fountainPerks(fountainPerks)
 {
-    this->levelName = levelName;
-    this->beginDesc = beginDesc;
-    this->endDesc = endDesc;
     this->textColorNr = textColorNr;
-    this->treasureEquipable = treasureEquipable;
-    this->treasureConsumable = treasureConsumable;
-    this->enemyList = enemyList;
-    this->roomLayout = roomLayout;
     this->bossCoordinates = bossCoordinates;
     this->fountainCoordinates = fountainCoordinates;
     this->equipableTreasureCoordinates = equipableTreasureCoordinates;
@@ -25,9 +20,6 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
     this->isEquipableTreasureTaken = false;
     this->isConsumableTreasureTaken = false;
     this->isSecretItemTaken = false;
-    this->clueDesc = clueDesc;
-    this->secretEquipable = secretEquipable;
-    this->fountainPerks = fountainPerks;
     combat = new Combat();
 
     directionalMapping.insert(std::make_pair('N',-15));

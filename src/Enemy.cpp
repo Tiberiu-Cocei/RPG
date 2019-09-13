@@ -2,13 +2,9 @@
 
 Enemy::Enemy(EnemyStats* enemyStats, std::string name, std::string encounterDescrption, std::string deathDescription,
              std::vector<ConsumableItem*> consumableDrops, std::vector<EquipableItem*> equipableDrops, int combatLevel, int xp)
+             : enemyStats(enemyStats), name(name), encounterDescrption(encounterDescrption), deathDescription(deathDescription),
+               consumableDrops(consumableDrops), equipableDrops(equipableDrops)
 {
-    this->enemyStats = enemyStats;
-    this->name += name;
-    this->encounterDescrption += encounterDescrption;
-    this->deathDescription += deathDescription;
-    this->consumableDrops = consumableDrops;
-    this->equipableDrops = equipableDrops;
     this->combatLevel = combatLevel;
     this->xp = xp;
 }

@@ -17,6 +17,9 @@ PlayerStats::PlayerStats(int healthPoints, int attack, int strength, int defense
     hpRegen = 0;
     bonusHealing = 0;
     escapeBonus = 0;
+    for(int i = 0; i < 10; i++) {
+        attunedPerks[i] = false;
+    }
 }
 
 void PlayerStats::gain_experience(int experience) {
@@ -260,6 +263,14 @@ int PlayerStats::get_temp_luck() {
 
 int PlayerStats::get_hp_regen() {
     return this->hpRegen;
+}
+
+void PlayerStats::set_perk_state(int index) {
+    this->attunedPerks[index] = true;
+}
+
+bool PlayerStats::get_perk_state(int index) {
+    return this->attunedPerks[index];
 }
 
 PlayerStats::~PlayerStats()

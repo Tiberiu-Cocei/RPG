@@ -10,7 +10,7 @@
 class Perk
 {
     public:
-        Perk(std::string, std::string, int, int, int, int, int, int, int, int, int, int, int, int, int);
+        Perk(std::string, std::string, int, int, int, int, int, int, int, int, int, int, int, int, int, int);
         ~Perk();
         void attune_perk(PlayerStats*&, Inventory*&);
         void display_perk(int);
@@ -36,6 +36,7 @@ class Perk
         int hpRegen;
         int bonusHealing;
         int escapeBonus;
+        int uniquePerkId;
 };
 
 #endif

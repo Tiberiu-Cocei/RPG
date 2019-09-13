@@ -1,10 +1,9 @@
 #include "Perk.h"
 
 Perk::Perk(std::string name, std::string description, int xpCost, int dmgBonus, int dmgReduction, int healthPoints, int attack, int strength,
-           int defense, int luck, int evasion, int weightBonus, int hpRegen, int bonusHealing, int escapeBonus)
+           int defense, int luck, int evasion, int weightBonus, int hpRegen, int bonusHealing, int escapeBonus, int uniquePerkId)
+           : name(name), description(description)
 {
-    this->name = name;
-    this->description = description;
     this->state = false;
     this->xpCost = xpCost;
     this->dmgBonus = dmgBonus;
@@ -19,11 +18,15 @@ Perk::Perk(std::string name, std::string description, int xpCost, int dmgBonus, 
     this->hpRegen = hpRegen;
     this->bonusHealing = bonusHealing;
     this->escapeBonus = escapeBonus;
+    this->uniquePerkId = uniquePerkId;
 }
 
 void Perk::attune_perk(PlayerStats*& playerStats, Inventory*& inventory) {
     if(playerStats->get_experience() >= this->xpCost && this->state == false) {
         this->state = true;
+        if(this->uniquePerkId >= 0) {
+            playerStats->set_perk_state(uniquePerkId);
+        }
         playerStats->gain_stats_from_perk(this->xpCost, this->dmgBonus, this->dmgReduction, this->healthPoints, this->attack, this->strength,
                                           this->defense, this->luck, this->evasion, this->hpRegen, this->bonusHealing, this->escapeBonus);
         inventory->gain_max_weight(this->weightBonus);

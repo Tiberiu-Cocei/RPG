@@ -30,6 +30,8 @@ class PlayerStats : public Stats
         int get_temp_strength();
         int get_temp_luck();
         int get_hp_regen();
+        void set_perk_state(int);
+        bool get_perk_state(int);
 
     private:
         int tempHealthPoints;
@@ -44,6 +46,7 @@ class PlayerStats : public Stats
         int hpRegen;
         int bonusHealing;
         int escapeBonus;
+        bool attunedPerks[10]; //0 - Executioner
 };
 
 #endif

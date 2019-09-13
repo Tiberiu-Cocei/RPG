@@ -110,10 +110,9 @@ bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inven
 }
 
 bool Combat::player_turn(Equipment*& player, std::vector<Perk*> playerPerks, Enemy*& enemy) {
-    for(auto perk : playerPerks) {
-        if(perk->get_name() == "Executioner" && perk->get_state() == true && enemy->get_enemy_stats()->get_current_health_points() <= 50) {
-            player->get_player_stats()->modify_temp_stats(0, 0, player->get_player_stats()->get_strength()/3, 0, 0, 0);
-        }
+    //check for Executioner perk
+    if(player->get_player_stats()->get_perk_state(0) == true && enemy->get_enemy_stats()->get_current_health_points() <= 50) {
+        player->get_player_stats()->modify_temp_stats(0, 0, player->get_player_stats()->get_strength()/3, 0, 0, 0);
     }
     return enemy->enemy_defend(player->get_player_stats());
 }
