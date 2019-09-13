@@ -23,6 +23,7 @@ class Game
 
     private:
         void play();
+        void game_introduction();
         bool gameOver;
         const int numberOfLevels = 2;
         int currentLevel, currentCoordinates, commandValue, itemIndexInt;

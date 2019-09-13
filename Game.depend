@@ -96,7 +96,7 @@
 	<string>
 	"PlayerStats.h"
 
-1568227595 source:d:\informatica\git\rpg\src\equipableitemlist.cpp
+1568375381 source:d:\informatica\git\rpg\src\equipableitemlist.cpp
 	"EquipableItemList.h"
 
 1566738578 d:\informatica\git\rpg\include\equipableitemlist.h
@@ -114,12 +114,12 @@
 	<string.h>
 	"PlayerStats.h"
 
-1568364348 source:d:\informatica\git\rpg\src\equipment.cpp
+1568388528 source:d:\informatica\git\rpg\src\equipment.cpp
 	"Equipment.h"
 	<iostream>
 	<string.h>
 
-1568364393 source:d:\informatica\git\rpg\src\inventory.cpp
+1568374956 source:d:\informatica\git\rpg\src\inventory.cpp
 	"Inventory.h"
 	<iostream>
 	<string.h>
@@ -187,10 +187,10 @@
 	"EnemyList.h"
 	"PerkList.h"
 
-1568363568 source:d:\informatica\git\rpg\src\game.cpp
+1568396989 source:d:\informatica\git\rpg\src\game.cpp
 	"Game.h"
 
-1568318480 d:\informatica\git\rpg\include\game.h
+1568399467 d:\informatica\git\rpg\include\game.h
 	<iostream>
 	<algorithm>
 	<cctype>

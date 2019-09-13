@@ -45,6 +45,7 @@ Game::Game()
 }
 
 void Game::play() {
+    game_introduction();
     level = levelList->get_level(currentLevel);
     level->begin_level();
     currentCoordinates = level->get_initial_coordinates();
@@ -173,6 +174,56 @@ void Game::play() {
             }
         }
       }
+    }
+}
+
+void Game::game_introduction() {
+    std::string viewIntro;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, 14);
+    std::cout<<"Do you wish to view the story introduction? (Yes/No)\n";
+    std::getline(std::cin, viewIntro);
+    if(viewIntro == "Yes" || viewIntro == "yes") {
+        std::cout<<"\nToday is the last day of the month. As is tradition, one of the young adults from the village will be sent to the Valley of Trials.\n";
+        Sleep(6000);
+        std::cout<<"You do not know much, as everyone who went through it refuses to talk about it. All you know is that they act different after the ordeal.\n";
+        Sleep(6000);
+        std::cout<<"Many leave the village, never to return. The elders say that they matured, but it did little to help make your bad feeling go away.\n";
+        Sleep(6000);
+        std::cout<<"You get dressed and go to the gathering. Like always, a mysterious man wearing a cloak that covers him entirely is waiting in the middle of the village.\n";
+        Sleep(6000);
+        std::cout<<"Once the village has gathered, the elders signal everyone to become quiet. They call the youth to come closer to the center. This includes you.\n";
+        Sleep(6000);
+        std::cout<<"Hesitantly, you get closer. There's around twenty people this time. You try and calm yourself with the fact that it's unlikely that you will be picked.\n";
+        Sleep(6000);
+        std::cout<<"The chances are one in twenty or so, after all. The cloaked man looks around, carefully analyzing each and every single one of you.\n";
+        Sleep(6000);
+        std::cout<<"After a long pause, he points towards someone. Towards you. You are not that shocked. You knew this could happen, sooner or later.\n";
+        Sleep(6000);
+        std::cout<<"Nobody died during the trial, though some have come out more deranged than others. This does put your mind at ease, at least for the moment.\n";
+        Sleep(6000);
+        std::cout<<"You step forward, ready to be instructed by the cloaked man.\n";
+        Sleep(2500);
+        std::cout<<"\"Your trial will be as follows: follow the path of the valley, that which starts from the cave and ends in the volcanic ruins.\"\n";
+        Sleep(6000);
+        std::cout<<"\"You will be challenged by many foes on your way. They all will possess combat supplies which will aid you. Defeat them, and they will be yours to claim.\"\n";
+        Sleep(6000);
+        std::cout<<"\"There are many places of power that can be found. Some will contain valuable items that you may use.\"\n";
+        Sleep(5000);
+        std::cout<<"\"Others will help you in ways that are not of physical nature, such as the Fountain of Knowledge. With its blessing, you will be able to become stronger.\"\n";
+        Sleep(6000);
+        std::cout<<"\"To finish the trial, you must defeat a powerful foe. One appointed specifically by the King. If you are deemed worthy, you may even join his ranks.\"\n";
+        Sleep(6000);
+        std::cout<<"\"Now accept this gift from us: a set of leather armor, a copper shield and sword. You will find better equipment from your foes. This is but a start.\"\n";
+        Sleep(6000);
+        std::cout<<"\"Equip it and meet us near the entrance of the cave at dusk.\"\n";
+        Sleep(3000);
+        std::cout<<"His soothing voice helped calm you further, and with the goal in mind, you feel hopeful. Still, the bad feeling remains.\n";
+        Sleep(4500);
+        std::cout<<"Hours later, the time has come. Fully prepared, you go and meet the elders. They show you the entrance of the cave.\n";
+        Sleep(4500);
+        std::cout<<"You look at it. This is the cave that only opens up during this time of month, and closes itself as the sun sets.\n\n";
+        Sleep(4500);
     }
 }
 

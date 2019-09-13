@@ -166,28 +166,28 @@ void Equipment::get_equipment() {
 
 void Equipment::concat_stats(std::string& equipment, EquipableItem* item) {
     if(item->get_dmg_bonus() != 0) {
-        equipment += " dmg bonus: +" + std::to_string(item->get_dmg_bonus()) + ",";
+        equipment += " dmg bonus: " + std::string(item->get_dmg_bonus() > 0 ? "+" : "-") + std::to_string(item->get_dmg_bonus()) + ",";
     }
     if(item->get_dmg_reduction() != 0) {
-        equipment += " dmg reduction: +" + std::to_string(item->get_dmg_reduction()) + ",";
+        equipment += " dmg reduction: " + std::string(item->get_dmg_reduction() > 0 ? "+" : "") + std::to_string(item->get_dmg_reduction()) + ",";
     }
     if(item->get_health_boost() != 0) {
-        equipment += " hp: +" + std::to_string(item->get_health_boost()) + ",";
+        equipment += " hp: " + std::string(item->get_health_boost() > 0 ? "+" : "") + std::to_string(item->get_health_boost()) + ",";
     }
     if(item->get_attack_boost() != 0) {
-        equipment += " atk: +" + std::to_string(item->get_attack_boost()) + ",";
+        equipment += " atk: " + std::string(item->get_attack_boost() > 0 ? "+" : "") + std::to_string(item->get_attack_boost()) + ",";
     }
     if(item->get_strength_boost() != 0) {
-        equipment += " str: +" + std::to_string(item->get_strength_boost()) + ",";
+        equipment += " str: " + std::string(item->get_strength_boost() > 0 ? "+" : "") + std::to_string(item->get_strength_boost()) + ",";
     }
     if(item->get_defense_boost() != 0) {
-        equipment += " def: +" + std::to_string(item->get_defense_boost()) + ",";
+        equipment += " def: " + std::string(item->get_defense_boost() > 0 ? "+" : "") + std::to_string(item->get_defense_boost()) + ",";
     }
     if(item->get_luck_boost() != 0) {
-        equipment += " luk: +" + std::to_string(item->get_luck_boost()) + ",";
+        equipment += " luk: " + std::string(item->get_luck_boost() > 0 ? "+" : "") + std::to_string(item->get_luck_boost()) + ",";
     }
     if(item->get_evasion_boost() != 0) {
-        equipment += " evs: +" + std::to_string(item->get_evasion_boost()) + ",";
+        equipment += " evs: " + std::string(item->get_evasion_boost() > 0 ? "+" : "") + std::to_string(item->get_evasion_boost()) + ",";
     }
     equipment += " weight: +" + std::to_string(item->get_weight()) + "\n";
 }
