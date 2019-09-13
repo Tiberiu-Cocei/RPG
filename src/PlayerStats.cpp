@@ -203,7 +203,7 @@ void PlayerStats::get_stats() {
     ownStats += std::to_string(evasion) + " total evasion. ";
     if(evasion <= 10) ownStats += "You're barely able to dodge a slow falling tree.\n";
     else if(evasion <= 20) ownStats += "You are not agile at all.\n";
-    else if(evasion <= 30) ownStats += "You're agile enough to avoid a sluggish attack.\n";
+    else if(evasion <= 30) ownStats += "You're agile enough to avoid a few attacks from a slow enemy.\n";
     else if(evasion <= 40) ownStats += "You're starting to feel more agile.\n";
     else if(evasion <= 60) ownStats += "You're agile enough to avoid the attacks of inexperienced foes.\n";
     else if(evasion <= 80) ownStats += "You're agile enough to often avoid attacks.\n";

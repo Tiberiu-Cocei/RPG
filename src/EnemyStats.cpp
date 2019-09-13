@@ -56,7 +56,7 @@ void EnemyStats::get_stats() {
     else if(currentHealthPoints <= healthPoints/2) enemyStats += "They're wounded and in pain.\n";
     else if(currentHealthPoints <= healthPoints/1.3f) enemyStats += "They've seen better days.\n";
     else if(currentHealthPoints <= healthPoints/1.1f) enemyStats += "They're hurt.\n";
-    else enemyStats += "You feel better than ever.\n";
+    else enemyStats += "They are not wounded.\n";
 
     int attack = get_attack();
     enemyStats += std::to_string(attack) + " total attack. ";

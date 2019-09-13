@@ -164,6 +164,8 @@ void Game::play() {
             currentLevel++;
             if(currentLevel <= numberOfLevels) {
                 level = levelList->get_level(currentLevel);
+                level->begin_level();
+                currentCoordinates = level->get_initial_coordinates();
             }
             else {
                 std::cout<<"Congratulations! You have cleared all the current content of the game!\n";

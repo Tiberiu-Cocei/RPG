@@ -74,7 +74,7 @@ void Inventory::pickup_item(ConsumableItem* consumableItem) {
     if(currentWeight + consumableItem->get_weight() > maxWeight) {
         treat_max_weight_case(consumableItem->get_weight());
     }
-    else {
+    if(currentWeight + consumableItem->get_weight() <= maxWeight) {
         consumableItems.push_back(consumableItem);
         currentWeight += consumableItem->get_weight();
         std::cout<<"Picked up the " + consumableItem->get_name() + ".\n";
@@ -85,7 +85,7 @@ void Inventory::pickup_item(EquipableItem* equipableItem) {
     if(currentWeight + equipableItem->get_weight() > maxWeight) {
         treat_max_weight_case(equipableItem->get_weight());
     }
-    else {
+    if(currentWeight + equipableItem->get_weight() <= maxWeight) {
         equipableItems.push_back(equipableItem);
         currentWeight += equipableItem->get_weight();
         std::cout<<"Picked up the " + equipableItem->get_name() + ".\n";

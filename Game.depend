@@ -49,7 +49,7 @@
 
 1566732192 d:\informatica\git\rpg\include\stats.h
 
-1568362933 source:d:\informatica\git\rpg\src\playerstats.cpp
+1568372894 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
@@ -57,7 +57,7 @@
 1568362970 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 
-1568286763 source:d:\informatica\git\rpg\src\enemystats.cpp
+1568372933 source:d:\informatica\git\rpg\src\enemystats.cpp
 	"EnemyStats.h"
 	<string.h>
 	<iostream>
@@ -205,7 +205,7 @@
 	"LevelList.h"
 	"Perk.h"
 
-1568363247 source:d:\informatica\git\rpg\src\perk.cpp
+1568364581 source:d:\informatica\git\rpg\src\perk.cpp
 	"Perk.h"
 
 1568363008 d:\informatica\git\rpg\include\perk.h

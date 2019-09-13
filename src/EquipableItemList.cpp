@@ -19,7 +19,7 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
 
         //Secret room helmet
         case 11 :
-            return new EquipableItem(0, 0, 5, 3, 3, 0, 2, 5, 0, 1,
+            return new EquipableItem(0, 0, 5, 4, 5, 0, 3, 5, 0, 1,
                                "Void-leather helmet", "A peculiar helmet made out of what looks like leather shrouded by darkness.", "Equipped the Void-leather helmet.");
 
         //51-100: body armor
@@ -35,7 +35,7 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
 
         //Secret room body armor
         case 61 :
-            return new EquipableItem(0, 0, 10, 4, 3, 0, 3, 8, 0, 2,
+            return new EquipableItem(0, 0, 10, 6, 8, 0, 4, 8, 0, 2,
                                "Void-leather body armor", "You have found a peculiar body armor. \nThe material feels very light, flexible and odd to the touch, unlike anything you have ever felt before.", "Equipped the Void-leather body armor.");
 
         //101-150: leg armor
@@ -87,7 +87,7 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
             return new EquipableItem(2, 0, 0, 2, 0, 0, 10, 10, 1, 6,
                                "Golden dagger", "You have found a shiny golden dagger. It looks very sharp.", "Equipped the golden dagger.");
         case 262 :
-            return new EquipableItem(6, 0, 0, 2, 7, 0, 0, 0, 9, 6,
+            return new EquipableItem(6, 0, 0, 2, 16, 0, 0, 0, 9, 6,
                                "Giant hammer", "You have found an enormous hammer. Anything hit by it will definitely feel it.", "Equipped the giant hammer.");
 
         //301-350: shields
