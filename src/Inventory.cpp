@@ -32,17 +32,17 @@ void Inventory::show_inventory() {
     }
 }
 
-void Inventory::use_item(int index, Equipment*& equipment) {
+void Inventory::use_item(int index, Equipment*& equipment, PlayerStats*& playerStats) {
     int startingEquipableIndex = consumableItems.size() + 1;
     if(index > 0 && index < startingEquipableIndex) {
         ConsumableItem* item = consumableItems.at(index - 1);
-        item->use_item(equipment->get_player_stats());
+        item->use_item(playerStats);
         consumableItems.erase(consumableItems.begin() + index - 1);
         currentWeight -= item->get_weight();
     }
     else if(index > 0 && index < startingEquipableIndex + equipableItems.size()) {
         EquipableItem* newItem = equipableItems.at(index - startingEquipableIndex);
-        EquipableItem* oldItem = equipment->equip_item(newItem);
+        EquipableItem* oldItem = equipment->equip_item(newItem, playerStats);
         equipableItems.erase(equipableItems.begin() + index - startingEquipableIndex);
         equipableItems.push_back(oldItem);
     }

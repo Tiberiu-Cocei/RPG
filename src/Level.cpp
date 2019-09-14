@@ -167,7 +167,7 @@ bool Level::boss_warning() {
     }
 }
 
-bool Level::move_in_direction(int& coordinates, char direction, Equipment*& player, std::vector<Perk*>& playerPerks, Inventory*& inventory) {
+bool Level::move_in_direction(int& coordinates, char direction, Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*>& playerPerks, Inventory*& inventory) {
     bool bossFight = false;
     directionalMappingIterator = directionalMapping.find(direction);
     int directionValue = directionalMappingIterator->second;
@@ -191,13 +191,13 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
 
     bool playerDeath = false;
     if(roomLayout.at(coordinates) == 'O') {
-        playerDeath = generic_room(coordinates, player, playerPerks, inventory);
+        playerDeath = generic_room(coordinates, equipment, playerStats, playerPerks, inventory);
     }
     else if(coordinates == bossCoordinates) {
-        playerDeath = boss_room(player, playerPerks, inventory);
+        playerDeath = boss_room(equipment, playerStats, playerPerks, inventory);
     }
     else if(coordinates == fountainCoordinates) {
-        fountain_room(player, playerPerks);
+        fountain_room(playerStats, playerPerks);
     }
     else if(coordinates == equipableTreasureCoordinates) {
         equipable_treasure_room(inventory);
@@ -214,7 +214,7 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& play
     return playerDeath;
 }
 
-bool Level::generic_room(int coordinates, Equipment*& player, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
+bool Level::generic_room(int coordinates, Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
     int encounterChance = rand() % 10 + 1;
     bool playerDeath = false;
     if(encounterChance == 2 || encounterChance == 5 || encounterChance == 8) {
@@ -236,16 +236,16 @@ bool Level::generic_room(int coordinates, Equipment*& player, std::vector<Perk*>
                 enemy = enemyList.at(0);
             }
         }
-        playerDeath = combat->encounter(player, playerPerks, inventory, enemy);
+        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, enemy);
     }
     return playerDeath;
 }
 
-bool Level::boss_room(Equipment*& player, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
+bool Level::boss_room(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
     if(isBossBeaten == false) {
         bool playerDeath = false;
         Enemy* boss = enemyList.at(4);
-        playerDeath = combat->encounter(player, playerPerks, inventory, boss, true);
+        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, boss, true);
         if(playerDeath == false) {
             this->isBossBeaten = true;
         }
@@ -256,13 +256,13 @@ bool Level::boss_room(Equipment*& player, std::vector<Perk*> &playerPerks, Inven
     }
 }
 
-void Level::fountain_room(Equipment*& player, std::vector<Perk*> &playerPerks) {
+void Level::fountain_room(PlayerStats*& playerStats, std::vector<Perk*> &playerPerks) {
     if(isFountainUsed == false) {
         std::cout<<"You have reached the fountain room. Do you wish to accept its gift now? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);
         if(command == "Yes" || command == "yes") {
-            player->get_player_stats()->gain_health(250);
+            playerStats->gain_health(250);
             for(auto perk : fountainPerks) {
                 playerPerks.push_back(perk);
             }

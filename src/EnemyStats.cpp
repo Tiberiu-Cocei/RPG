@@ -14,11 +14,15 @@ bool EnemyStats::take_damage(int attack, int strength, int luck, int dmgBonus) {
         return false;
     }
     else {
-        int damage = dmgBonus + strength/1.5f - get_defense()/3.1f;
+        int isCrit = rand() % 100 + 1 < luck / 2 ? 2 : 1;
+        int damage = (dmgBonus + strength/1.5f - get_defense()/3.1f) * isCrit;
         if(damage < 0) {
             damage = 0;
         }
         set_current_health_points(get_current_health_points() - damage);
+        if(isCrit == 2) {
+            std::cout<<"Critical hit! ";
+        }
         std::cout<<"The enemy has suffered " + std::to_string(damage);
         if(get_current_health_points() <= 0) {
             std::cout<<" damage and has died.\n";

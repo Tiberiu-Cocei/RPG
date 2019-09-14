@@ -71,22 +71,22 @@ void Game::play() {
             break;
           case 2 :
           case 12 :
-            gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, playerStats, playerPerks, inventory);
             break;
           case 3 :
           case 13 :
-            gameOver = level->move_in_direction(currentCoordinates, 'E', equipment, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'E', equipment, playerStats, playerPerks, inventory);
             break;
           case 4 :
           case 14 :
-            gameOver = level->move_in_direction(currentCoordinates, 'W', equipment, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'W', equipment, playerStats, playerPerks, inventory);
             break;
           case 5 :
           case 15 :
-            gameOver = level->move_in_direction(currentCoordinates, 'S', equipment, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'S', equipment, playerStats, playerPerks, inventory);
             break;
           case 6 :
-            equipment->get_player_stats()->get_stats();
+            playerStats->get_stats();
             break;
           case 7 :
             equipment->get_equipment();
@@ -100,7 +100,7 @@ void Game::play() {
             try {
                 getline (std::cin, itemIndex);
                 itemIndexInt = stoi(itemIndex);
-                inventory->use_item(itemIndexInt, equipment);
+                inventory->use_item(itemIndexInt, equipment, playerStats);
             } catch(const std::invalid_argument& error) {
                 std::cerr << "Not a number.\n";
             }
@@ -184,7 +184,7 @@ void Game::game_introduction() {
     std::cout<<"Do you wish to view the story introduction? (Yes/No)\n";
     std::getline(std::cin, viewIntro);
     if(viewIntro == "Yes" || viewIntro == "yes") {
-        std::cout<<"\nToday is the last day of the month. As is tradition, one of the young adults from the village will be sent to the Valley of Trials.\n";
+        std::cout<<"\nToday is the last day of the month. As is tradition, one of the young adults from the village will be sent to the Path of Trial.\n";
         Sleep(6000);
         std::cout<<"You do not know much, as everyone who went through it refuses to talk about it. All you know is that they act different after the ordeal.\n";
         Sleep(6000);
@@ -204,8 +204,8 @@ void Game::game_introduction() {
         Sleep(6000);
         std::cout<<"You step forward, ready to be instructed by the cloaked man.\n";
         Sleep(2500);
-        std::cout<<"\"Your trial will be as follows: follow the path of the valley, that which starts from the cave and ends in the volcanic ruins.\"\n";
-        Sleep(6000);
+        std::cout<<"\"Your trial will be as follows: follow the path, that which starts from the cave and ends in the volcanic ruins.\"\n";
+        Sleep(5000);
         std::cout<<"\"You will be challenged by many foes on your way. They all will possess combat supplies which will aid you. Defeat them, and they will be yours to claim.\"\n";
         Sleep(6000);
         std::cout<<"\"There are many places of power that can be found. Some will contain valuable items that you may use.\"\n";

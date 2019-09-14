@@ -8,14 +8,12 @@
 class Equipment
 {
     public:
-        Equipment(PlayerStats*);
+        Equipment(PlayerStats*&);
         ~Equipment();
-        EquipableItem* equip_item(EquipableItem*);
+        EquipableItem* equip_item(EquipableItem*, PlayerStats*&);
         void get_equipment();
-        PlayerStats*& get_player_stats();
 
     private:
-        PlayerStats* playerStats;
         EquipableItem* helmet;
         EquipableItem* body;
         EquipableItem* legs;
@@ -23,13 +21,13 @@ class Equipment
         EquipableItem* boots;
         EquipableItem* mainHand;
         EquipableItem* offhand;
-        EquipableItem* equip_helmet(EquipableItem*);
-        EquipableItem* equip_body(EquipableItem*);
-        EquipableItem* equip_legs(EquipableItem*);
-        EquipableItem* equip_gloves(EquipableItem*);
-        EquipableItem* equip_boots(EquipableItem*);
-        EquipableItem* equip_main_hand(EquipableItem*);
-        EquipableItem* equip_offhand(EquipableItem*);
+        EquipableItem* equip_helmet(EquipableItem*, PlayerStats*&);
+        EquipableItem* equip_body(EquipableItem*, PlayerStats*&);
+        EquipableItem* equip_legs(EquipableItem*, PlayerStats*&);
+        EquipableItem* equip_gloves(EquipableItem*, PlayerStats*&);
+        EquipableItem* equip_boots(EquipableItem*, PlayerStats*&);
+        EquipableItem* equip_main_hand(EquipableItem*, PlayerStats*&);
+        EquipableItem* equip_offhand(EquipableItem*, PlayerStats*&);
         void concat_stats(std::string&, EquipableItem*);
 };
 

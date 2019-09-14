@@ -28,6 +28,8 @@ class Enemy
         bool enemy_defend(PlayerStats*&);
         void enemy_encounter();
         void enemy_death(Inventory*&);
+        void stun_enemy();
+        bool is_stunned();
 
     private:
         EnemyStats* enemyStats;
@@ -38,6 +40,7 @@ class Enemy
         std::vector<EquipableItem*> equipableDrops;
         int combatLevel;
         int xp;
+        bool isStunned;
 };
 
 #endif

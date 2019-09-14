@@ -21,7 +21,7 @@ class Level
         void begin_level();
         void end_level();
         std::string get_possible_directions(int);
-        bool move_in_direction(int&, char, Equipment*&, std::vector<Perk*>&, Inventory*&);
+        bool move_in_direction(int&, char, Equipment*&, PlayerStats*&, std::vector<Perk*>&, Inventory*&);
         int get_initial_coordinates();
         int get_boss_coordinates();
         bool is_boss_beaten();
@@ -30,9 +30,9 @@ class Level
 
     private:
         bool boss_warning();
-        bool generic_room(int, Equipment*&, std::vector<Perk*>&, Inventory*&);
-        bool boss_room(Equipment*&, std::vector<Perk*>&, Inventory*&);
-        void fountain_room(Equipment*&, std::vector<Perk*>&);
+        bool generic_room(int, Equipment*&, PlayerStats*&, std::vector<Perk*>&, Inventory*&);
+        bool boss_room(Equipment*&, PlayerStats*&, std::vector<Perk*>&, Inventory*&);
+        void fountain_room(PlayerStats*&, std::vector<Perk*>&);
         void equipable_treasure_room(Inventory*&);
         void consumable_treasure_room(Inventory*&);
         void direction_details(std::string&, int);

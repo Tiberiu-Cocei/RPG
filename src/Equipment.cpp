@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string.h>
 
-Equipment::Equipment(PlayerStats* playerStats) : playerStats(playerStats)
+Equipment::Equipment(PlayerStats*& playerStats)
 {
     this->helmet = new EquipableItem(0, 0, 0, 0, 0, 0, 2, 1, 1, 1,
                                "Leather helmet", "You have found a crudely made leather helmet.", "Equipped the leather helmet.");
@@ -18,38 +18,34 @@ Equipment::Equipment(PlayerStats* playerStats) : playerStats(playerStats)
                                "Copper sword", "You have found a copper sword. It does not look like it's in good condition.", "Equipped the copper sword.");
     this->offhand = new EquipableItem(0, 1, 0, 0, 0, 2, 0, 1, 2, 7,
                                "Copper shield", "You have found a copper shield. It does not look like it's in good condition.", "Equipped the copper shield.");
-    this->playerStats->gain_stats_from_equip(0, 3, 2, 6, 2, 5, 1, 1);
+    playerStats->gain_stats_from_equip(0, 3, 2, 6, 2, 5, 1, 1);
 }
 
-PlayerStats*& Equipment::get_player_stats() {
-    return this->playerStats;
-}
-
-EquipableItem* Equipment::equip_item(EquipableItem* item) {
+EquipableItem* Equipment::equip_item(EquipableItem* item, PlayerStats*& playerStats) {
     EquipableItem* toReturn;
     std::cout<<item->get_use_description() + "\n";
     int type = item->get_equipment_type();
     switch(type) {
         case 1 :
-            toReturn = equip_helmet(item);
+            toReturn = equip_helmet(item, playerStats);
             break;
         case 2 :
-            toReturn = equip_body(item);
+            toReturn = equip_body(item, playerStats);
             break;
         case 3 :
-            toReturn = equip_legs(item);
+            toReturn = equip_legs(item, playerStats);
             break;
         case 4 :
-            toReturn = equip_gloves(item);
+            toReturn = equip_gloves(item, playerStats);
             break;
         case 5 :
-            toReturn = equip_boots(item);
+            toReturn = equip_boots(item, playerStats);
             break;
         case 6 :
-            toReturn = equip_main_hand(item);
+            toReturn = equip_main_hand(item, playerStats);
             break;
         case 7 :
-            toReturn = equip_offhand(item);
+            toReturn = equip_offhand(item, playerStats);
             break;
         default :
             toReturn = new EquipableItem(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM");
@@ -59,85 +55,85 @@ EquipableItem* Equipment::equip_item(EquipableItem* item) {
     return toReturn;
 }
 
-EquipableItem* Equipment::equip_helmet(EquipableItem* helmet) {
+EquipableItem* Equipment::equip_helmet(EquipableItem* helmet, PlayerStats*& playerStats) {
     EquipableItem* toReturn = this->helmet;
-    this->playerStats->lose_stats_from_unequip(this->helmet->get_health_boost(), this->helmet->get_attack_boost(), this->helmet->get_strength_boost(),
+    playerStats->lose_stats_from_unequip(this->helmet->get_health_boost(), this->helmet->get_attack_boost(), this->helmet->get_strength_boost(),
                                                this->helmet->get_defense_boost(), this->helmet->get_luck_boost(), this->helmet->get_evasion_boost(),
                                                this->helmet->get_dmg_bonus(), this->helmet->get_dmg_reduction());
     this->helmet = helmet;
-    this->playerStats->gain_stats_from_equip(this->helmet->get_health_boost(), this->helmet->get_attack_boost(), this->helmet->get_strength_boost(),
+    playerStats->gain_stats_from_equip(this->helmet->get_health_boost(), this->helmet->get_attack_boost(), this->helmet->get_strength_boost(),
                                                this->helmet->get_defense_boost(), this->helmet->get_luck_boost(), this->helmet->get_evasion_boost(),
                                                this->helmet->get_dmg_bonus(), this->helmet->get_dmg_reduction());
     return toReturn;
 }
 
-EquipableItem* Equipment::equip_body(EquipableItem* body) {
+EquipableItem* Equipment::equip_body(EquipableItem* body, PlayerStats*& playerStats) {
     EquipableItem* toReturn = this->body;
-    this->playerStats->lose_stats_from_unequip(this->body->get_health_boost(), this->body->get_attack_boost(), this->body->get_strength_boost(),
+    playerStats->lose_stats_from_unequip(this->body->get_health_boost(), this->body->get_attack_boost(), this->body->get_strength_boost(),
                                                this->body->get_defense_boost(), this->body->get_luck_boost(), this->body->get_evasion_boost(),
                                                this->body->get_dmg_bonus(), this->body->get_dmg_reduction());
     this->body = body;
-    this->playerStats->gain_stats_from_equip(this->body->get_health_boost(), this->body->get_attack_boost(), this->body->get_strength_boost(),
+    playerStats->gain_stats_from_equip(this->body->get_health_boost(), this->body->get_attack_boost(), this->body->get_strength_boost(),
                                                this->body->get_defense_boost(), this->body->get_luck_boost(), this->body->get_evasion_boost(),
                                                this->body->get_dmg_bonus(), this->body->get_dmg_reduction());
     return toReturn;
 }
 
-EquipableItem* Equipment::equip_legs(EquipableItem* legs) {
+EquipableItem* Equipment::equip_legs(EquipableItem* legs, PlayerStats*& playerStats) {
     EquipableItem* toReturn = this->legs;
-    this->playerStats->lose_stats_from_unequip(this->legs->get_health_boost(), this->legs->get_attack_boost(), this->legs->get_strength_boost(),
+    playerStats->lose_stats_from_unequip(this->legs->get_health_boost(), this->legs->get_attack_boost(), this->legs->get_strength_boost(),
                                                this->legs->get_defense_boost(), this->legs->get_luck_boost(), this->legs->get_evasion_boost(),
                                                this->legs->get_dmg_bonus(), this->legs->get_dmg_reduction());
     this->legs = legs;
-    this->playerStats->gain_stats_from_equip(this->legs->get_health_boost(), this->legs->get_attack_boost(), this->legs->get_strength_boost(),
+    playerStats->gain_stats_from_equip(this->legs->get_health_boost(), this->legs->get_attack_boost(), this->legs->get_strength_boost(),
                                                this->legs->get_defense_boost(), this->legs->get_luck_boost(), this->legs->get_evasion_boost(),
                                                this->legs->get_dmg_bonus(), this->legs->get_dmg_reduction());
     return toReturn;
 }
 
-EquipableItem* Equipment::equip_gloves(EquipableItem* gloves) {
+EquipableItem* Equipment::equip_gloves(EquipableItem* gloves, PlayerStats*& playerStats) {
     EquipableItem* toReturn = this->gloves;
-    this->playerStats->lose_stats_from_unequip(this->gloves->get_health_boost(), this->gloves->get_attack_boost(), this->gloves->get_strength_boost(),
+    playerStats->lose_stats_from_unequip(this->gloves->get_health_boost(), this->gloves->get_attack_boost(), this->gloves->get_strength_boost(),
                                                this->gloves->get_defense_boost(), this->gloves->get_luck_boost(), this->gloves->get_evasion_boost(),
                                                this->gloves->get_dmg_bonus(), this->gloves->get_dmg_reduction());
     this->gloves = gloves;
-    this->playerStats->gain_stats_from_equip(this->gloves->get_health_boost(), this->gloves->get_attack_boost(), this->gloves->get_strength_boost(),
+    playerStats->gain_stats_from_equip(this->gloves->get_health_boost(), this->gloves->get_attack_boost(), this->gloves->get_strength_boost(),
                                                this->gloves->get_defense_boost(), this->gloves->get_luck_boost(), this->gloves->get_evasion_boost(),
                                                this->gloves->get_dmg_bonus(), this->gloves->get_dmg_reduction());
     return toReturn;
 }
 
-EquipableItem* Equipment::equip_boots(EquipableItem* boots) {
+EquipableItem* Equipment::equip_boots(EquipableItem* boots, PlayerStats*& playerStats) {
     EquipableItem* toReturn = this->boots;
-    this->playerStats->lose_stats_from_unequip(this->boots->get_health_boost(), this->boots->get_attack_boost(), this->boots->get_strength_boost(),
+    playerStats->lose_stats_from_unequip(this->boots->get_health_boost(), this->boots->get_attack_boost(), this->boots->get_strength_boost(),
                                                this->boots->get_defense_boost(), this->boots->get_luck_boost(), this->boots->get_evasion_boost(),
                                                this->boots->get_dmg_bonus(), this->boots->get_dmg_reduction());
     this->boots = boots;
-    this->playerStats->gain_stats_from_equip(this->boots->get_health_boost(), this->boots->get_attack_boost(), this->boots->get_strength_boost(),
+    playerStats->gain_stats_from_equip(this->boots->get_health_boost(), this->boots->get_attack_boost(), this->boots->get_strength_boost(),
                                                this->boots->get_defense_boost(), this->boots->get_luck_boost(), this->boots->get_evasion_boost(),
                                                this->boots->get_dmg_bonus(), this->boots->get_dmg_reduction());
     return toReturn;
 }
 
-EquipableItem* Equipment::equip_main_hand(EquipableItem* mainHand) {
+EquipableItem* Equipment::equip_main_hand(EquipableItem* mainHand, PlayerStats*& playerStats) {
     EquipableItem* toReturn = this->mainHand;
-    this->playerStats->lose_stats_from_unequip(this->mainHand->get_health_boost(), this->mainHand->get_attack_boost(), this->mainHand->get_strength_boost(),
+    playerStats->lose_stats_from_unequip(this->mainHand->get_health_boost(), this->mainHand->get_attack_boost(), this->mainHand->get_strength_boost(),
                                                this->mainHand->get_defense_boost(), this->mainHand->get_luck_boost(), this->mainHand->get_evasion_boost(),
                                                this->mainHand->get_dmg_bonus(), this->mainHand->get_dmg_reduction());
     this->mainHand = mainHand;
-    this->playerStats->gain_stats_from_equip(this->mainHand->get_health_boost(), this->mainHand->get_attack_boost(), this->mainHand->get_strength_boost(),
+    playerStats->gain_stats_from_equip(this->mainHand->get_health_boost(), this->mainHand->get_attack_boost(), this->mainHand->get_strength_boost(),
                                                this->mainHand->get_defense_boost(), this->mainHand->get_luck_boost(), this->mainHand->get_evasion_boost(),
                                                this->mainHand->get_dmg_bonus(), this->mainHand->get_dmg_reduction());
     return toReturn;
 }
 
-EquipableItem* Equipment::equip_offhand(EquipableItem* offhand) {
+EquipableItem* Equipment::equip_offhand(EquipableItem* offhand, PlayerStats*& playerStats) {
     EquipableItem* toReturn = this->offhand;
-    this->playerStats->lose_stats_from_unequip(this->offhand->get_health_boost(), this->offhand->get_attack_boost(), this->offhand->get_strength_boost(),
+    playerStats->lose_stats_from_unequip(this->offhand->get_health_boost(), this->offhand->get_attack_boost(), this->offhand->get_strength_boost(),
                                                this->offhand->get_defense_boost(), this->offhand->get_luck_boost(), this->offhand->get_evasion_boost(),
                                                this->offhand->get_dmg_bonus(), this->offhand->get_dmg_reduction());
     this->offhand = offhand;
-    this->playerStats->gain_stats_from_equip(this->offhand->get_health_boost(), this->offhand->get_attack_boost(), this->offhand->get_strength_boost(),
+    playerStats->gain_stats_from_equip(this->offhand->get_health_boost(), this->offhand->get_attack_boost(), this->offhand->get_strength_boost(),
                                                this->offhand->get_defense_boost(), this->offhand->get_luck_boost(), this->offhand->get_evasion_boost(),
                                                this->offhand->get_dmg_bonus(), this->offhand->get_dmg_reduction());
     return toReturn;

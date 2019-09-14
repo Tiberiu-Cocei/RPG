@@ -7,6 +7,7 @@ Enemy::Enemy(EnemyStats* enemyStats, std::string name, std::string encounterDesc
 {
     this->combatLevel = combatLevel;
     this->xp = xp;
+    this->isStunned = false;
 }
 
 EnemyStats*& Enemy::get_enemy_stats() {
@@ -46,8 +47,9 @@ bool Enemy::enemy_attack(PlayerStats*& playerStats) {
 }
 
 bool Enemy::enemy_defend(PlayerStats*& playerStats) {
+    float randomizeDamage = ((float)playerStats->get_strength() + (float)playerStats->get_temp_strength()) / 100 * (rand() % 25 - 10);
     return this->enemyStats->take_damage(playerStats->get_attack() + playerStats->get_temp_attack(),
-                                         playerStats->get_strength() + playerStats->get_temp_strength(),
+                                         playerStats->get_strength() + playerStats->get_temp_strength() + (int)randomizeDamage,
                                          playerStats->get_luck() + playerStats->get_temp_luck(),
                                          playerStats->get_dmgBonus());
 }
@@ -102,6 +104,20 @@ void Enemy::enemy_death(Inventory*& inventory) {
         else {
             std::cout<<"You drop the item to the ground and move on.\n";
         }
+    }
+}
+
+void Enemy::stun_enemy() {
+    this->isStunned = true;
+}
+
+bool Enemy::is_stunned() {
+    if(this->isStunned == false) {
+        return false;
+    }
+    else {
+        this->isStunned = false;
+        return true;
     }
 }
 

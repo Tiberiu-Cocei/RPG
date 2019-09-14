@@ -6,6 +6,7 @@
 #include <string.h>
 #include "Inventory.h"
 #include "Perk.h"
+#include "PlayerStats.h"
 #include <vector>
 #include <map>
 
@@ -14,10 +15,10 @@ class Combat
     public:
         Combat();
         ~Combat();
-        bool encounter(Equipment*&, std::vector<Perk*>, Inventory*&, Enemy*&, bool = false);
+        bool encounter(Equipment*&, PlayerStats*&, std::vector<Perk*>, Inventory*&, Enemy*&, bool = false);
 
     private:
-        bool player_turn(Equipment*&, std::vector<Perk*>, Enemy*&);
+        bool player_normal_attack(PlayerStats*&, std::vector<Perk*>, Enemy*&);
         bool enemy_turn(PlayerStats*&, Enemy*&);
 
         std::map<std::string, int> combatMapping;

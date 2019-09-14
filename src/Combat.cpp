@@ -14,7 +14,7 @@ Combat::Combat()
     combatMapping.insert(std::make_pair("use item", 8));
 }
 
-bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, bool isBoss) {
+bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, bool isBoss) {
     enemy->enemy_encounter();
     while(1) {
         std::cout << "\nEnter command: ";
@@ -34,19 +34,19 @@ bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inven
             break;
           case 2 :
             std::cout<<"You attempt to strike the enemy!\n";
-            isDead = player_turn(player, playerPerks, enemy);
+            isDead = player_normal_attack(playerStats, playerPerks, enemy);
             if(isDead == true) {
                 enemy->enemy_death(inventory);
-                player->get_player_stats()->reset_temp_stats();
+                playerStats->reset_temp_stats();
                 enemy->get_enemy_stats()->reset_stats();
-                if(player->get_player_stats()->get_hp_regen() !=0) {
-                    player->get_player_stats()->regen_health();
+                if(playerStats->get_hp_regen() !=0) {
+                    playerStats->regen_health();
                 }
-                player->get_player_stats()->gain_experience(enemy->get_xp());
+                playerStats->gain_experience(enemy->get_xp());
                 return false;
             }
             else {
-                isDead = enemy_turn(player->get_player_stats(), enemy);
+                isDead = enemy_turn(playerStats, enemy);
                 if(isDead == true) {
                     enemy->get_enemy_stats()->reset_stats();
                     return true;
@@ -55,16 +55,16 @@ bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inven
             break;
           case 3 :
             {
-                int escapeRoll = rand() % 100 + 1 + player->get_player_stats()->get_escape_bonus();
+                int escapeRoll = rand() % 100 + 1 + playerStats->get_escape_bonus();
                 if(escapeRoll > 60 && isBoss == false) {
                     std::cout<<"You successfully escape and make your way back.\n";
-                    player->get_player_stats()->reset_temp_stats();
+                    playerStats->reset_temp_stats();
                     enemy->get_enemy_stats()->reset_stats();
                     return false;
                 }
                 else if(escapeRoll <= 60 && isBoss == false) {
                     std::cout<<"You failed to escape from your enemy!\n";
-                    isDead = enemy_turn(player->get_player_stats(), enemy);
+                    isDead = enemy_turn(playerStats, enemy);
                     if(isDead == true) {
                         enemy->get_enemy_stats()->reset_stats();
                         return true;
@@ -76,13 +76,13 @@ bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inven
                 break;
             }
           case 4 :
-            player->get_player_stats()->get_stats();
+            playerStats->get_stats();
             break;
           case 5 :
             enemy->get_enemy_stats()->get_stats();
             break;
           case 6 :
-            player->get_equipment();
+            equipment->get_equipment();
             break;
           case 7 :
             inventory->show_inventory();
@@ -93,11 +93,11 @@ bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inven
             try {
                 getline (std::cin, itemIndex);
                 itemIndexInt = stoi(itemIndex);
-                inventory->use_item(itemIndexInt, player);
+                inventory->use_item(itemIndexInt, equipment, playerStats);
             } catch(const std::invalid_argument& error) {
                 std::cerr << "Not a number.\n";
             }
-            isDead = enemy_turn(player->get_player_stats(), enemy);
+            isDead = enemy_turn(playerStats, enemy);
             if(isDead == true) {
                 enemy->get_enemy_stats()->reset_stats();
                 return true;
@@ -109,19 +109,25 @@ bool Combat::encounter(Equipment*& player, std::vector<Perk*> playerPerks, Inven
     }
 }
 
-bool Combat::player_turn(Equipment*& player, std::vector<Perk*> playerPerks, Enemy*& enemy) {
-    //check for Executioner perk
-    if(player->get_player_stats()->get_perk_state(0) == true && enemy->get_enemy_stats()->get_current_health_points() <= 50) {
-        player->get_player_stats()->modify_temp_stats(0, 0, player->get_player_stats()->get_strength()/3, 0, 0, 0);
+bool Combat::player_normal_attack(PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Enemy*& enemy) {
+    //checks for Executioner perk
+    if(playerStats->get_perk_state(0) == true && enemy->get_enemy_stats()->get_current_health_points() <= 50) {
+        playerStats->modify_temp_stats(0, 0, playerStats->get_strength()/3, 0, 0, 0);
     }
-    return enemy->enemy_defend(player->get_player_stats());
+    return enemy->enemy_defend(playerStats);
 }
 
 bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy) {
     //TO DO: enemy special attacks -> random roll for type of attack
     Sleep(600);
-    std::cout<<"\nThe " + enemy->get_name() + " attacks!\n";
-    return enemy->enemy_attack(playerStats);
+    if(enemy->is_stunned() == false) {
+        std::cout<<"\nThe " + enemy->get_name() + " attacks!\n";
+        return enemy->enemy_attack(playerStats);
+    }
+    else {
+        std::cout<<"Your foe is unable to attack this turn!\n";
+        return false;
+    }
 }
 
 Combat::~Combat()

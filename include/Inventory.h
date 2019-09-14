@@ -3,6 +3,7 @@
 #include "EquipableItem.h"
 #include "ConsumableItem.h"
 #include "Equipment.h"
+#include "PlayerStats.h"
 #include <vector>
 
 class Inventory
@@ -11,7 +12,7 @@ class Inventory
         Inventory();
         ~Inventory();
         void show_inventory();
-        void use_item(int, Equipment*&);
+        void use_item(int, Equipment*&, PlayerStats*&);
         void drop_item(int);
         void pickup_item(ConsumableItem*);
         void pickup_item(EquipableItem*);
