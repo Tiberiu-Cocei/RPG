@@ -1,8 +1,6 @@
 #include "PerkList.h"
 
-PerkList::PerkList()
-{
-}
+PerkList::PerkList() {}
 
 Perk* PerkList::get_perk(int index) {
     switch(index) {
@@ -47,6 +45,4 @@ Perk* PerkList::get_perk(int index) {
     }
 }
 
-PerkList::~PerkList()
-{
-}
+PerkList::~PerkList() {}

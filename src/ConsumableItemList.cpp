@@ -1,8 +1,6 @@
 #include "ConsumableItemList.h"
 
-ConsumableItemList::ConsumableItemList()
-{
-}
+ConsumableItemList::ConsumableItemList() {}
 
 ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
     switch(index) {
@@ -71,6 +69,4 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
     }
 }
 
-ConsumableItemList::~ConsumableItemList()
-{
-}
+ConsumableItemList::~ConsumableItemList() {}

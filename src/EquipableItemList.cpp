@@ -1,8 +1,6 @@
 #include "EquipableItemList.h"
 
-EquipableItemList::EquipableItemList()
-{
-}
+EquipableItemList::EquipableItemList() {}
 
 EquipableItem* EquipableItemList::get_equipable_item(int index) {
     switch(index) {
@@ -106,6 +104,4 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
     }
 }
 
-EquipableItemList::~EquipableItemList()
-{
-}
+EquipableItemList::~EquipableItemList() {}

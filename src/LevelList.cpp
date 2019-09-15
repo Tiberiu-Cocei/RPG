@@ -5,8 +5,7 @@
 #include <array>
 #include "Perk.h"
 
-LevelList::LevelList()
-{
+LevelList::LevelList() {
     this->equipableList = new EquipableItemList();
     this->consumableList = new ConsumableItemList();
     this->enemyList = new EnemyList();
@@ -168,6 +167,4 @@ Level* LevelList::get_level(int index) {
     }
 }
 
-LevelList::~LevelList()
-{
-}
+LevelList::~LevelList() {}

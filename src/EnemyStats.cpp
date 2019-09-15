@@ -3,9 +3,7 @@
 #include <iostream>
 
 EnemyStats::EnemyStats(int healthPoints, int attack, int strength, int defense, int evasion)
-: Stats(healthPoints, attack, strength, defense, 0, evasion)
-{
-}
+: Stats(healthPoints, attack, strength, defense, 0, evasion) {}
 
 bool EnemyStats::take_damage(int attack, int strength, int luck, int dmgBonus) {
     int evade = rand() % 50 + 1 - luck/7 + get_evasion()/5  - attack/5;
@@ -107,6 +105,4 @@ void EnemyStats::get_stats() {
     std::cout<<enemyStats;
 }
 
-EnemyStats::~EnemyStats()
-{
-}
+EnemyStats::~EnemyStats() {}

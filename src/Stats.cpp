@@ -2,8 +2,7 @@
 #include <string.h>
 #include <iostream>
 
-Stats::Stats(int healthPoints, int attack, int strength, int defense, int luck, int evasion)
-{
+Stats::Stats(int healthPoints, int attack, int strength, int defense, int luck, int evasion) {
     this->healthPoints = healthPoints;
     this->currentHealthPoints = healthPoints;
     this->attack = attack;
@@ -69,6 +68,4 @@ int Stats::get_evasion() {
     return this->evasion;
 }
 
-Stats::~Stats()
-{
-}
+Stats::~Stats() {}

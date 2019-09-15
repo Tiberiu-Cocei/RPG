@@ -32,6 +32,9 @@ class PlayerStats : public Stats
         int get_hp_regen();
         void set_perk_state(int);
         bool get_perk_state(int);
+        void change_current_charges(int);
+        int get_current_charges();
+        void gain_stats_from_ability(int, int, int, int, int);
 
     private:
         int tempHealthPoints;
@@ -46,6 +49,8 @@ class PlayerStats : public Stats
         int hpRegen;
         int bonusHealing;
         int escapeBonus;
+        int currentCharges;
+        int maxCharges;
         bool attunedPerks[10]; //0 - Executioner
 };
 

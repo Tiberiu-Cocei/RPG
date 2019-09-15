@@ -3,8 +3,7 @@
 #include <iostream>
 
 PlayerStats::PlayerStats(int healthPoints, int attack, int strength, int defense, int luck, int evasion)
-: Stats(healthPoints, attack, strength, defense, luck, evasion)
-{
+: Stats(healthPoints, attack, strength, defense, luck, evasion) {
     tempHealthPoints = 0;
     tempAttack = 0;
     tempStrength = 0;
@@ -17,6 +16,8 @@ PlayerStats::PlayerStats(int healthPoints, int attack, int strength, int defense
     hpRegen = 0;
     bonusHealing = 0;
     escapeBonus = 0;
+    currentCharges = 10;
+    maxCharges = 10;
     for(int i = 0; i < 10; i++) {
         attunedPerks[i] = false;
     }
@@ -34,7 +35,9 @@ bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus) 
         return false;
     }
     else {
+        float randomizeDamage = rand() % 20 - 10;
         int damage = dmgBonus + strength/1.4f - get_defense()/2.9f - this->tempDefense/2.9f - this->dmgReduction;
+        damage = (int)((float)damage / 100 * (100 + randomizeDamage));
         if(damage < 0) {
             damage = 0;
         }
@@ -273,6 +276,53 @@ bool PlayerStats::get_perk_state(int index) {
     return this->attunedPerks[index];
 }
 
-PlayerStats::~PlayerStats()
-{
+void PlayerStats::change_current_charges(int charges) {
+    this->currentCharges += charges;
+    if(this->currentCharges > this->maxCharges) {
+        this->currentCharges = this->maxCharges;
+    }
 }
+
+int PlayerStats::get_current_charges() {
+    return currentCharges;
+}
+
+void PlayerStats::gain_stats_from_ability(int attack, int strength, int defense, int luck, int evasion) {
+    this->tempAttack += attack;
+    if(attack > 0) {
+        std::cout<<"Your attack has been temporarily increased by " << attack << "!\n";
+    }
+    else {
+        std::cout<<"Your attack has been temporarily decreased by " << -attack << "!\n";
+    }
+    this->tempStrength += strength;
+    if(strength > 0) {
+        std::cout<<"Your strength has been temporarily increased by " << strength << "!\n";
+    }
+    else {
+        std::cout<<"Your strength has been temporarily decreased by " << -strength << "!\n";
+    }
+    this->tempDefense += defense;
+    if(defense > 0) {
+        std::cout<<"Your defense has been temporarily increased by " << defense << "!\n";
+    }
+    else {
+        std::cout<<"Your defense has been temporarily decreased by " << -defense << "!\n";
+    }
+    this->tempLuck += luck;
+    if(luck > 0) {
+        std::cout<<"Your luck has been temporarily increased by " << luck << "!\n";
+    }
+    else {
+        std::cout<<"Your luck has been temporarily decreased by " << -luck << "!\n";
+    }
+    this->tempEvasion += evasion;
+    if(evasion > 0) {
+        std::cout<<"Your evasion has been temporarily increased by " << evasion << "!\n";
+    }
+    else {
+        std::cout<<"Your evasion has been temporarily decreased by " << -evasion << "!\n";
+    }
+}
+
+PlayerStats::~PlayerStats() {}

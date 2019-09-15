@@ -34,6 +34,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Ability.h" />
+		<Unit filename="include/AbilityList.h" />
+		<Unit filename="include/Bracelet.h" />
 		<Unit filename="include/Combat.h" />
 		<Unit filename="include/ConsumableItem.h" />
 		<Unit filename="include/ConsumableItemList.h" />
@@ -51,8 +54,13 @@
 		<Unit filename="include/Perk.h" />
 		<Unit filename="include/PerkList.h" />
 		<Unit filename="include/PlayerStats.h" />
+		<Unit filename="include/Rune.h" />
+		<Unit filename="include/RuneList.h" />
 		<Unit filename="include/Stats.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Ability.cpp" />
+		<Unit filename="src/AbilityList.cpp" />
+		<Unit filename="src/Bracelet.cpp" />
 		<Unit filename="src/Combat.cpp" />
 		<Unit filename="src/ConsumableItem.cpp" />
 		<Unit filename="src/ConsumableItemList.cpp" />
@@ -70,6 +78,8 @@
 		<Unit filename="src/Perk.cpp" />
 		<Unit filename="src/PerkList.cpp" />
 		<Unit filename="src/PlayerStats.cpp" />
+		<Unit filename="src/Rune.cpp" />
+		<Unit filename="src/RuneList.cpp" />
 		<Unit filename="src/Stats.cpp" />
 		<Extensions>
 			<code_completion />

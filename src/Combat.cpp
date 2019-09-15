@@ -2,8 +2,7 @@
 #include <algorithm>
 #include <windows.h>
 
-Combat::Combat()
-{
+Combat::Combat() {
     combatMapping.insert(std::make_pair("help", 1));
     combatMapping.insert(std::make_pair("attack", 2));
     combatMapping.insert(std::make_pair("escape", 3));
@@ -130,6 +129,4 @@ bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy) {
     }
 }
 
-Combat::~Combat()
-{
-}
+Combat::~Combat() {}

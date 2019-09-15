@@ -1,7 +1,6 @@
 #include "Game.h"
 
-Game::Game()
-{
+Game::Game() {
     //generating random seed
     srand (time(NULL));
 
@@ -227,6 +226,4 @@ void Game::game_introduction() {
     }
 }
 
-Game::~Game()
-{
-}
+Game::~Game() {}

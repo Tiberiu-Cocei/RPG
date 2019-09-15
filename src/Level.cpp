@@ -5,8 +5,7 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
              int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates,
              int clueCoordinates, int secretCoordinates, std::string clueDesc, EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks)
              : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), treasureEquipable(treasureEquipable), treasureConsumable(treasureConsumable),
-               enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc), secretEquipable(secretEquipable), fountainPerks(fountainPerks)
-{
+               enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc), secretEquipable(secretEquipable), fountainPerks(fountainPerks) {
     this->textColorNr = textColorNr;
     this->bossCoordinates = bossCoordinates;
     this->fountainCoordinates = fountainCoordinates;
@@ -319,8 +318,7 @@ int Level::get_text_color_number() {
     return textColorNr;
 }
 
-Level::~Level()
-{
+Level::~Level() {
     if(isEquipableTreasureTaken == false) delete treasureEquipable;
     if(isConsumableTreasureTaken == false) delete treasureConsumable;
     if(isSecretItemTaken == false) delete secretEquipable;

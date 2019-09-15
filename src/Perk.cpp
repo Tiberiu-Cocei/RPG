@@ -2,8 +2,7 @@
 
 Perk::Perk(std::string name, std::string description, int xpCost, int dmgBonus, int dmgReduction, int healthPoints, int attack, int strength,
            int defense, int luck, int evasion, int weightBonus, int hpRegen, int bonusHealing, int escapeBonus, int uniquePerkId)
-           : name(name), description(description)
-{
+           : name(name), description(description) {
     this->state = false;
     this->xpCost = xpCost;
     this->dmgBonus = dmgBonus;
@@ -61,6 +60,4 @@ std::string Perk::get_description() {
     return this->description;
 }
 
-Perk::~Perk()
-{
-}
+Perk::~Perk() {}

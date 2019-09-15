@@ -2,8 +2,7 @@
 #include <iostream>
 #include <string.h>
 
-Inventory::Inventory()
-{
+Inventory::Inventory() {
     this->currentWeight = 14;
     this->maxWeight = 20;
     consumableItems.push_back(new ConsumableItem(20, 0, 0, 0, 0, 0, 0, 1,
@@ -118,6 +117,4 @@ void Inventory::gain_max_weight(int maxWeight) {
     this->maxWeight += maxWeight;
 }
 
-Inventory::~Inventory()
-{
-}
+Inventory::~Inventory() {}

@@ -1,7 +1,6 @@
 #include "EnemyList.h"
 
-EnemyList::EnemyList()
-{
+EnemyList::EnemyList() {
     consumableItemList = new ConsumableItemList();
     equipableItemList = new EquipableItemList();
 }
@@ -127,6 +126,4 @@ Enemy* EnemyList::get_enemy(int index) {
     }
 }
 
-EnemyList::~EnemyList()
-{
-}
+EnemyList::~EnemyList() {}

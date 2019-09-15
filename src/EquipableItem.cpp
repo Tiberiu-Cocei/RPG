@@ -6,8 +6,7 @@
 EquipableItem::EquipableItem(int dmgBonus, int dmgReduction, int healthBoost, int attackBoost, int strengthBoost,
                                int defenseBoost, int luckBoost, int evasionBoost, int weight, int equipmentType,
                                std::string name, std::string findDescription, std::string useDescription)
-: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription)
-{
+: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription) {
     this->dmgBonus = dmgBonus;
     this->dmgReduction = dmgReduction;
     this->equipmentType = equipmentType;
@@ -41,6 +40,4 @@ int EquipableItem::get_equipment_type() {
     return this->equipmentType;
 }
 
-EquipableItem::~EquipableItem()
-{
-}
+EquipableItem::~EquipableItem() {}

@@ -2,8 +2,7 @@
 #include <iostream>
 #include <string.h>
 
-Equipment::Equipment(PlayerStats*& playerStats)
-{
+Equipment::Equipment(PlayerStats*& playerStats) {
     this->helmet = new EquipableItem(0, 0, 0, 0, 0, 0, 2, 1, 1, 1,
                                "Leather helmet", "You have found a crudely made leather helmet.", "Equipped the leather helmet.");
     this->body = new EquipableItem(0, 0, 0, 0, 0, 2, 0, 1, 2, 2,
@@ -188,6 +187,4 @@ void Equipment::concat_stats(std::string& equipment, EquipableItem* item) {
     equipment += " weight: +" + std::to_string(item->get_weight()) + "\n";
 }
 
-Equipment::~Equipment()
-{
-}
+Equipment::~Equipment() {}

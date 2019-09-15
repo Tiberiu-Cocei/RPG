@@ -3,8 +3,7 @@
 Enemy::Enemy(EnemyStats* enemyStats, std::string name, std::string encounterDescrption, std::string deathDescription,
              std::vector<ConsumableItem*> consumableDrops, std::vector<EquipableItem*> equipableDrops, int combatLevel, int xp)
              : enemyStats(enemyStats), name(name), encounterDescrption(encounterDescrption), deathDescription(deathDescription),
-               consumableDrops(consumableDrops), equipableDrops(equipableDrops)
-{
+               consumableDrops(consumableDrops), equipableDrops(equipableDrops) {
     this->combatLevel = combatLevel;
     this->xp = xp;
     this->isStunned = false;
@@ -121,7 +120,6 @@ bool Enemy::is_stunned() {
     }
 }
 
-Enemy::~Enemy()
-{
+Enemy::~Enemy() {
     delete this->enemyStats;
 }
