@@ -51,6 +51,9 @@ bool Ability::use_ability(PlayerStats*& playerStats, Enemy*& enemy) {
                 return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_strength() * this->multiplier, playerStats->get_luck(), 0);
             }
         }
+        if(this->cost != 0) {
+            std::cout<<"You have " << playerStats->get_current_charges() << " charges left.\n";
+        }
     }
 }
 

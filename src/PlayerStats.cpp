@@ -214,6 +214,7 @@ void PlayerStats::get_stats() {
     else ownStats += "Even the most trained and accurate enemies have a hard time hitting you.\n";
 
     ownStats += std::to_string(dmgBonus) + " damage bonus and " + std::to_string(dmgReduction) + " damage reduction.\n";
+    ownStats += "You have " + std::to_string(currentCharges) + " bracelet charges out of " + std::to_string(maxCharges) + ".\n";
     ownStats += "You have " + std::to_string(experience) + " experience points.\n";
 
     std::cout<<ownStats;

@@ -1,24 +1,22 @@
 #include "Level.h"
 
 Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, int textColorNr, EquipableItem* treasureEquipable,
-             ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout, int bossCoordinates,
-             int fountainCoordinates, int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates,
-             int clueCoordinates, int secretCoordinates, std::string clueDesc, EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks)
-             : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), treasureEquipable(treasureEquipable), treasureConsumable(treasureConsumable),
-               enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc), secretEquipable(secretEquipable), fountainPerks(fountainPerks) {
+             ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout,
+             int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates, std::string clueDesc,
+             EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks, Rune* rune)
+             : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), treasureEquipable(treasureEquipable),
+               treasureConsumable(treasureConsumable), enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc),
+               secretEquipable(secretEquipable), fountainPerks(fountainPerks), rune(rune) {
     this->textColorNr = textColorNr;
-    this->bossCoordinates = bossCoordinates;
-    this->fountainCoordinates = fountainCoordinates;
     this->equipableTreasureCoordinates = equipableTreasureCoordinates;
     this->consumableTreasureCoordinates = consumableTreasureCoordinates;
     this->initialCoordinates = initialCoordinates;
-    this->clueCoordinates = clueCoordinates;
-    this->secretCoordinates = secretCoordinates;
     this->isBossBeaten = false;
     this->isFountainUsed = false;
     this->isEquipableTreasureTaken = false;
     this->isConsumableTreasureTaken = false;
     this->isSecretItemTaken = false;
+    this->isRuneTaken = false;
     combat = new Combat();
 
     directionalMapping.insert(std::make_pair('N',-15));
@@ -138,6 +136,9 @@ void Level::direction_details(std::string& directions, int coordinates) {
     else if(roomLayout.at(coordinates) == 'C') {
         directions += "(clue room)";
     }
+    else if(roomLayout.at(coordinates) == 'R') {
+        directions += "(rune room)";
+    }
 }
 
 std::string Level::get_possible_directions(int coordinates) {
@@ -166,13 +167,13 @@ bool Level::boss_warning() {
     }
 }
 
-bool Level::move_in_direction(int& coordinates, char direction, Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*>& playerPerks, Inventory*& inventory) {
+bool Level::move_in_direction(int& coordinates, char direction, Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*>& playerPerks, Inventory*& inventory, Bracelet& bracelet) {
     bool bossFight = false;
     directionalMappingIterator = directionalMapping.find(direction);
     int directionValue = directionalMappingIterator->second;
 
     if (roomLayout.at(coordinates + directionValue) != 'X') {
-        if(coordinates + directionValue == bossCoordinates) {
+        if(roomLayout.at(coordinates + directionValue) == 'B') {
             bossFight = boss_warning();
             if(bossFight == true) {
                 coordinates+= directionValue;
@@ -190,12 +191,12 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& equi
 
     bool playerDeath = false;
     if(roomLayout.at(coordinates) == 'O') {
-        playerDeath = generic_room(coordinates, equipment, playerStats, playerPerks, inventory);
+        playerDeath = generic_room(coordinates, equipment, playerStats, playerPerks, inventory, bracelet);
     }
-    else if(coordinates == bossCoordinates) {
-        playerDeath = boss_room(equipment, playerStats, playerPerks, inventory);
+    else if(roomLayout.at(coordinates) == 'B') {
+        playerDeath = boss_room(equipment, playerStats, playerPerks, inventory, bracelet);
     }
-    else if(coordinates == fountainCoordinates) {
+    else if(roomLayout.at(coordinates) == 'F') {
         fountain_room(playerStats, playerPerks);
     }
     else if(coordinates == equipableTreasureCoordinates) {
@@ -204,16 +205,19 @@ bool Level::move_in_direction(int& coordinates, char direction, Equipment*& equi
     else if(coordinates == consumableTreasureCoordinates) {
         consumable_treasure_room(inventory);
     }
-    else if(coordinates == clueCoordinates) {
+    else if(roomLayout.at(coordinates) == 'C') {
         clue_room();
     }
-    else if(coordinates == secretCoordinates) {
+    else if(roomLayout.at(coordinates) == 'S') {
         secret_room(inventory);
+    }
+    else if(roomLayout.at(coordinates) == 'R') {
+        rune_room(bracelet);
     }
     return playerDeath;
 }
 
-bool Level::generic_room(int coordinates, Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
+bool Level::generic_room(int coordinates, Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> &playerPerks, Inventory*& inventory, Bracelet& bracelet) {
     int encounterChance = rand() % 10 + 1;
     bool playerDeath = false;
     if(encounterChance == 2 || encounterChance == 5 || encounterChance == 8) {
@@ -235,16 +239,16 @@ bool Level::generic_room(int coordinates, Equipment*& equipment, PlayerStats*& p
                 enemy = enemyList.at(0);
             }
         }
-        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, enemy);
+        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, enemy, bracelet);
     }
     return playerDeath;
 }
 
-bool Level::boss_room(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> &playerPerks, Inventory*& inventory) {
+bool Level::boss_room(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> &playerPerks, Inventory*& inventory, Bracelet& bracelet) {
     if(isBossBeaten == false) {
         bool playerDeath = false;
         Enemy* boss = enemyList.at(4);
-        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, boss, true);
+        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, boss, bracelet, true);
         if(playerDeath == false) {
             this->isBossBeaten = true;
         }
@@ -306,8 +310,25 @@ void Level::consumable_treasure_room(Inventory*& inventory) {
     }
 }
 
-int Level::get_boss_coordinates() {
-    return bossCoordinates;
+void Level::rune_room(Bracelet& bracelet) {
+    if(isRuneTaken == true) {
+        std::cout<<"The magic workshop where you found the rune. There's nothing of value left in it.\n";
+    }
+    else {
+        std::cout<<"You have entered what seems to be a magic workshop. There are plenty of arcane machinery laying around, all of which seem to be unusable.\n"
+                 <<"Shining beneath some rubble, you find one of the magical stones the cloaked man told you about.\n"
+                 <<"You determine that you have found a " << rune->get_name() << "! On a piece of paper underneath the stone you read the following:\n"
+                 <<rune->get_description()<<"\n";
+        bracelet.add_rune(this->rune);
+        isRuneTaken = true;
+    }
+}
+
+bool Level::is_boss_room(int coordinates) {
+    if(this->roomLayout.at(coordinates) == 'B') {
+        return true;
+    }
+    return false;
 }
 
 bool Level::is_boss_beaten() {
@@ -322,6 +343,7 @@ Level::~Level() {
     if(isEquipableTreasureTaken == false) delete treasureEquipable;
     if(isConsumableTreasureTaken == false) delete treasureConsumable;
     if(isSecretItemTaken == false) delete secretEquipable;
+    if(isRuneTaken == false) delete rune;
     if(isFountainUsed == false) {
         for(auto fountainPerk : fountainPerks) {
             delete fountainPerk;

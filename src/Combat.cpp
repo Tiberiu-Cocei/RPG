@@ -11,9 +11,10 @@ Combat::Combat() {
     combatMapping.insert(std::make_pair("equipment", 6));
     combatMapping.insert(std::make_pair("inventory", 7));
     combatMapping.insert(std::make_pair("use item", 8));
+    combatMapping.insert(std::make_pair("use ability", 9));
 }
 
-bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, bool isBoss) {
+bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, Bracelet& bracelet, bool isBoss) {
     enemy->enemy_encounter();
     while(1) {
         std::cout << "\nEnter command: ";
@@ -29,19 +30,13 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
         }
         switch(commandValue) {
           case 1 :
-            std::cout<<"The possible commands are: 'attack', 'escape', 'my stats', 'enemy stats', 'equipment', 'inventory', 'use item'.\n";
+            std::cout<<"The possible commands are: \"attack\", \"escape\", \"my stats\", \"enemy stats\", \"equipment\", \"inventory\", \"use item\", \"use ability\".\n";
             break;
           case 2 :
             std::cout<<"You attempt to strike the enemy!\n";
             isDead = player_normal_attack(playerStats, playerPerks, enemy);
             if(isDead == true) {
-                enemy->enemy_death(inventory);
-                playerStats->reset_temp_stats();
-                enemy->get_enemy_stats()->reset_stats();
-                if(playerStats->get_hp_regen() !=0) {
-                    playerStats->regen_health();
-                }
-                playerStats->gain_experience(enemy->get_xp());
+                player_victory(playerStats, enemy, inventory);
                 return false;
             }
             else {
@@ -102,6 +97,33 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                 return true;
             }
             break;
+          case 9 :
+            if(bracelet.get_wielded_rune() == NULL) {
+                std::cout<<"Your bracelet does not have any rune in it.\n";
+            }
+            else {
+                bracelet.get_wielded_rune()->get_overview(true);
+                std::cout<<"\nEnter the number of the ability you wish to use: ";
+                bool isDead;
+                try {
+                    getline (std::cin, itemIndex);
+                    itemIndexInt = stoi(itemIndex);
+                    isDead = bracelet.use_ability(itemIndexInt, playerStats, enemy);
+                } catch(const std::invalid_argument& error) {
+                    std::cerr << "Not a number.\n";
+                }
+                std::cout<<"\n";
+                if(isDead == true) {
+                    player_victory(playerStats, enemy, inventory);
+                    return false;
+                }
+            }
+            isDead = enemy_turn(playerStats, enemy);
+            if(isDead == true) {
+                enemy->get_enemy_stats()->reset_stats();
+                return true;
+            }
+            break;
           default :
             std::cout<<"Unknown command. Write \"help\" to view all the commands.\n";
       }
@@ -127,6 +149,17 @@ bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy) {
         std::cout<<"Your foe is unable to attack this turn!\n";
         return false;
     }
+}
+
+void Combat::player_victory(PlayerStats*& playerStats, Enemy*& enemy, Inventory*& inventory) {
+    enemy->enemy_death(inventory);
+    playerStats->reset_temp_stats();
+    enemy->get_enemy_stats()->reset_stats();
+    if(playerStats->get_hp_regen() !=0) {
+        playerStats->regen_health();
+    }
+    playerStats->gain_experience(enemy->get_xp());
+    playerStats->change_current_charges(2);
 }
 
 Combat::~Combat() {}

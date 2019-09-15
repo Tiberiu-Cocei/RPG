@@ -49,7 +49,7 @@
 
 1566732192 d:\informatica\git\rpg\include\stats.h
 
-1568559365 source:d:\informatica\git\rpg\src\playerstats.cpp
+1568574363 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
@@ -143,12 +143,12 @@
 	"EquipableItemList.h"
 	"ConsumableItemList.h"
 
-1568559117 source:d:\informatica\git\rpg\src\combat.cpp
+1568576592 source:d:\informatica\git\rpg\src\combat.cpp
 	"Combat.h"
 	<algorithm>
 	<windows.h>
 
-1568458573 d:\informatica\git\rpg\include\combat.h
+1568576229 d:\informatica\git\rpg\include\combat.h
 	"Enemy.h"
 	"Equipment.h"
 	<iostream>
@@ -158,11 +158,12 @@
 	"PlayerStats.h"
 	<vector>
 	<map>
+	"Bracelet.h"
 
-1568559299 source:d:\informatica\git\rpg\src\level.cpp
+1568580082 source:d:\informatica\git\rpg\src\level.cpp
 	"Level.h"
 
-1568458943 d:\informatica\git\rpg\include\level.h
+1568582750 d:\informatica\git\rpg\include\level.h
 	<iostream>
 	<string.h>
 	<ConsumableItem.h>
@@ -173,8 +174,9 @@
 	<windows.h>
 	<Combat.h>
 	"Perk.h"
+	"Bracelet.h"
 
-1568559312 source:d:\informatica\git\rpg\src\levellist.cpp
+1568580117 source:d:\informatica\git\rpg\src\levellist.cpp
 	"LevelList.h"
 	<vector>
 	<iostream>
@@ -182,17 +184,18 @@
 	<array>
 	"Perk.h"
 
-1568322092 d:\informatica\git\rpg\include\levellist.h
+1568579912 d:\informatica\git\rpg\include\levellist.h
 	"Level.h"
 	"ConsumableItemList.h"
 	"EquipableItemList.h"
 	"EnemyList.h"
 	"PerkList.h"
+	"RuneList.h"
 
-1568559264 source:d:\informatica\git\rpg\src\game.cpp
+1568581160 source:d:\informatica\git\rpg\src\game.cpp
 	"Game.h"
 
-1568399467 d:\informatica\git\rpg\include\game.h
+1568571089 d:\informatica\git\rpg\include\game.h
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -206,6 +209,7 @@
 	"Inventory.h"
 	"LevelList.h"
 	"Perk.h"
+	"Bracelet.h"
 
 1568559337 source:d:\informatica\git\rpg\src\perk.cpp
 	"Perk.h"
@@ -240,10 +244,10 @@
 	<iostream>
 	<string.h>
 
-1568564954 source:d:\informatica\git\rpg\src\rune.cpp
+1568583323 source:d:\informatica\git\rpg\src\rune.cpp
 	"Rune.h"
 
-1568564624 d:\informatica\git\rpg\include\rune.h
+1568583291 d:\informatica\git\rpg\include\rune.h
 	"Ability.h"
 	<vector>
 
@@ -254,10 +258,12 @@
 	"AbilityList.h"
 	"Rune.h"
 
-1568564830 source:d:\informatica\git\rpg\src\bracelet.cpp
+1568583093 source:d:\informatica\git\rpg\src\bracelet.cpp
 	"Bracelet.h"
 
-1568564244 d:\informatica\git\rpg\include\bracelet.h
+1568575476 d:\informatica\git\rpg\include\bracelet.h
 	"Rune.h"
 	<vector>
+	"PlayerStats.h"
+	"Enemy.h"
 

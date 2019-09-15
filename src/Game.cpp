@@ -25,6 +25,8 @@ Game::Game() {
     commandMapping.insert(std::make_pair("go south", 15));
     commandMapping.insert(std::make_pair("perks", 16));
     commandMapping.insert(std::make_pair("attune perk", 17));
+    commandMapping.insert(std::make_pair("runes", 18));
+    commandMapping.insert(std::make_pair("equip rune", 19));
     commandMapping.insert(std::make_pair("exit", 100));
 
     playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
@@ -33,6 +35,7 @@ Game::Game() {
     consumableItemList = new ConsumableItemList();
     inventory = new Inventory();
     levelList = new LevelList();
+    bracelet = Bracelet();
 
     gameOver = false;
     currentLevel = 1;
@@ -48,7 +51,7 @@ void Game::play() {
     level = levelList->get_level(currentLevel);
     level->begin_level();
     currentCoordinates = level->get_initial_coordinates();
-    std::cout<<"Write 'help' to view all the commands.\n";
+    std::cout<<"Write \"help\" to view all the commands.\n";
     while (strcmp(commandKey.c_str(), "exit") && !gameOver)
     {
       std::cout << "\n---------------------------------------------------------\n\n";
@@ -66,23 +69,23 @@ void Game::play() {
       }
       switch(commandValue) {
           case 1 :
-            std::cout<<"The possible commands are: 'exit', 'go/move north/south/west/east', 'my stats', 'equipment', 'perks', 'attune perk', 'inventory', \n'use item', 'drop item', 'map'.\n";
+            std::cout<<"The possible commands are: \"exit\", \"go/move north/south/west/east\", \"my stats\", \"equipment\", \"perks\", \"attune perk\", \"runes\", \"equip rune\", \"inventory\", \n\"use item\", \"drop item\", \"map\".\n";
             break;
           case 2 :
           case 12 :
-            gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, playerStats, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'N', equipment, playerStats, playerPerks, inventory, bracelet);
             break;
           case 3 :
           case 13 :
-            gameOver = level->move_in_direction(currentCoordinates, 'E', equipment, playerStats, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'E', equipment, playerStats, playerPerks, inventory, bracelet);
             break;
           case 4 :
           case 14 :
-            gameOver = level->move_in_direction(currentCoordinates, 'W', equipment, playerStats, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'W', equipment, playerStats, playerPerks, inventory, bracelet);
             break;
           case 5 :
           case 15 :
-            gameOver = level->move_in_direction(currentCoordinates, 'S', equipment, playerStats, playerPerks, inventory);
+            gameOver = level->move_in_direction(currentCoordinates, 'S', equipment, playerStats, playerPerks, inventory, bracelet);
             break;
           case 6 :
             playerStats->get_stats();
@@ -118,7 +121,7 @@ void Game::play() {
           case 11 :
             level->show_user_map();
             break;
-          case 16:
+          case 16 :
           {
             int perkIndex = 1;
             if(playerPerks.size() == 0) {
@@ -132,18 +135,34 @@ void Game::play() {
             }
             break;
           }
-          case 17:
+          case 17 :
             std::cout<<"Enter the number of the perk you wish to attune: ";
             try {
                 std::string perkIndex;
                 getline (std::cin, perkIndex);
                 int perkIndexInt = stoi(perkIndex);
-                if(perkIndexInt > 0 && perkIndexInt <= playerPerks.size()) {
+                if(playerPerks.size() == 0) {
+                    std::cout<<"You do not know any perks at the moment. The elders did mention something about a fountain of knowledge..\n";
+                }
+                else if(perkIndexInt > 0 && perkIndexInt <= playerPerks.size()) {
                     playerPerks.at(perkIndexInt - 1)->attune_perk(playerStats, inventory);
                 }
                 else {
                     std::cout<<"Invalid perk index.\n";
                 }
+            } catch(const std::invalid_argument& error) {
+                std::cerr << "Not a number.\n";
+            }
+            break;
+          case 18 :
+            bracelet.get_overview();
+            break;
+          case 19 :
+            std::cout<<"Enter the number of the rune you wish to equip: ";
+            try {
+                getline (std::cin, itemIndex);
+                itemIndexInt = stoi(itemIndex);
+                bracelet.equip_rune(itemIndexInt);
             } catch(const std::invalid_argument& error) {
                 std::cerr << "Not a number.\n";
             }
@@ -154,7 +173,7 @@ void Game::play() {
           default :
             std::cout<<"Unknown command. Write \"help\" to view all the commands.\n";
       }
-      if(currentCoordinates == level->get_boss_coordinates() && true == level->is_boss_beaten()) {
+      if(level->is_boss_room(currentCoordinates) == true && level->is_boss_beaten() == true) {
         std::cout<<"\nDo you wish to go to the next level?\n";
         std::string nextLevel;
         getline(std::cin, nextLevel);
@@ -185,10 +204,10 @@ void Game::game_introduction() {
     if(viewIntro == "Yes" || viewIntro == "yes") {
         std::cout<<"\nToday is the last day of the month. As is tradition, one of the young adults from the village will be sent to the Path of Trial.\n";
         Sleep(6000);
-        std::cout<<"You do not know much, as everyone who went through it refuses to talk about it. All you know is that they act different after the ordeal.\n";
+        std::cout<<"All you know is that those who undergo it act different after the ordeal. Many leave the village after completing the trial, never to return.\n";
         Sleep(6000);
-        std::cout<<"Many leave the village, never to return. The elders say that they matured, but it did little to help make your bad feeling go away.\n";
-        Sleep(6000);
+        std::cout<<"The elders say that they matured, but it did little to help make your bad feeling go away.\n";
+        Sleep(3000);
         std::cout<<"You get dressed and go to the gathering. Like always, a mysterious man wearing a cloak that covers him entirely is waiting in the middle of the village.\n";
         Sleep(6000);
         std::cout<<"Once the village has gathered, the elders signal everyone to become quiet. They call the youth to come closer to the center. This includes you.\n";
@@ -199,23 +218,27 @@ void Game::game_introduction() {
         Sleep(6000);
         std::cout<<"After a long pause, he points towards someone. Towards you. You are not that shocked. You knew this could happen, sooner or later.\n";
         Sleep(6000);
-        std::cout<<"Nobody died during the trial, though some have come out more deranged than others. This does put your mind at ease, at least for the moment.\n";
-        Sleep(6000);
         std::cout<<"You step forward, ready to be instructed by the cloaked man.\n";
         Sleep(2500);
         std::cout<<"\"Your trial will be as follows: follow the path, that which starts from the cave and ends in the volcanic ruins.\"\n";
         Sleep(5000);
-        std::cout<<"\"You will be challenged by many foes on your way. They all will possess combat supplies which will aid you. Defeat them, and they will be yours to claim.\"\n";
+        std::cout<<"\"You will be challenged by many foes along the way. They all will possess combat supplies which will aid you. Defeat them, and they will be yours to claim.\"\n";
         Sleep(6000);
         std::cout<<"\"There are many places of power that can be found. Some will contain valuable items that you may use.\"\n";
         Sleep(5000);
         std::cout<<"\"Others will help you in ways that are not of physical nature, such as the Fountain of Knowledge. With its blessing, you will be able to become stronger.\"\n";
         Sleep(6000);
-        std::cout<<"\"To finish the trial, you must defeat a powerful foe. One appointed specifically by the King. If you are deemed worthy, you may even join his ranks.\"\n";
+        std::cout<<"\"To finish the trial, you must fight a powerful foe. One appointed specifically by the King. If you are deemed worthy, you may even join his ranks.\"\n";
         Sleep(6000);
         std::cout<<"\"Now accept this gift from us: a set of leather armor, a copper shield and sword. You will find better equipment from your foes. This is but a start.\"\n";
         Sleep(6000);
-        std::cout<<"\"Equip it and meet us near the entrance of the cave at dusk.\"\n";
+        std::cout<<"\"And here is a magical bracelet. By itself, it has no use. You may find magical stones known as runes during your trial.\"\n";
+        Sleep(5000);
+        std::cout<<"\"They will help you channel and use special abilities, each unique to its stone. Casting those abilities comes at a cost: charges.\"\n";
+        Sleep(5500);
+        std::cout<<"\"The only way to replenish those charges is by defeating foes.\"\n";
+        Sleep(3000);
+        std::cout<<"\"Prepare yourself and meet us near the entrance of the cave at dusk.\"\n";
         Sleep(3000);
         std::cout<<"His soothing voice helped calm you further, and with the goal in mind, you feel hopeful. Still, the bad feeling remains.\n";
         Sleep(4500);

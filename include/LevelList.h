@@ -5,6 +5,7 @@
 #include "EquipableItemList.h"
 #include "EnemyList.h"
 #include "PerkList.h"
+#include "RuneList.h"
 
 
 class LevelList
@@ -19,6 +20,7 @@ class LevelList
         ConsumableItemList* consumableList;
         EnemyList* enemyList;
         PerkList* perkList;
+        RuneList runeList;
 };
 
 #endif

@@ -10,8 +10,10 @@ class Rune
         Rune(std::string, std::string, std::vector<Ability*>);
         ~Rune();
         Ability* get_ability_at(int);
-        void get_overview();
+        void get_overview(bool = false);
         int get_number_of_abilities();
+        std::string get_name();
+        std::string get_description();
 
     private:
         std::string name;

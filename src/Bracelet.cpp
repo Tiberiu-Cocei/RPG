@@ -17,6 +17,7 @@ void Bracelet::equip_rune(int index) {
     }
     else {
         this->runeWielded = this->runes.at(index - 1);
+        std::cout<<"You have equipped the " + this->runeWielded->get_name() + ".\n";
     }
 }
 
@@ -39,11 +40,18 @@ void Bracelet::get_overview() {
         std::cout<<"You do not have any runes. Perhaps there are places of power where you could find them.\n";
     }
     else {
+        std::cout<<"\n";
+        int index = 0;
         for(auto rune : this->runes) {
+            std::cout<<++index<<" = ";
             rune->get_overview();
             std::cout<<"\n";
         }
     }
+}
+
+Rune* Bracelet::get_wielded_rune() {
+    return this->runeWielded;
 }
 
 Bracelet::~Bracelet() {}
