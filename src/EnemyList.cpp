@@ -64,7 +64,7 @@ Enemy* EnemyList::get_enemy(int index) {
 
         //11-20: second level
         case 11:
-            enemyStats = new EnemyStats(50, 26, 39, 22, 27);
+            enemyStats = new EnemyStats(50, 31, 39, 31, 27);
             consumableDrops.push_back(consumableItemList->get_consumable_item(100));
             consumableDrops.push_back(consumableItemList->get_consumable_item(102));
             consumableDrops.push_back(consumableItemList->get_consumable_item(2));
@@ -74,7 +74,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Abomination", "You see something run towards you. It has many limbs and its flesh is mutated. \nYou prepare for battle!",
                              "The abomination falls down and starts convulsing. You put it out of its misery with your weapon.", consumableDrops, equipableDrops, 26, 50);
         case 12:
-            enemyStats = new EnemyStats(70, 35, 36, 15, 38);
+            enemyStats = new EnemyStats(70, 42, 36, 25, 38);
             consumableDrops.push_back(consumableItemList->get_consumable_item(100));
             consumableDrops.push_back(consumableItemList->get_consumable_item(103));
             consumableDrops.push_back(consumableItemList->get_consumable_item(2));
@@ -84,7 +84,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Man-spider", "Loud chewing noises can be heard from somewhere close to you. \nYou get closer to investigate, and find a man with six hands, using them to stand. \nIt twists its head towards you, pausing its feast. You prepare for combat!",
                              "With its limbs cut off, the man-spider falls down, bleeding out.", consumableDrops, equipableDrops, 30, 50);
         case 13:
-            enemyStats = new EnemyStats(90, 35, 45, 29, 26);
+            enemyStats = new EnemyStats(90, 41, 45, 33, 46);
             consumableDrops.push_back(consumableItemList->get_consumable_item(100));
             consumableDrops.push_back(consumableItemList->get_consumable_item(103));
             consumableDrops.push_back(consumableItemList->get_consumable_item(2));
@@ -94,7 +94,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Chimera", "A creature jumps down from one of the openings in the cave above, landing meters in front of you. \nIt looks as if many beasts were merged into one: a chimera. You prepare for combat!",
                              "The chimera falls apart into a puddle of flesh and bones.", consumableDrops, equipableDrops, 33, 75);
         case 14:
-            enemyStats = new EnemyStats(110, 28, 51, 31, 20);
+            enemyStats = new EnemyStats(110, 51, 55, 41, 20);
             consumableDrops.push_back(consumableItemList->get_consumable_item(103));
             consumableDrops.push_back(consumableItemList->get_consumable_item(104));
             consumableDrops.push_back(consumableItemList->get_consumable_item(2));
@@ -104,7 +104,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Giant Mutant", "You hear something charge towards you. You roll to the side and avoid the attack. \nYou quickly get up and see a giant humanoid being, with limbs that seem to be fused together from many different beings. \nYou prepare for battle!",
                              "The giant mutant falls down, never to get up again.", consumableDrops, equipableDrops, 37, 100);
         case 15:
-            enemyStats = new EnemyStats(520, 43, 58, 37, 32);
+            enemyStats = new EnemyStats(520, 63, 67, 51, 46);
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));

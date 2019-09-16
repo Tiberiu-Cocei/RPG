@@ -85,7 +85,7 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
             return new EquipableItem(2, 0, 0, 2, 0, 0, 10, 10, 1, 6,
                                "Golden dagger", "You have found a shiny golden dagger. It looks very sharp.", "Equipped the golden dagger.");
         case 262 :
-            return new EquipableItem(6, 0, 0, 2, 16, 0, 0, 0, 9, 6,
+            return new EquipableItem(6, 0, 0, -5, 16, 0, -3, -5, 7, 6,
                                "Giant hammer", "You have found an enormous hammer. Anything hit by it will definitely feel it.", "Equipped the giant hammer.");
 
         //301-350: shields
