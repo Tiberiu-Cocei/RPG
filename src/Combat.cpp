@@ -14,7 +14,7 @@ Combat::Combat() {
     combatMapping.insert(std::make_pair("use ability", 9));
 }
 
-bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, Bracelet& bracelet, bool isBoss) {
+bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, Bracelet& bracelet, bool isBoss, Rune* bossRune) {
     enemy->enemy_encounter();
     while(1) {
         std::cout << "\nEnter command: ";
@@ -40,7 +40,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                 return false;
             }
             else {
-                isDead = enemy_turn(playerStats, enemy);
+                isDead = enemy_turn(playerStats, enemy, bossRune);
                 if(isDead == true) {
                     enemy->get_enemy_stats()->reset_stats();
                     return true;
@@ -58,7 +58,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                 }
                 else if(escapeRoll <= 60 && isBoss == false) {
                     std::cout<<"You failed to escape from your enemy!\n";
-                    isDead = enemy_turn(playerStats, enemy);
+                    isDead = enemy_turn(playerStats, enemy, bossRune);
                     if(isDead == true) {
                         enemy->get_enemy_stats()->reset_stats();
                         return true;
@@ -91,7 +91,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
             } catch(const std::invalid_argument& error) {
                 std::cerr << "Not a number.\n";
             }
-            isDead = enemy_turn(playerStats, enemy);
+            isDead = enemy_turn(playerStats, enemy, bossRune);
             if(isDead == true) {
                 enemy->get_enemy_stats()->reset_stats();
                 return true;
@@ -118,7 +118,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                     return false;
                 }
             }
-            isDead = enemy_turn(playerStats, enemy);
+            isDead = enemy_turn(playerStats, enemy, bossRune);
             if(isDead == true) {
                 enemy->get_enemy_stats()->reset_stats();
                 return true;
@@ -138,12 +138,26 @@ bool Combat::player_normal_attack(PlayerStats*& playerStats, std::vector<Perk*> 
     return enemy->enemy_defend(playerStats);
 }
 
-bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy) {
-    //TO DO: enemy special attacks -> random roll for type of attack
+bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy, Rune* bossRune) {
     Sleep(600);
     if(enemy->is_stunned() == false) {
-        std::cout<<"\nThe " + enemy->get_name() + " attacks!\n";
-        return enemy->enemy_attack(playerStats);
+        if(bossRune == NULL) {
+            std::cout<<"\nThe " + enemy->get_name() + " attacks!\n";
+            return enemy->enemy_attack(playerStats);
+        }
+        else {
+            int randomAction = rand() % 100 + 1;
+            if(randomAction <= 60) {
+                std::cout<<"\nThe " + enemy->get_name() + " attacks!\n";
+                return enemy->enemy_attack(playerStats);
+            }
+            else if (randomAction <= 80) {
+                return bossRune->get_ability_at(0)->use_ability(playerStats, enemy);
+            }
+            else {
+                return bossRune->get_ability_at(1)->use_ability(playerStats, enemy);
+            }
+        }
     }
     else {
         std::cout<<"Your foe is unable to attack this turn!\n";
@@ -155,6 +169,7 @@ void Combat::player_victory(PlayerStats*& playerStats, Enemy*& enemy, Inventory*
     enemy->enemy_death(inventory);
     playerStats->reset_temp_stats();
     enemy->get_enemy_stats()->reset_stats();
+    enemy->is_stunned(); //removes stun effect
     if(playerStats->get_hp_regen() !=0) {
         playerStats->regen_health();
     }

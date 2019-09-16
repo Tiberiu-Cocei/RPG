@@ -16,8 +16,8 @@ PlayerStats::PlayerStats(int healthPoints, int attack, int strength, int defense
     hpRegen = 0;
     bonusHealing = 0;
     escapeBonus = 0;
-    currentCharges = 10;
-    maxCharges = 10;
+    currentCharges = 6;
+    maxCharges = 6;
     for(int i = 0; i < 10; i++) {
         attunedPerks[i] = false;
     }
@@ -28,7 +28,7 @@ void PlayerStats::gain_experience(int experience) {
     this->experience += experience;
 }
 
-bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus) {
+bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus, bool canCrit) {
     int evade = rand() % 50 + 1 + get_luck()/10 + get_evasion()/3.5  - attack/10 + this->tempLuck/10 + this->tempEvasion/3.5;
     if(evade > 42) {
         std::cout<<"You have avoided the attack.\n";
@@ -324,6 +324,13 @@ void PlayerStats::gain_stats_from_ability(int attack, int strength, int defense,
     else {
         std::cout<<"Your evasion has been temporarily decreased by " << -evasion << "!\n";
     }
+}
+
+void PlayerStats::increase_max_charges(int charges) {
+    std::cout<<"\nYou try to retrieve the rune used by your foe. Unfortunately, it broke and partially turned to dust.\n";
+    this->maxCharges += charges;
+    this->currentCharges = this->maxCharges;
+    std::cout<<"Your bracelet starts to shine, absorbing the destroyed rune. Your bracelet may now hold " << charges << " more charges!\n\n";
 }
 
 PlayerStats::~PlayerStats() {}

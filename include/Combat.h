@@ -10,17 +10,18 @@
 #include <vector>
 #include <map>
 #include "Bracelet.h"
+#include "Rune.h"
 
 class Combat
 {
     public:
         Combat();
         ~Combat();
-        bool encounter(Equipment*&, PlayerStats*&, std::vector<Perk*>, Inventory*&, Enemy*&, Bracelet&, bool = false);
+        bool encounter(Equipment*&, PlayerStats*&, std::vector<Perk*>, Inventory*&, Enemy*&, Bracelet&, bool = false, Rune* bossRune = NULL);
 
     private:
         bool player_normal_attack(PlayerStats*&, std::vector<Perk*>, Enemy*&);
-        bool enemy_turn(PlayerStats*&, Enemy*&);
+        bool enemy_turn(PlayerStats*&, Enemy*&, Rune* bossRune);
         void player_victory(PlayerStats*&, Enemy*&, Inventory*&);
 
         std::map<std::string, int> combatMapping;

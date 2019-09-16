@@ -8,7 +8,7 @@ class Stats
         Stats(int, int, int, int, int, int);
         virtual ~Stats();
         virtual void get_stats() = 0;
-        virtual bool take_damage(int, int, int, int) = 0;
+        virtual bool take_damage(int, int, int, int, bool = true) = 0;
         virtual void gain_health(int) = 0;
 
         void set_health_points(int);

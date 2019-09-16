@@ -3,10 +3,10 @@
 Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, int textColorNr, EquipableItem* treasureEquipable,
              ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout,
              int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates, std::string clueDesc,
-             EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks, Rune* rune)
+             EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks, Rune* playerRune, Rune* bossRune)
              : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), treasureEquipable(treasureEquipable),
                treasureConsumable(treasureConsumable), enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc),
-               secretEquipable(secretEquipable), fountainPerks(fountainPerks), rune(rune) {
+               secretEquipable(secretEquipable), fountainPerks(fountainPerks), playerRune(playerRune), bossRune(bossRune) {
     this->textColorNr = textColorNr;
     this->equipableTreasureCoordinates = equipableTreasureCoordinates;
     this->consumableTreasureCoordinates = consumableTreasureCoordinates;
@@ -251,6 +251,7 @@ bool Level::boss_room(Equipment*& equipment, PlayerStats*& playerStats, std::vec
         playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, boss, bracelet, true);
         if(playerDeath == false) {
             this->isBossBeaten = true;
+            playerStats->increase_max_charges(2);
         }
         return playerDeath;
     }
@@ -317,9 +318,9 @@ void Level::rune_room(Bracelet& bracelet) {
     else {
         std::cout<<"You have entered what seems to be a magic workshop. There are plenty of arcane machinery laying around, all of which seem to be unusable.\n"
                  <<"Shining beneath some rubble, you find one of the magical stones the cloaked man told you about.\n"
-                 <<"You determine that you have found a " << rune->get_name() << "! On a piece of paper underneath the stone you read the following:\n"
-                 <<rune->get_description()<<"\n";
-        bracelet.add_rune(this->rune);
+                 <<"You determine that you have found a " << playerRune->get_name() << "! On a piece of paper underneath the stone you read the following:\n"
+                 <<playerRune->get_description()<<"\n";
+        bracelet.add_rune(this->playerRune);
         isRuneTaken = true;
     }
 }
@@ -343,13 +344,14 @@ Level::~Level() {
     if(isEquipableTreasureTaken == false) delete treasureEquipable;
     if(isConsumableTreasureTaken == false) delete treasureConsumable;
     if(isSecretItemTaken == false) delete secretEquipable;
-    if(isRuneTaken == false) delete rune;
+    if(isRuneTaken == false) delete playerRune;
     if(isFountainUsed == false) {
         for(auto fountainPerk : fountainPerks) {
             delete fountainPerk;
         }
     }
     delete combat;
+    delete bossRune;
     for(auto enemy : enemyList) {
         delete enemy;
     }

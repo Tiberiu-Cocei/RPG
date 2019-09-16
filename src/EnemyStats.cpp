@@ -5,14 +5,14 @@
 EnemyStats::EnemyStats(int healthPoints, int attack, int strength, int defense, int evasion)
 : Stats(healthPoints, attack, strength, defense, 0, evasion) {}
 
-bool EnemyStats::take_damage(int attack, int strength, int luck, int dmgBonus) {
+bool EnemyStats::take_damage(int attack, int strength, int luck, int dmgBonus, bool canCrit) {
     int evade = rand() % 50 + 1 - luck/7 + get_evasion()/5  - attack/5;
     if(evade > 42) {
         std::cout<<"Your enemy has avoided the attack.\n";
         return false;
     }
     else {
-        int isCrit = rand() % 100 + 1 < luck / 2 ? 2 : 1;
+        int isCrit = (canCrit == true && rand() % 100 + 1 < luck / 2) ? 2 : 1;
         int damage = (dmgBonus + strength/1.5f - get_defense()/3.1f) * isCrit;
         if(damage < 0) {
             damage = 0;

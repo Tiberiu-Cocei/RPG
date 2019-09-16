@@ -8,19 +8,19 @@ Perk* PerkList::get_perk(int index) {
         case 1 :
             return new Perk("Vitality I", "+10 max hp, 50 XP", 50, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1);
         case 2 :
-            return new Perk("Attack I", "+5 attack, 50 XP", 50, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, -1);
+            return new Perk("Attack I", "+5 attack, 75 XP", 75, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, -1);
         case 3 :
-            return new Perk("Strength I", "+5 strength, 50 XP", 50, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, -1);
+            return new Perk("Strength I", "+5 strength, 75 XP", 75, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, -1);
         case 4 :
-            return new Perk("Defense I", "+5 defense, 50 XP", 50, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -1);
+            return new Perk("Defense I", "+5 defense, 75 XP", 75, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, -1);
         case 5 :
-            return new Perk("Luck I", "+5 luck, 50 XP", 50, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, -1);
+            return new Perk("Luck I", "+5 luck, 75 XP", 75, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, -1);
         case 6 :
-            return new Perk("Evasion I", "+5 evasion, 50 XP", 50, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, -1);
+            return new Perk("Evasion I", "+5 evasion, 75 XP", 75, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, -1);
         case 7 :
-            return new Perk("Strong Back I", "+10 max weight, 75 XP", 75, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, -1);
+            return new Perk("Strong Back I", "+10 max weight, 125 XP", 125, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, -1);
         case 8 :
-            return new Perk("Runner", "Doubles your chances of escaping. 100 XP", 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, -1);
+            return new Perk("Runner", "Doubles your chances of escaping. 150 XP", 150, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, -1);
 
         //11-20: Perks for the second level
         case 11 :

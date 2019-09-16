@@ -19,7 +19,8 @@ Level* LevelList::get_level(int index) {
     EquipableItem* treasureEquipable;
     EquipableItem* secretEquipable;
     ConsumableItem* treasureConsumable;
-    Rune* rune;
+    Rune* playerRune;
+    Rune* bossRune;
     std::vector<Enemy*> enemies;
     std::vector<Perk*> fountainPerks;
     std::array<char, 225> roomLayout;
@@ -32,7 +33,8 @@ Level* LevelList::get_level(int index) {
             treasureEquipable = equipableList->get_equipable_item(261);
             treasureConsumable = consumableList->get_consumable_item(51);
             secretEquipable = equipableList->get_equipable_item(61);
-            rune = runeList.get_rune(1);
+            playerRune = runeList.get_rune(1);
+            bossRune = runeList.get_rune(11);
             enemies.push_back(enemyList->get_enemy(1));
             enemies.push_back(enemyList->get_enemy(2));
             enemies.push_back(enemyList->get_enemy(3));
@@ -68,7 +70,7 @@ Level* LevelList::get_level(int index) {
             initialCoordinates = 207;
             clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee in these p'rilous times. \nFrom whence thee beganeth, walketh towards wh're the darkness reclaim the landeth as the travelling lamp sets.";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout, equipableTreasureCoordinates,
-                             consumableTreasureCoordinates, initialCoordinates, clueDesc, secretEquipable, fountainPerks, rune);
+                             consumableTreasureCoordinates, initialCoordinates, clueDesc, secretEquipable, fountainPerks, playerRune, bossRune);
 
         case 2 :
             levelName = "Scientist's Lair";
@@ -78,7 +80,8 @@ Level* LevelList::get_level(int index) {
             treasureEquipable = equipableList->get_equipable_item(262);
             treasureConsumable = consumableList->get_consumable_item(52);
             secretEquipable = equipableList->get_equipable_item(11);
-            rune = runeList.get_rune(2);
+            playerRune = runeList.get_rune(2);
+            bossRune = runeList.get_rune(12);
             enemies.push_back(enemyList->get_enemy(11));
             enemies.push_back(enemyList->get_enemy(12));
             enemies.push_back(enemyList->get_enemy(13));
@@ -114,7 +117,7 @@ Level* LevelList::get_level(int index) {
             initialCoordinates = 204;
             clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee in these p'rilous times. \nFrom whence thee w're shower'd by golden lighteth, walketh towards wh're the meek reside.";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout, equipableTreasureCoordinates,
-                             consumableTreasureCoordinates, initialCoordinates,  clueDesc, secretEquipable, fountainPerks, rune);
+                             consumableTreasureCoordinates, initialCoordinates,  clueDesc, secretEquipable, fountainPerks, playerRune, bossRune);
 
         default :
             levelName = "ERROR_LEVEL";
@@ -124,7 +127,8 @@ Level* LevelList::get_level(int index) {
             treasureEquipable = equipableList->get_equipable_item(0);
             treasureConsumable = consumableList->get_consumable_item(0);
             secretEquipable = equipableList->get_equipable_item(0);
-            rune = runeList.get_rune(0);
+            playerRune = runeList.get_rune(0);
+            bossRune = runeList.get_rune(0);
             enemies.push_back(enemyList->get_enemy(0));
             enemies.push_back(enemyList->get_enemy(0));
             enemies.push_back(enemyList->get_enemy(0));
@@ -153,7 +157,7 @@ Level* LevelList::get_level(int index) {
             initialCoordinates = 0;
             clueDesc = "ERROR_LEVEL";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout, equipableTreasureCoordinates,
-                             consumableTreasureCoordinates,  initialCoordinates, clueDesc, secretEquipable, fountainPerks, rune);
+                             consumableTreasureCoordinates,  initialCoordinates, clueDesc, secretEquipable, fountainPerks, playerRune, bossRune);
     }
 }
 

@@ -14,7 +14,7 @@ class PlayerStats : public Stats
         int get_total_strength();
         int get_total_luck();
         int get_dmgBonus();
-        bool take_damage(int, int, int, int);
+        bool take_damage(int, int, int, int, bool = true);
         void gain_health(int);
         void modify_temp_stats(int, int, int, int, int, int);
         void reset_temp_stats();
@@ -34,6 +34,7 @@ class PlayerStats : public Stats
         bool get_perk_state(int);
         void change_current_charges(int);
         int get_current_charges();
+        void increase_max_charges(int);
         void gain_stats_from_ability(int, int, int, int, int);
 
     private:

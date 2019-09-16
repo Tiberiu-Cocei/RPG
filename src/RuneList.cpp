@@ -7,6 +7,7 @@ RuneList::RuneList(){
 Rune* RuneList::get_rune(int index) {
     std::vector<Ability*> abilities;
     switch(index) {
+        //case 1-10: player runes
         case 1 :
             abilities.push_back(abilityList.get_ability(1));
             abilities.push_back(abilityList.get_ability(2));
@@ -30,6 +31,17 @@ Rune* RuneList::get_rune(int index) {
             abilities.push_back(abilityList.get_ability(32));
             abilities.push_back(abilityList.get_ability(33));
             return new Rune("Rune of fire", "A rune with red markings that seem to produce heat. It draws its power from the wielder's strength.", abilities);
+
+        //case 11-30: enemy runes
+        case 11 :
+            abilities.push_back(abilityList.get_ability(101));
+            abilities.push_back(abilityList.get_ability(102));
+            return new Rune("Rune of flesh", "", abilities);
+
+        case 12 :
+            abilities.push_back(abilityList.get_ability(111));
+            abilities.push_back(abilityList.get_ability(112));
+            return new Rune("Rune of alchemy", "", abilities);
 
         default :
             abilities.push_back(abilityList.get_ability(0));

@@ -39,16 +39,16 @@ bool Ability::use_ability(PlayerStats*& playerStats, Enemy*& enemy) {
                 enemy->stun_enemy();
             }
             if(this->element == 1) {
-                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_defense() * this->multiplier, playerStats->get_luck(), 0);
+                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_defense() * this->multiplier, playerStats->get_luck(), 0, false);
             }
             else if(this->element == 2) {
-                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_attack() * this->multiplier, playerStats->get_luck(), 0);
+                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_attack() * this->multiplier, playerStats->get_luck(), 0, false);
             }
             else if(this->element == 3) {
-                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_evasion() * this->multiplier, playerStats->get_luck(), 0);
+                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_evasion() * this->multiplier, playerStats->get_luck(), 0, false);
             }
             else {
-                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_strength() * this->multiplier, playerStats->get_luck(), 0);
+                return enemy->get_enemy_stats()->take_damage(playerStats->get_attack() * 2, playerStats->get_strength() * this->multiplier, playerStats->get_luck(), 0, false);
             }
         }
         if(this->cost != 0) {
