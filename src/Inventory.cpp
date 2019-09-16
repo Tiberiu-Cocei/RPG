@@ -18,17 +18,21 @@ Inventory::Inventory() {
 
 void Inventory::show_inventory() {
     int index = 1;
-    std::cout<<"Current weight is " + std::to_string(currentWeight) + " out of " + std::to_string(maxWeight) + " kilograms.\n";
-    for (auto &consumableItem : consumableItems)
+    std::string toPrint;
+    toPrint += "Current weight is " + std::to_string(currentWeight) + " out of " + std::to_string(maxWeight) + " kilograms.\n";
+    for (auto consumableItem : consumableItems)
     {
-        std::cout<<std::to_string(index) + " - " + consumableItem->get_name() + "\n";
+        toPrint += std::to_string(index) + " - " + consumableItem->get_name() + ":";
+        consumableItem->concat_stats(toPrint);
         index++;
     }
-    for (auto &equipableItem : equipableItems)
+    for (auto equipableItem : equipableItems)
     {
-        std::cout<<std::to_string(index) + " - " + equipableItem->get_name() + "\n";
+        toPrint += std::to_string(index) + " - " + equipableItem->get_name() + ":";
+        equipableItem->concat_stats(toPrint);
         index++;
     }
+    std::cout<<toPrint;
 }
 
 void Inventory::use_item(int index, Equipment*& equipment, PlayerStats*& playerStats) {

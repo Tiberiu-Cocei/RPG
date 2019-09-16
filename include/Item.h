@@ -11,6 +11,7 @@ class Item
         virtual ~Item();
         virtual void use_item(PlayerStats*& playerStats) = 0;
         virtual void find_item() = 0;
+        virtual void concat_stats(std::string&) = 0;
 
         std::string get_name();
         std::string get_find_description();

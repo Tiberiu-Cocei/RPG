@@ -142,49 +142,21 @@ void Equipment::get_equipment() {
     std::string equipment = "Your current equipment is:\n";
 
     equipment += this->helmet->get_name() + " -";
-    concat_stats(equipment, this->helmet);
+    this->helmet->concat_stats(equipment);
     equipment += this->body->get_name() + " -";
-    concat_stats(equipment, this->body);
+    this->body->concat_stats(equipment);
     equipment += this->legs->get_name() + " -";
-    concat_stats(equipment, this->legs);
+    this->legs->concat_stats(equipment);
     equipment += this->gloves->get_name() + " -";
-    concat_stats(equipment, this->gloves);
+    this->gloves->concat_stats(equipment);
     equipment += this->boots->get_name() + " -";
-    concat_stats(equipment, this->boots);
+    this->boots->concat_stats(equipment);
     equipment += this->mainHand->get_name() + " -";
-    concat_stats(equipment, this->mainHand);
+    this->mainHand->concat_stats(equipment);
     equipment += this->offhand->get_name() + " -";
-    concat_stats(equipment, this->offhand);
+    this->offhand->concat_stats(equipment);
 
     std::cout<<equipment;
-}
-
-void Equipment::concat_stats(std::string& equipment, EquipableItem* item) {
-    if(item->get_dmg_bonus() != 0) {
-        equipment += " dmg bonus: " + std::string(item->get_dmg_bonus() > 0 ? "+" : "-") + std::to_string(item->get_dmg_bonus()) + ",";
-    }
-    if(item->get_dmg_reduction() != 0) {
-        equipment += " dmg reduction: " + std::string(item->get_dmg_reduction() > 0 ? "+" : "") + std::to_string(item->get_dmg_reduction()) + ",";
-    }
-    if(item->get_health_boost() != 0) {
-        equipment += " hp: " + std::string(item->get_health_boost() > 0 ? "+" : "") + std::to_string(item->get_health_boost()) + ",";
-    }
-    if(item->get_attack_boost() != 0) {
-        equipment += " atk: " + std::string(item->get_attack_boost() > 0 ? "+" : "") + std::to_string(item->get_attack_boost()) + ",";
-    }
-    if(item->get_strength_boost() != 0) {
-        equipment += " str: " + std::string(item->get_strength_boost() > 0 ? "+" : "") + std::to_string(item->get_strength_boost()) + ",";
-    }
-    if(item->get_defense_boost() != 0) {
-        equipment += " def: " + std::string(item->get_defense_boost() > 0 ? "+" : "") + std::to_string(item->get_defense_boost()) + ",";
-    }
-    if(item->get_luck_boost() != 0) {
-        equipment += " luk: " + std::string(item->get_luck_boost() > 0 ? "+" : "") + std::to_string(item->get_luck_boost()) + ",";
-    }
-    if(item->get_evasion_boost() != 0) {
-        equipment += " evs: " + std::string(item->get_evasion_boost() > 0 ? "+" : "") + std::to_string(item->get_evasion_boost()) + ",";
-    }
-    equipment += " weight: +" + std::to_string(item->get_weight()) + "\n";
 }
 
 Equipment::~Equipment() {}

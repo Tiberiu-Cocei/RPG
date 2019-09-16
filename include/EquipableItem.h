@@ -16,6 +16,7 @@ class EquipableItem : public Item
         int get_dmg_bonus();
         int get_dmg_reduction();
         int get_equipment_type();
+        void concat_stats(std::string&);
 
     private:
         int dmgBonus;

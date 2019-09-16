@@ -40,4 +40,32 @@ int EquipableItem::get_equipment_type() {
     return this->equipmentType;
 }
 
+void EquipableItem::concat_stats(std::string& itemString) {
+    if(this->dmgBonus != 0) {
+        itemString += " dmg bonus: " + std::string(this->dmgBonus > 0 ? "+" : "-") + std::to_string(this->dmgBonus) + ",";
+    }
+    if(this->dmgReduction != 0) {
+        itemString += " dmg reduction: " + std::string(this->dmgReduction > 0 ? "+" : "") + std::to_string(this->dmgReduction) + ",";
+    }
+    if(this->get_health_boost() != 0) {
+        itemString += " hp: " + std::string(this->get_health_boost() > 0 ? "+" : "") + std::to_string(this->get_health_boost()) + ",";
+    }
+    if(this->get_attack_boost() != 0) {
+        itemString += " atk: " + std::string(this->get_attack_boost() > 0 ? "+" : "") + std::to_string(this->get_attack_boost()) + ",";
+    }
+    if(this->get_strength_boost() != 0) {
+        itemString += " str: " + std::string(this->get_strength_boost() > 0 ? "+" : "") + std::to_string(this->get_strength_boost()) + ",";
+    }
+    if(this->get_defense_boost() != 0) {
+        itemString += " def: " + std::string(this->get_defense_boost() > 0 ? "+" : "") + std::to_string(this->get_defense_boost()) + ",";
+    }
+    if(this->get_luck_boost() != 0) {
+        itemString += " luk: " + std::string(this->get_luck_boost() > 0 ? "+" : "") + std::to_string(this->get_luck_boost()) + ",";
+    }
+    if(this->get_evasion_boost() != 0) {
+        itemString += " evs: " + std::string(this->get_evasion_boost() > 0 ? "+" : "") + std::to_string(this->get_evasion_boost()) + ",";
+    }
+    itemString += " weight: +" + std::to_string(this->get_weight()) + "\n";
+}
+
 EquipableItem::~EquipableItem() {}

@@ -248,7 +248,7 @@ bool Level::boss_room(Equipment*& equipment, PlayerStats*& playerStats, std::vec
     if(isBossBeaten == false) {
         bool playerDeath = false;
         Enemy* boss = enemyList.at(4);
-        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, boss, bracelet, true);
+        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, boss, bracelet, true, bossRune);
         if(playerDeath == false) {
             this->isBossBeaten = true;
             playerStats->increase_max_charges(2);
@@ -281,7 +281,7 @@ void Level::fountain_room(PlayerStats*& playerStats, std::vector<Perk*> &playerP
 
 void Level::equipable_treasure_room(Inventory*& inventory) {
     if(isEquipableTreasureTaken == false) {
-        std::cout<<"You place your hand on the door to the treasure room. It brightens up in a golden light and it opens shortly after. You go inside and find in"
+        std::cout<<"You place your hand on the door to the treasure room. It brightens up in a golden light and it opens shortly after. \nYou go inside and find in"
                  <<" the middle of the room the " << treasureEquipable->get_name() << ". Do you take it? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);
@@ -297,7 +297,7 @@ void Level::equipable_treasure_room(Inventory*& inventory) {
 
 void Level::consumable_treasure_room(Inventory*& inventory) {
     if(isConsumableTreasureTaken == false) {
-        std::cout<<"You place your hand on the door to the treasure room. It lights up it opens shortly after. You go inside and find in"
+        std::cout<<"You place your hand on the door to the treasure room. It lights up it opens shortly after. \nYou go inside and find in"
                  <<" the middle of the room the " << treasureConsumable->get_name() << ". Do you take it? (Yes/no)\n";
         std::string command;
         getline(std::cin, command);

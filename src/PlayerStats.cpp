@@ -293,35 +293,35 @@ void PlayerStats::gain_stats_from_ability(int attack, int strength, int defense,
     if(attack > 0) {
         std::cout<<"Your attack has been temporarily increased by " << attack << "!\n";
     }
-    else {
+    else if(attack < 0) {
         std::cout<<"Your attack has been temporarily decreased by " << -attack << "!\n";
     }
     this->tempStrength += strength;
     if(strength > 0) {
         std::cout<<"Your strength has been temporarily increased by " << strength << "!\n";
     }
-    else {
+    else if (strength < 0) {
         std::cout<<"Your strength has been temporarily decreased by " << -strength << "!\n";
     }
     this->tempDefense += defense;
     if(defense > 0) {
         std::cout<<"Your defense has been temporarily increased by " << defense << "!\n";
     }
-    else {
+    else if(defense < 0) {
         std::cout<<"Your defense has been temporarily decreased by " << -defense << "!\n";
     }
     this->tempLuck += luck;
     if(luck > 0) {
         std::cout<<"Your luck has been temporarily increased by " << luck << "!\n";
     }
-    else {
+    else if (luck < 0) {
         std::cout<<"Your luck has been temporarily decreased by " << -luck << "!\n";
     }
     this->tempEvasion += evasion;
     if(evasion > 0) {
         std::cout<<"Your evasion has been temporarily increased by " << evasion << "!\n";
     }
-    else {
+    else if(evasion < 0) {
         std::cout<<"Your evasion has been temporarily decreased by " << -evasion << "!\n";
     }
 }

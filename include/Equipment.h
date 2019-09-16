@@ -28,7 +28,6 @@ class Equipment
         EquipableItem* equip_boots(EquipableItem*, PlayerStats*&);
         EquipableItem* equip_main_hand(EquipableItem*, PlayerStats*&);
         EquipableItem* equip_offhand(EquipableItem*, PlayerStats*&);
-        void concat_stats(std::string&, EquipableItem*);
 };
 
 #endif

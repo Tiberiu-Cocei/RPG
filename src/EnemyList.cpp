@@ -42,7 +42,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Giant Rat", "You hear loud squeaking noises come from somewhere near you. You prepare yourself for battle. \nMoments later, a giant rat jumps in front of you!",
                              "The giant rat falls over, dying shortly after.", consumableDrops, equipableDrops, 21, 20);
         case 4:
-            enemyStats = new EnemyStats(50, 23, 43, 23, 18);
+            enemyStats = new EnemyStats(95, 23, 43, 23, 18);
             consumableDrops.push_back(consumableItemList->get_consumable_item(103));
             consumableDrops.push_back(consumableItemList->get_consumable_item(104));
             consumableDrops.push_back(consumableItemList->get_consumable_item(1));
@@ -52,7 +52,7 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Hobgoblin", "You see a weakly goblin trip on a rock and fall to the ground. \nIt turns around whimpering and pleading, to your confusion. \nThen you see the reason: a Hobgoblin towering above it. It raises its weapon to kill the goblin when it notices you. \nThe goblin escapes, and the hobgoblin charges towards you. You prepare for combat!",
                              "The hobgoblin falls with a loud thud, never to get up again.", consumableDrops, equipableDrops, 26, 35);
         case 5:
-            enemyStats = new EnemyStats(350, 32, 49, 27, 17);
+            enemyStats = new EnemyStats(250, 32, 49, 27, 17);
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));

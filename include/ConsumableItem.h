@@ -13,6 +13,7 @@ class ConsumableItem : public Item
         void find_item();
         void use_item(PlayerStats*&);
         int get_healing();
+        void concat_stats(std::string&);
 
     private:
         int healing;

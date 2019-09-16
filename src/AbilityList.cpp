@@ -16,7 +16,7 @@ Ability* AbilityList::get_ability(int index){
         case 3 :
             return new Ability("Harden", "Creates a layer of earth surrounding your armor, temporarily increasing defenses and empowering future abilities.",
                                "Dirt and rocks come together, creating a hardened layer on your armor and empowering the rune.",
-                               true, false, 2, 1, 0.0f, 0, 0, 4, 0, 0);
+                               true, false, 2, 1, 0.0f, 0, 0, 8, 0, 0);
 
         //case 11-20: Rune of water
         case 11 :
