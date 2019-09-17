@@ -17,6 +17,7 @@ class Bracelet
         void get_overview();
         Rune* get_wielded_rune();
         void get_save_data(std::string&);
+        void load_runes(std::vector<Rune*>, int);
 
     private:
         std::vector<Rune*> runes;

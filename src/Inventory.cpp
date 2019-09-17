@@ -151,4 +151,17 @@ void Inventory::get_save_data(std::string& saveData) {
     }
 }
 
+void Inventory::set_weight(int currentWeight, int maxWeight) {
+    this->currentWeight = currentWeight;
+    this->maxWeight = maxWeight;
+}
+
+void Inventory::load_consumable_items(std::vector<ConsumableItem*> consumableItems) {
+    this->consumableItems = consumableItems;
+}
+
+void Inventory::load_equipable_items(std::vector<EquipableItem*> equipableItems) {
+    this->equipableItems = equipableItems;
+}
+
 Inventory::~Inventory() {}

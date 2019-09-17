@@ -1,6 +1,6 @@
 #ifndef EQUIPMENT_H
 #define EQUIPMENT_H
-#include "EquipableItem.h"
+#include "EquipableItemList.h"
 #include <iostream>
 #include <string.h>
 #include "PlayerStats.h"
@@ -13,6 +13,7 @@ class Equipment
         EquipableItem* equip_item(EquipableItem*, PlayerStats*&);
         void get_equipment();
         void get_save_data(std::string&);
+        void load_save_data(int, int, int, int, int, int, int);
 
     private:
         EquipableItem* helmet;

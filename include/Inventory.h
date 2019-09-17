@@ -19,6 +19,9 @@ class Inventory
         void pickup_item(EquipableItem*);
         void gain_max_weight(int);
         void get_save_data(std::string&);
+        void set_weight(int, int);
+        void load_consumable_items(std::vector<ConsumableItem*>);
+        void load_equipable_items(std::vector<EquipableItem*>);
 
     private:
         std::vector<ConsumableItem*> consumableItems;

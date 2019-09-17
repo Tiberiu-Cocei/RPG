@@ -15,6 +15,7 @@ class Perk
         void attune_perk(PlayerStats*&, Inventory*&);
         void display_perk(int);
         bool get_state();
+        void set_state(bool);
         std::string get_name();
         std::string get_description();
         int get_id();

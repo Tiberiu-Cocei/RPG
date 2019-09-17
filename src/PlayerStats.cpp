@@ -349,4 +349,34 @@ void PlayerStats::get_save_data(std::string& saveData) {
     saveData += "\n";
 }
 
+void PlayerStats::load_persistent_stats(int currentHealthPoints, int healthPoints, int attack, int strength, int defense, int luck, int evasion) {
+    set_current_health_points(currentHealthPoints);
+    set_health_points(healthPoints);
+    set_attack(attack);
+    set_strength(strength);
+    set_defense(defense);
+    set_luck(luck);
+    set_evasion(evasion);
+}
+
+void PlayerStats::load_damage_extras(int dmgBonus, int dmgReduction) {
+    this->dmgBonus = dmgBonus;
+    this->dmgReduction = dmgReduction;
+}
+
+void PlayerStats::load_extra_stats(int experience, int hpRegen, int bonusHealing, int escapeBonus, int currentCharges, int maxCharges) {
+    this->experience = experience;
+    this->hpRegen = hpRegen;
+    this->bonusHealing = bonusHealing;
+    this->escapeBonus = escapeBonus;
+    this->currentCharges = currentCharges;
+    this->maxCharges = maxCharges;
+}
+
+void PlayerStats::load_unique_perks(bool attunedPerks[10]) {
+    for(int i = 0; i < 10; i++) {
+        this->attunedPerks[i] = attunedPerks[i];
+    }
+}
+
 PlayerStats::~PlayerStats() {}

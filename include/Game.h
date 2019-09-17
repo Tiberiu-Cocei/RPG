@@ -16,6 +16,7 @@
 #define _WIN32_WINNT 0x0500
 #include "Bracelet.h"
 #include "Saver.h"
+#include "Loader.h"
 
 class Game
 {
@@ -42,6 +43,7 @@ class Game
         std::vector<Perk*> playerPerks;
         Bracelet bracelet;
         Saver saver;
+        Loader loader;
 };
 
 #endif

@@ -51,6 +51,7 @@
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/Level.h" />
 		<Unit filename="include/LevelList.h" />
+		<Unit filename="include/Loader.h" />
 		<Unit filename="include/Perk.h" />
 		<Unit filename="include/PerkList.h" />
 		<Unit filename="include/PlayerStats.h" />
@@ -76,6 +77,7 @@
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/LevelList.cpp" />
+		<Unit filename="src/Loader.cpp" />
 		<Unit filename="src/Perk.cpp" />
 		<Unit filename="src/PerkList.cpp" />
 		<Unit filename="src/PlayerStats.cpp" />

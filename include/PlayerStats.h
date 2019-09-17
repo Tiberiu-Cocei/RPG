@@ -38,6 +38,10 @@ class PlayerStats : public Stats
         void increase_max_charges(int);
         void gain_stats_from_ability(int, int, int, int, int);
         void get_save_data(std::string&);
+        void load_persistent_stats(int, int, int, int, int, int, int);
+        void load_damage_extras(int, int);
+        void load_extra_stats(int, int, int, int, int, int);
+        void load_unique_perks(bool[10]);
 
     private:
         int tempHealthPoints;

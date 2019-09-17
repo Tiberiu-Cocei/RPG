@@ -355,6 +355,20 @@ void Level::get_save_data(std::string& saveData) {
     saveData += "\n";
 }
 
+void Level::load_booleans(bool isBossBeaten, bool isFountainUsed, bool isEquipableTreasureTaken,
+                          bool isConsumableTreasureTaken, bool isSecretItemTaken, bool isRuneTaken) {
+    this->isBossBeaten = isBossBeaten;
+    this->isFountainUsed = isFountainUsed;
+    this->isEquipableTreasureTaken = isEquipableTreasureTaken;
+    this->isConsumableTreasureTaken = isConsumableTreasureTaken;
+    this->isSecretItemTaken = isSecretItemTaken;
+    this->isRuneTaken = isRuneTaken;
+}
+
+void Level::load_user_map(std::array<char, 225> userMap) {
+    this->userMap = userMap;
+}
+
 Level::~Level() {
     if(isEquipableTreasureTaken == false) delete treasureEquipable;
     if(isConsumableTreasureTaken == false) delete treasureConsumable;

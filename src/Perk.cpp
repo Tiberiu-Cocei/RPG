@@ -49,6 +49,10 @@ void Perk::display_perk(int textColorNr) {
     SetConsoleTextAttribute(hConsole, textColorNr);
 }
 
+void Perk::set_state(bool state) {
+    this->state = state;
+}
+
 bool Perk::get_state() {
     return this->state;
 }

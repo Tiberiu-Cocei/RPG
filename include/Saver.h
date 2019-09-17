@@ -17,7 +17,7 @@ class Saver
     public:
         Saver();
         ~Saver();
-        bool save_game(int, int, Level*, PlayerStats*, Equipment*, Inventory*, std::vector<Perk*>, Bracelet, int);
+        bool save_game(int, int, Level*, PlayerStats*, Equipment*, Inventory*, std::vector<Perk*>, Bracelet, std::string);
 };
 
 #endif

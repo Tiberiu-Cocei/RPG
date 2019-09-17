@@ -57,7 +57,7 @@ Rune* Bracelet::get_wielded_rune() {
 void Bracelet::get_save_data(std::string& saveData) {
     saveData += "7\n";
     if(runes.size() == 0) {
-        saveData += "04\n";
+        saveData += "04";
     }
     else {
         for(auto rune : runes) {
@@ -69,8 +69,12 @@ void Bracelet::get_save_data(std::string& saveData) {
                 saveData += " 0 ";
             }
         }
-        saveData += "\n";
     }
+}
+
+void Bracelet::load_runes(std::vector<Rune*> runes, int index) {
+    this->runes = runes;
+    this->runeWielded = runes.at(index);
 }
 
 Bracelet::~Bracelet() {}

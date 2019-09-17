@@ -28,6 +28,7 @@ Game::Game() {
     commandMapping.insert(std::make_pair("runes", 18));
     commandMapping.insert(std::make_pair("equip rune", 19));
     commandMapping.insert(std::make_pair("save", 20));
+    commandMapping.insert(std::make_pair("load", 21));
     commandMapping.insert(std::make_pair("exit", 100));
 
     playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
@@ -38,6 +39,7 @@ Game::Game() {
     levelList = new LevelList();
     bracelet = Bracelet();
     saver = Saver();
+    loader = Loader();
 
     gameOver = false;
     currentLevel = 1;
@@ -170,22 +172,40 @@ void Game::play() {
             }
             break;
           case 20 :
-            std::cout<<"Enter the number of the file you wish to save to (1-9): ";
-            try {
-                bool success;
-                getline (std::cin, itemIndex);
-                itemIndexInt = stoi(itemIndex);
-                success = saver.save_game(currentLevel, currentCoordinates, level, playerStats, equipment, inventory, playerPerks, bracelet, itemIndexInt);
+            {
+                std::cout<<"Enter a name for the save file: ";
+                std::string fileName;
+                getline(std::cin, fileName);
+                bool success = saver.save_game(currentLevel, currentCoordinates, level, playerStats, equipment, inventory, playerPerks, bracelet, fileName);
                 if(success) {
                     std::cout<<"Successfully saved the game!\n";
                 }
                 else {
-                    std::cout<<"Failed to save the game (invalid file number)!\n";
+                    std::cout<<"Failed to save the game!\n";
                 }
-            } catch(const std::invalid_argument& error) {
-                std::cerr << "Not a number.\n";
+                break;
             }
-            break;
+          case 21 :
+            {
+                loader.show_save_files();
+                std::string fileName;
+                std::cout<<"\nEnter the name of the save file: ";
+                getline(std::cin, fileName);
+                bool valid = loader.check_file_name(fileName);
+                if(!valid) {
+                    std::cout<<"File does not exist.";
+                }
+                else {
+                    bool success = loader.load_game(currentLevel, currentCoordinates, level, playerStats, equipment, inventory, playerPerks, bracelet, fileName);
+                    if(success) {
+                        std::cout<<"Successfully loaded the file!\n";
+                    }
+                    else {
+                        std::cout<<"Failed to load the file!\n";
+                    }
+                }
+                break;
+            }
           case 100 :
             std::cout<<"Exiting the game.\n";
             break;
