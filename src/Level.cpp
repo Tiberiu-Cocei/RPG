@@ -359,10 +359,27 @@ void Level::load_booleans(bool isBossBeaten, bool isFountainUsed, bool isEquipab
                           bool isConsumableTreasureTaken, bool isSecretItemTaken, bool isRuneTaken) {
     this->isBossBeaten = isBossBeaten;
     this->isFountainUsed = isFountainUsed;
+    if(isFountainUsed == true) {
+        for(auto fountainPerk : fountainPerks) {
+            delete fountainPerk;
+        }
+    }
     this->isEquipableTreasureTaken = isEquipableTreasureTaken;
+    if(isEquipableTreasureTaken == true) {
+        delete treasureEquipable;
+    }
     this->isConsumableTreasureTaken = isConsumableTreasureTaken;
+    if(isConsumableTreasureTaken == true) {
+        delete treasureConsumable;
+    }
     this->isSecretItemTaken = isSecretItemTaken;
+    if(isSecretItemTaken == true) {
+        delete secretEquipable;
+    }
     this->isRuneTaken = isRuneTaken;
+    if(isRuneTaken == true) {
+        delete playerRune;
+    }
 }
 
 void Level::load_user_map(std::array<char, 225> userMap) {

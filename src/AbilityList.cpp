@@ -10,13 +10,13 @@ Ability* AbilityList::get_ability(int index){
                                "Out of thin air a high numbers of rocks are created. Thrusting your arm forward, they are launched in the direction of your foe.",
                                false, false, 2, 1, 1.7f, 0, 0, 0, 0, 0);
         case 2 :
-            return new Ability("Tectonic Slam", "Splits the earth in two under the enemy, then slams the enemy between. Immobilizes the foe.",
+            return new Ability("Tectonic Slam", "Splits the earth in two under the enemy, then slams them between. Immobilizes the foe.",
                                "With a thundering crack, the earth below your foe splits in two then slams it between. \nThe enemy is stuck and unable to attack the next turn.",
                                false, true, 3, 1, 2.0f, 0, 0, 0, 0, 0);
         case 3 :
             return new Ability("Harden", "Creates a layer of earth surrounding your armor, temporarily increasing defenses and empowering future abilities.",
                                "Dirt and rocks come together, creating a hardened layer on your armor and empowering the rune.",
-                               true, false, 2, 1, 0.0f, 0, 0, 8, 0, 0);
+                               true, false, 2, 1, 0.0f, 0, 0, 11, 0, 0);
 
         //case 11-20: Rune of water
         case 11 :
@@ -30,7 +30,7 @@ Ability* AbilityList::get_ability(int index){
         case 13 :
             return new Ability("Flow", "Your attacks become fluid like water, increasing their chance of striking the enemy.",
                                "Your arms feel much lighter and their movement fluid. The rune shines brighter, signaling an increase in power.",
-                               true, false, 3, 2, 0.0f, 12, 0, 0, 6, 0);
+                               true, false, 2, 2, 0.0f, 13, 0, 0, 8, 0);
 
         //case 21-30: Rune of air
         case 21 :
@@ -44,7 +44,7 @@ Ability* AbilityList::get_ability(int index){
         case 23 :
             return new Ability("Blur", "Manipulates the air around you, making you seem blurred to the enemy and enhancing the rune.",
                                "The air around you becomes twisted, increasing your evasion and the power of the rune.",
-                               true, false, 3, 3, 0.0f, 0, 0, 0, 0, 15);
+                               true, false, 2, 3, 0.0f, 0, 0, 0, 0, 15);
 
         //case 31-40: Rune of fire
         case 31 :
@@ -58,7 +58,7 @@ Ability* AbilityList::get_ability(int index){
         case 33 :
             return new Ability("Boiling blade", "Heats your weapon to its boiling point while maintaining its form and shape.",
                                "Your blade becomes extremely hot, its exterior gaining a look of molten magma and your rune shining brighter.",
-                               true, false, 3, 4, 0.0f, 0, 8, 0, 0, 0);
+                               true, false, 3, 4, 0.0f, 0, 10, 0, 0, 0);
 
         //case 101-110: First boss
         case 101 :
@@ -66,7 +66,7 @@ Ability* AbilityList::get_ability(int index){
                                true, false, 0, 0, 1.3f, 0, 0, 0, 0, 0);
         case 102 :
             return new Ability("Armor strike", "", "Numerous small appendages emerge from underground and attempt break your armor. You manage to cut them down but parts of your armor fell to the ground.",
-                               true, false, 0, 0, 0.0f, 0, 0, 3, 0, 0);
+                               true, false, 0, 0, 0.0f, 0, 0, 4, 0, 0);
 
         //case 110-120: Second boss
         case 111 :
@@ -74,7 +74,7 @@ Ability* AbilityList::get_ability(int index){
                                true, false, 0, 0, 1.5f, 0, 0, 0, 0, 0);
         case 112 :
             return new Ability("Glue slice", "", "Your foe launches an attack which you manage to block. However, from their blade shoots out a glue-like mixture which slows your movement.",
-                               true, false, 0, 0, 0.0f, 2, 0, 0, 0, 3);
+                               true, false, 0, 0, 0.0f, 3, 0, 0, 0, 4);
 
         default :
             return new Ability("ERROR_ABILITY", "ERROR_ABILITY", "ERROR_ABILITY", false, false, 0, 0, 0.0f, 0, 0, 0, 0, 0);

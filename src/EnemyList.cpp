@@ -38,7 +38,7 @@ Enemy* EnemyList::get_enemy(int index) {
             consumableDrops.push_back(consumableItemList->get_consumable_item(1));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             equipableDrops.push_back(equipableItemList->get_equipable_item(102));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(302));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(252));
             return new Enemy(enemyStats, "Giant Rat", "You hear loud squeaking noises come from somewhere near you. You prepare yourself for battle. \nMoments later, a giant rat jumps in front of you!",
                              "The giant rat falls over, dying shortly after.", consumableDrops, equipableDrops, 21, 20);
         case 4:
@@ -48,7 +48,7 @@ Enemy* EnemyList::get_enemy(int index) {
             consumableDrops.push_back(consumableItemList->get_consumable_item(1));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             equipableDrops.push_back(equipableItemList->get_equipable_item(52));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(252));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(302));
             return new Enemy(enemyStats, "Hobgoblin", "You see a weakly goblin trip on a rock and fall to the ground. \nIt turns around whimpering and pleading, to your confusion. \nThen you see the reason: a Hobgoblin towering above it. It raises its weapon to kill the goblin when it notices you. \nThe goblin escapes, and the hobgoblin charges towards you. You prepare for combat!",
                              "The hobgoblin falls with a loud thud, never to get up again.", consumableDrops, equipableDrops, 26, 35);
         case 5:
@@ -57,8 +57,8 @@ Enemy* EnemyList::get_enemy(int index) {
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
             consumableDrops.push_back(consumableItemList->get_consumable_item(61));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(252));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(252));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(302));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(302));
             return new Enemy(enemyStats, "Mass of flesh", "You're hit by a strong scent of rotting flesh. \nBefore you find the source of the odor an appendage narrowly misses you and loudly hits the floor. \nThat's when you see it: a massive mass of flesh, contracting and moving unnaturally. You prepare for battle!",
                              "The mass of flesh dissolves into a puddle of bones and blood.", consumableDrops, equipableDrops, 37, 500);
 
@@ -90,7 +90,7 @@ Enemy* EnemyList::get_enemy(int index) {
             consumableDrops.push_back(consumableItemList->get_consumable_item(2));
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));
             equipableDrops.push_back(equipableItemList->get_equipable_item(103));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(303));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(253));
             return new Enemy(enemyStats, "Chimera", "A creature jumps down from one of the openings in the cave above, landing meters in front of you. \nIt looks as if many beasts were merged into one: a chimera. You prepare for combat!",
                              "The chimera falls apart into a puddle of flesh and bones.", consumableDrops, equipableDrops, 33, 75);
         case 14:
@@ -100,7 +100,7 @@ Enemy* EnemyList::get_enemy(int index) {
             consumableDrops.push_back(consumableItemList->get_consumable_item(2));
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));
             equipableDrops.push_back(equipableItemList->get_equipable_item(53));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(253));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(303));
             return new Enemy(enemyStats, "Giant Mutant", "You hear something charge towards you. You roll to the side and avoid the attack. \nYou quickly get up and see a giant humanoid being, with limbs that seem to be fused together from many different beings. \nYou prepare for battle!",
                              "The giant mutant falls down, never to get up again.", consumableDrops, equipableDrops, 37, 100);
         case 15:
@@ -109,8 +109,8 @@ Enemy* EnemyList::get_enemy(int index) {
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));
             consumableDrops.push_back(consumableItemList->get_consumable_item(62));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(253));
-            equipableDrops.push_back(equipableItemList->get_equipable_item(253));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(303));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(303));
             return new Enemy(enemyStats, "Mad scientist", "\"So you're the one who has been killing my creations. Beautiful, weren't they? Until you killed them, that is.\" \n\"It's alright, I can start over again. And I shall begin with you!\" \nOnce the scientist finished his sentence, he started to convulse aggressively. With each twist, his body mutated and grew in size.",
                              "\"I was.. beautiful. You could have been too..\" The scientist finally succumbs to his wounds, the way forward now open.", consumableDrops, equipableDrops, 53, 1500);
         default :
