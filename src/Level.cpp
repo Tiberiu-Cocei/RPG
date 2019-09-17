@@ -92,7 +92,7 @@ void Level::update_user_map(int coordinates) {
 }
 
 void Level::show_user_map() {
-    std::cout<<"O - open area, T - treasure room, F - fountain room, C - clue room, B - boss room, X - unreachable\n";
+    std::cout<<"O - open area, T - treasure, F - fountain, R - rune, C - clue, B - boss, X - unreachable\n";
     for(int i = 0; i<15; i++) {
         for(int j = 0; j<15; j++) {
             if(userMap.at(i*15 + j) != 'H') {
@@ -338,6 +338,21 @@ bool Level::is_boss_beaten() {
 
 int Level::get_text_color_number() {
     return textColorNr;
+}
+
+void Level::get_save_data(std::string& saveData) {
+    saveData += "2\n" + std::to_string(isBossBeaten) + " " + std::to_string(isFountainUsed) + " " + std::to_string(isEquipableTreasureTaken) + " " +
+                std::to_string(isConsumableTreasureTaken) + " " + std::to_string(isSecretItemTaken) + " " + std::to_string(isRuneTaken) + "\n";
+    for(unsigned int i = 0; i < userMap.size(); i++) {
+        if(userMap.at(i) == ' ') {
+            saveData += '_';
+        }
+        else {
+            saveData += userMap.at(i);
+        }
+        saveData += " ";
+    }
+    saveData += "\n";
 }
 
 Level::~Level() {

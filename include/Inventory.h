@@ -5,6 +5,7 @@
 #include "Equipment.h"
 #include "PlayerStats.h"
 #include <vector>
+#include <unordered_map>
 
 class Inventory
 {
@@ -17,6 +18,7 @@ class Inventory
         void pickup_item(ConsumableItem*);
         void pickup_item(EquipableItem*);
         void gain_max_weight(int);
+        void get_save_data(std::string&);
 
     private:
         std::vector<ConsumableItem*> consumableItems;

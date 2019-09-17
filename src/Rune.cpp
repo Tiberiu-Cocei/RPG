@@ -1,7 +1,7 @@
 #include "Rune.h"
 
-Rune::Rune(std::string name, std::string description, std::vector<Ability*> abilities)
-          : name(name), description(description), abilities(abilities) {}
+Rune::Rune(std::string name, std::string description, std::vector<Ability*> abilities, int id)
+          : name(name), description(description), abilities(abilities), id(id) {}
 
 Ability* Rune::get_ability_at(int index) {
     return this->abilities.at(index);
@@ -27,6 +27,10 @@ std::string Rune::get_name() {
 
 std::string Rune::get_description() {
     return this->description;
+}
+
+int Rune::get_id() {
+    return this->id;
 }
 
 Rune::~Rune() {}

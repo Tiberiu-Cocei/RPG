@@ -12,6 +12,7 @@ class Equipment
         ~Equipment();
         EquipableItem* equip_item(EquipableItem*, PlayerStats*&);
         void get_equipment();
+        void get_save_data(std::string&);
 
     private:
         EquipableItem* helmet;

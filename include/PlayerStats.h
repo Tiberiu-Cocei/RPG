@@ -2,6 +2,7 @@
 #define PLAYERSTATS_H
 
 #include <Stats.h>
+#include <string>
 
 
 class PlayerStats : public Stats
@@ -36,6 +37,7 @@ class PlayerStats : public Stats
         int get_current_charges();
         void increase_max_charges(int);
         void gain_stats_from_ability(int, int, int, int, int);
+        void get_save_data(std::string&);
 
     private:
         int tempHealthPoints;

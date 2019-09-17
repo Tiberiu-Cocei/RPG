@@ -10,13 +10,15 @@
 class Perk
 {
     public:
-        Perk(std::string, std::string, int, int, int, int, int, int, int, int, int, int, int, int, int, int);
+        Perk(std::string, std::string, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int);
         ~Perk();
         void attune_perk(PlayerStats*&, Inventory*&);
         void display_perk(int);
         bool get_state();
         std::string get_name();
         std::string get_description();
+        int get_id();
+        void get_save_data(std::string&);
 
     private:
         const HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -37,6 +39,7 @@ class Perk
         int bonusHealing;
         int escapeBonus;
         int uniquePerkId;
+        int id;
 };
 
 #endif

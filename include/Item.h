@@ -7,7 +7,7 @@
 class Item
 {
     public:
-        Item(int, int, int, int, int, int, int, std::string, std::string, std::string);
+        Item(int, int, int, int, int, int, int, std::string, std::string, std::string, int);
         virtual ~Item();
         virtual void use_item(PlayerStats*& playerStats) = 0;
         virtual void find_item() = 0;
@@ -23,6 +23,7 @@ class Item
         int get_luck_boost();
         int get_evasion_boost();
         int get_weight();
+        int get_id();
 
     private:
         int healthBoost;
@@ -32,6 +33,7 @@ class Item
         int luckBoost;
         int evasionBoost;
         int weight;
+        int id;
         std::string name;
         std::string findDescription;
         std::string useDescription;

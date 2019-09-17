@@ -5,8 +5,8 @@
 
 ConsumableItem::ConsumableItem(int healing, int healthBoost, int attackBoost, int strengthBoost,
                                int defenseBoost, int luckBoost, int evasionBoost, int weight,
-                               std::string name, std::string findDescription, std::string useDescription)
-: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription) {
+                               std::string name, std::string findDescription, std::string useDescription, int id)
+: Item(healthBoost, attackBoost, strengthBoost, defenseBoost, luckBoost, evasionBoost, weight, name, findDescription, useDescription, id) {
     this->healing = healing;
 }
 

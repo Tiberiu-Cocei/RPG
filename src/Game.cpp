@@ -27,6 +27,7 @@ Game::Game() {
     commandMapping.insert(std::make_pair("attune perk", 17));
     commandMapping.insert(std::make_pair("runes", 18));
     commandMapping.insert(std::make_pair("equip rune", 19));
+    commandMapping.insert(std::make_pair("save", 20));
     commandMapping.insert(std::make_pair("exit", 100));
 
     playerStats = new PlayerStats(100, 25, 25, 25, 25, 25);
@@ -36,6 +37,7 @@ Game::Game() {
     inventory = new Inventory();
     levelList = new LevelList();
     bracelet = Bracelet();
+    saver = Saver();
 
     gameOver = false;
     currentLevel = 1;
@@ -69,7 +71,7 @@ void Game::play() {
       }
       switch(commandValue) {
           case 1 :
-            std::cout<<"The possible commands are: \"exit\", \"go/move north/south/west/east\", \"my stats\", \"equipment\", \"perks\", \"attune perk\", \"runes\", \"equip rune\", \"inventory\", \n\"use item\", \"drop item\", \"map\".\n";
+            std::cout<<"The possible commands are: \"go/move north/south/west/east\", \"my stats\", \"equipment\", \"perks\", \"attune perk\", \"runes\", \"equip rune\", \"inventory\", \n\"use item\", \"drop item\", \"map\", \"save\", \"load\", \"exit\".\n";
             break;
           case 2 :
           case 12 :
@@ -163,6 +165,23 @@ void Game::play() {
                 getline (std::cin, itemIndex);
                 itemIndexInt = stoi(itemIndex);
                 bracelet.equip_rune(itemIndexInt);
+            } catch(const std::invalid_argument& error) {
+                std::cerr << "Not a number.\n";
+            }
+            break;
+          case 20 :
+            std::cout<<"Enter the number of the file you wish to save to (1-9): ";
+            try {
+                bool success;
+                getline (std::cin, itemIndex);
+                itemIndexInt = stoi(itemIndex);
+                success = saver.save_game(currentLevel, currentCoordinates, level, playerStats, equipment, inventory, playerPerks, bracelet, itemIndexInt);
+                if(success) {
+                    std::cout<<"Successfully saved the game!\n";
+                }
+                else {
+                    std::cout<<"Failed to save the game (invalid file number)!\n";
+                }
             } catch(const std::invalid_argument& error) {
                 std::cerr << "Not a number.\n";
             }

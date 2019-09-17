@@ -1,7 +1,7 @@
 #include "Perk.h"
 
 Perk::Perk(std::string name, std::string description, int xpCost, int dmgBonus, int dmgReduction, int healthPoints, int attack, int strength,
-           int defense, int luck, int evasion, int weightBonus, int hpRegen, int bonusHealing, int escapeBonus, int uniquePerkId)
+           int defense, int luck, int evasion, int weightBonus, int hpRegen, int bonusHealing, int escapeBonus, int uniquePerkId, int id)
            : name(name), description(description) {
     this->state = false;
     this->xpCost = xpCost;
@@ -18,6 +18,7 @@ Perk::Perk(std::string name, std::string description, int xpCost, int dmgBonus, 
     this->bonusHealing = bonusHealing;
     this->escapeBonus = escapeBonus;
     this->uniquePerkId = uniquePerkId;
+    this->id = id;
 }
 
 void Perk::attune_perk(PlayerStats*& playerStats, Inventory*& inventory) {
@@ -58,6 +59,14 @@ std::string Perk::get_name() {
 
 std::string Perk::get_description() {
     return this->description;
+}
+
+int Perk::get_id() {
+    return this->id;
+}
+
+void Perk::get_save_data(std::string& saveData) {
+    saveData += std::to_string(id) + " " + std::to_string(state) + " ";
 }
 
 Perk::~Perk() {}

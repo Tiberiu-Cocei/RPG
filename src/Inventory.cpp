@@ -7,13 +7,13 @@ Inventory::Inventory() {
     this->maxWeight = 20;
     consumableItems.push_back(new ConsumableItem(20, 0, 0, 0, 0, 0, 0, 1,
                                "Healing Potion I", "You have found a poorly made healing potion.",
-                               "You drink the healing potion. It has a terrible taste and its texture almost makes you vomit."));
+                               "You drink the healing potion. It has a terrible taste and its texture almost makes you vomit.", 1));
     consumableItems.push_back(new ConsumableItem(20, 0, 0, 0, 0, 0, 0, 1,
                                "Healing Potion I", "You have found a poorly made healing potion.",
-                               "You drink the healing potion. It has a terrible taste and its texture almost makes you vomit."));
+                               "You drink the healing potion. It has a terrible taste and its texture almost makes you vomit.", 1));
     consumableItems.push_back(new ConsumableItem(20, 0, 0, 0, 0, 0, 0, 1,
                                "Healing Potion I", "You have found a poorly made healing potion.",
-                               "You drink the healing potion. It has a terrible taste and its texture almost makes you vomit."));
+                               "You drink the healing potion. It has a terrible taste and its texture almost makes you vomit.", 1));
 }
 
 void Inventory::show_inventory() {
@@ -119,6 +119,36 @@ void Inventory::treat_max_weight_case(int itemWeight) {
 
 void Inventory::gain_max_weight(int maxWeight) {
     this->maxWeight += maxWeight;
+}
+
+void Inventory::get_save_data(std::string& saveData) {
+    saveData += "5\n" + std::to_string(currentWeight) + " " + std::to_string(maxWeight) + "\n";
+    if(consumableItems.size() == 0) {
+        saveData += "01\n";
+    }
+    else {
+        std::unordered_map<int, int> items;
+        for(auto item : consumableItems) {
+            items[item->get_id()]++;
+        }
+        for(auto item : items) {
+            saveData += std::to_string(item.first) + " " + std::to_string(item.second) + " ";
+        }
+        saveData += "\n";
+    }
+    if(equipableItems.size() == 0) {
+        saveData += "02\n";
+    }
+    else {
+        std::unordered_map<int, int> items;
+        for(auto item : equipableItems) {
+            items[item->get_id()]++;
+        }
+        for(auto item : items) {
+            saveData += std::to_string(item.first) + " " + std::to_string(item.second) + " ";
+        }
+        saveData += "\n";
+    }
 }
 
 Inventory::~Inventory() {}

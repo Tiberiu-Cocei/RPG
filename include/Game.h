@@ -15,6 +15,7 @@
 #include "Perk.h"
 #define _WIN32_WINNT 0x0500
 #include "Bracelet.h"
+#include "Saver.h"
 
 class Game
 {
@@ -40,6 +41,7 @@ class Game
         Level * level;
         std::vector<Perk*> playerPerks;
         Bracelet bracelet;
+        Saver saver;
 };
 
 #endif

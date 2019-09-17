@@ -56,6 +56,7 @@
 		<Unit filename="include/PlayerStats.h" />
 		<Unit filename="include/Rune.h" />
 		<Unit filename="include/RuneList.h" />
+		<Unit filename="include/Saver.h" />
 		<Unit filename="include/Stats.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Ability.cpp" />
@@ -80,6 +81,7 @@
 		<Unit filename="src/PlayerStats.cpp" />
 		<Unit filename="src/Rune.cpp" />
 		<Unit filename="src/RuneList.cpp" />
+		<Unit filename="src/Saver.cpp" />
 		<Unit filename="src/Stats.cpp" />
 		<Extensions>
 			<code_completion />

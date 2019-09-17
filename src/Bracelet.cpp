@@ -54,4 +54,23 @@ Rune* Bracelet::get_wielded_rune() {
     return this->runeWielded;
 }
 
+void Bracelet::get_save_data(std::string& saveData) {
+    saveData += "7\n";
+    if(runes.size() == 0) {
+        saveData += "04\n";
+    }
+    else {
+        for(auto rune : runes) {
+            saveData += std::to_string(rune->get_id());
+            if(rune == runeWielded) {
+                saveData += " 1 ";
+            }
+            else {
+                saveData += " 0 ";
+            }
+        }
+        saveData += "\n";
+    }
+}
+
 Bracelet::~Bracelet() {}

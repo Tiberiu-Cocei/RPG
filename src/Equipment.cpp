@@ -4,19 +4,19 @@
 
 Equipment::Equipment(PlayerStats*& playerStats) {
     this->helmet = new EquipableItem(0, 0, 0, 0, 0, 0, 2, 1, 1, 1,
-                               "Leather helmet", "You have found a crudely made leather helmet.", "Equipped the leather helmet.");
+                               "Leather helmet", "You have found a crudely made leather helmet.", "Equipped the leather helmet.", 1);
     this->body = new EquipableItem(0, 0, 0, 0, 0, 2, 0, 1, 2, 2,
-                               "Leather body armor", "You have found a crudely made leather body armor.", "Equipped the leather body armor.");
+                               "Leather body armor", "You have found a crudely made leather body armor.", "Equipped the leather body armor.", 51);
     this->legs = new EquipableItem(0, 0, 0, 0, 0, 1, 0, 1, 1, 3,
-                               "Leather leg armor", "You have found a crudely made leather leg armor.", "Equipped the leather leg armor.");
+                               "Leather leg armor", "You have found a crudely made leather leg armor.", "Equipped the leather leg armor.", 101);
     this->gloves = new EquipableItem(0, 0, 0, 1, 0, 1, 0, 0, 1, 4,
-                               "Leather gloves", "You have found a pair of crudely made leather gloves.", "Equipped the leather gloves.");
+                               "Leather gloves", "You have found a pair of crudely made leather gloves.", "Equipped the leather gloves.", 151);
     this->boots = new EquipableItem(0, 0, 0, 0, 0, 0, 0, 1, 1, 5,
-                               "Leather boots", "You have found a pair of crudely made leather boots.", "Equipped the leather boots.");
+                               "Leather boots", "You have found a pair of crudely made leather boots.", "Equipped the leather boots.", 201);
     this->mainHand = new EquipableItem(1, 0, 0, 2, 2, 0, 0, 0, 3, 6,
-                               "Copper sword", "You have found a copper sword. It does not look like it's in good condition.", "Equipped the copper sword.");
+                               "Copper sword", "You have found a copper sword. It does not look like it's in good condition.", "Equipped the copper sword.", 251);
     this->offhand = new EquipableItem(0, 1, 0, 0, 0, 2, 0, 1, 2, 7,
-                               "Copper shield", "You have found a copper shield. It does not look like it's in good condition.", "Equipped the copper shield.");
+                               "Copper shield", "You have found a copper shield. It does not look like it's in good condition.", "Equipped the copper shield.", 301);
     playerStats->gain_stats_from_equip(0, 3, 2, 6, 2, 5, 1, 1);
 }
 
@@ -47,7 +47,7 @@ EquipableItem* Equipment::equip_item(EquipableItem* item, PlayerStats*& playerSt
             toReturn = equip_offhand(item, playerStats);
             break;
         default :
-            toReturn = new EquipableItem(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM");
+            toReturn = new EquipableItem(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM", 0);
             std::cout<<"ERROR_ITEM_EQUIP\n";
             break;
     }
@@ -157,6 +157,12 @@ void Equipment::get_equipment() {
     this->offhand->concat_stats(equipment);
 
     std::cout<<equipment;
+}
+
+void Equipment::get_save_data(std::string& saveData) {
+    saveData += "4\n" + std::to_string(helmet->get_id()) + " " + std::to_string(body->get_id()) + " " + std::to_string(legs->get_id()) + " " +
+                        std::to_string(gloves->get_id()) + " " + std::to_string(boots->get_id()) + " " + std::to_string(mainHand->get_id()) + " " +
+                        std::to_string(offhand->get_id()) + "\n";
 }
 
 Equipment::~Equipment() {}

@@ -16,6 +16,7 @@ class Bracelet
         bool use_ability(int, PlayerStats*&, Enemy*&);
         void get_overview();
         Rune* get_wielded_rune();
+        void get_save_data(std::string&);
 
     private:
         std::vector<Rune*> runes;

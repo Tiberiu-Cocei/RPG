@@ -333,4 +333,20 @@ void PlayerStats::increase_max_charges(int charges) {
     std::cout<<"Your bracelet starts to shine, absorbing the destroyed rune. Your bracelet may now hold " << charges << " more charges!\n\n";
 }
 
+void PlayerStats::get_save_data(std::string& saveData) {
+    saveData += "3\n" + std::to_string(get_current_health_points()) + " " + std::to_string(get_health_points()) + " " +
+                        std::to_string(get_attack()) + " " + std::to_string(get_strength()) + " " + std::to_string(get_defense()) + " " +
+                        std::to_string(get_luck()) + " " + std::to_string(get_evasion()) + "\n" +
+                        std::to_string(tempHealthPoints) + " " + std::to_string(tempAttack) + " " + std::to_string(tempStrength) + " " +
+                        std::to_string(tempDefense) + " " + std::to_string(tempLuck) + " " + std::to_string(tempEvasion) + "\n" +
+                        std::to_string(dmgBonus) + " " + std::to_string(dmgReduction) + "\n" +
+                        std::to_string(experience) + " " + std::to_string(hpRegen) + " " + std::to_string(bonusHealing) + " " +
+                        std::to_string(escapeBonus) + " " + std::to_string(currentCharges) + " " + std::to_string(maxCharges) + "\n";
+    for(int i = 0; i < 10; i++) {
+        saveData += std::to_string(attunedPerks[i]);
+        saveData += " ";
+    }
+    saveData += "\n";
+}
+
 PlayerStats::~PlayerStats() {}

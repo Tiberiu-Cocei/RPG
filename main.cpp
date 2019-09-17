@@ -13,6 +13,6 @@
 
 int main()
 {
-    Game * game = new Game();
+    Game game = Game();
     return 0;
 }

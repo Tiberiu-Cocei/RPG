@@ -8,7 +8,7 @@
 class EquipableItem : public Item
 {
     public:
-        EquipableItem(int, int, int, int, int, int, int, int, int, int, std::string, std::string, std::string);
+        EquipableItem(int, int, int, int, int, int, int, int, int, int, std::string, std::string, std::string, int);
         ~EquipableItem();
         void use_item(PlayerStats*&);
         void unequip_item(PlayerStats*&);

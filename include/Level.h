@@ -28,6 +28,7 @@ class Level
         void show_user_map();
         int get_text_color_number();
         bool is_boss_room(int);
+        void get_save_data(std::string&);
 
     private:
         bool boss_warning();

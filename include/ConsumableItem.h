@@ -8,7 +8,7 @@
 class ConsumableItem : public Item
 {
     public:
-        ConsumableItem(int, int, int, int, int, int, int, int, std::string, std::string, std::string);
+        ConsumableItem(int, int, int, int, int, int, int, int, std::string, std::string, std::string, int);
         ~ConsumableItem();
         void find_item();
         void use_item(PlayerStats*&);
