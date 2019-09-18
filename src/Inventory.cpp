@@ -151,7 +151,7 @@ void Inventory::get_save_data(std::string& saveData) {
     }
 }
 
-void Inventory::set_weight(int currentWeight, int maxWeight) {
+void Inventory::load_weight(int currentWeight, int maxWeight) {
     this->currentWeight = currentWeight;
     this->maxWeight = maxWeight;
 }

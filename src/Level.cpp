@@ -355,7 +355,7 @@ void Level::get_save_data(std::string& saveData) {
     saveData += "\n";
 }
 
-void Level::load_booleans(bool isBossBeaten, bool isFountainUsed, bool isEquipableTreasureTaken,
+void Level::load_room_states(bool isBossBeaten, bool isFountainUsed, bool isEquipableTreasureTaken,
                           bool isConsumableTreasureTaken, bool isSecretItemTaken, bool isRuneTaken) {
     this->isBossBeaten = isBossBeaten;
     this->isFountainUsed = isFountainUsed;

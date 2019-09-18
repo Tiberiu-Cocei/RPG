@@ -26,7 +26,7 @@ bool Loader::check_file_name(std::string fileName) {
     return true;
 }
 
-bool Loader::load_game(int& levelNumber, int& coordinates, Level*& level, PlayerStats*& playerStats, Equipment*& equipment,
+bool Loader::load_game(int& _levelNumber, int& _coordinates, Level*& level, PlayerStats*& playerStats, Equipment*& equipment,
                       Inventory*& inventory, std::vector<Perk*>& playerPerks, Bracelet& bracelet, std::string fileName) {
     std::string fullPath = "../../saves/" + fileName;
     std::ifstream saveFile(fullPath);
@@ -36,34 +36,33 @@ bool Loader::load_game(int& levelNumber, int& coordinates, Level*& level, Player
         ++lineNr;
         std::istringstream iss(line);
         switch(lineNr) {
-            case 2 :
-            {
-                int a, b;
-                if(!(iss >> a >> b)) {
+            case 2 : {
+                int levelNumber, coordinates;
+                if(!(iss >> levelNumber >> coordinates)) {
                     return false;
                 }
                 else {
-                    levelNumber = a;
-                    coordinates = b;
-                    LevelList levelList = LevelList();
+                    _levelNumber = levelNumber;
+                    _coordinates = coordinates;
                     delete level;
+                    LevelList levelList = LevelList();
                     level = levelList.get_level(levelNumber);
                 }
+                break;
             }
-            break;
-            case 4 :
-            {
-                bool a, b, c, d, e, f;
-                if(!(iss >> a >> b >> c >> d >> e >> f)) {
+            case 4 : {
+                bool isBossBeaten, isFountainUsed, isEquipableTreasureTaken, isConsumableTreasureTaken, isSecretItemTaken, isRuneTaken;
+                if(!(iss >> isBossBeaten >> isFountainUsed >> isEquipableTreasureTaken
+                         >>  isConsumableTreasureTaken >> isSecretItemTaken >> isRuneTaken)) {
                     return false;
                 }
                 else {
-                    level->load_booleans(a, b, c, d, e, f);
+                    level->load_room_states(isBossBeaten, isFountainUsed, isEquipableTreasureTaken,
+                                         isConsumableTreasureTaken, isSecretItemTaken, isRuneTaken);
                 }
+                break;
             }
-            break;
-            case 5 :
-            {
+            case 5 : {
                  std::array<char, 225> userMap;
                  char position;
                  int positionCount = -1;
@@ -81,54 +80,49 @@ bool Loader::load_game(int& levelNumber, int& coordinates, Level*& level, Player
                  else {
                     level->load_user_map(userMap);
                  }
+                 break;
             }
-            break;
-            case 7 :
-            {
-                int a, b, c, d, e, f, g;
-                if(!(iss >> a >> b >> c >> d >> e >> f >> g)) {
+            case 7 : {
+                int currentHealthPoints, healthPoints, attack, strength, defense, luck, evasion;
+                if(!(iss >> currentHealthPoints >> healthPoints >> attack >> strength >> defense >> luck >> evasion)) {
                     return false;
                 }
                 else {
-                    playerStats->load_persistent_stats(a, b, c, d, e, f, g);
+                    playerStats->load_base_stats(currentHealthPoints, healthPoints, attack, strength, defense, luck, evasion);
                 }
+                break;
             }
-            break;
-            case 8 :
-            {
-                int a, b, c, d, e, f;
-                if(!(iss >> a >> b >> c >> d >> e >> f)) {
+            case 8 : {
+                int tempHealthPoints, tempAttack, tempStrength, tempDefense, tempLuck, tempEvasion;
+                if(!(iss >> tempHealthPoints >> tempAttack >> tempStrength >> tempDefense >> tempLuck >> tempEvasion)) {
                     return false;
                 }
                 else {
-                    playerStats->modify_temp_stats(a, b, c, d, e, f);
+                    playerStats->modify_temp_stats(tempHealthPoints, tempAttack, tempStrength, tempDefense, tempLuck, tempEvasion);
                 }
+                break;
             }
-            break;
-            case 9 :
-            {
-                int a, b;
-                if(!(iss >> a >> b)) {
+            case 9 : {
+                int dmgBonus, dmgReduction;
+                if(!(iss >> dmgBonus >> dmgReduction)) {
                     return false;
                 }
                 else {
-                    playerStats->load_damage_extras(a, b);
+                    playerStats->load_damage_stats(dmgBonus, dmgReduction);
                 }
+                break;
             }
-            break;
-            case 10 :
-            {
-                int a, b, c, d, e, f;
-                if(!(iss >> a >> b >> c >> d >> e >> f)) {
+            case 10 : {
+                int experience, hpRegen, bonusHealing, escapeBonus, currentCharges, maxCharges;
+                if(!(iss >> experience >> hpRegen >> bonusHealing >> escapeBonus >> currentCharges >> maxCharges)) {
                     return false;
                 }
                 else {
-                    playerStats->load_extra_stats(a, b, c, d, e, f);
+                    playerStats->load_special_stats(experience, hpRegen, bonusHealing, escapeBonus, currentCharges, maxCharges);
                 }
+                break;
             }
-            break;
-            case 11 :
-            {
+            case 11 : {
                 bool attunedPerks[10];
                 int perkCount = -1;
                 bool perk;
@@ -141,88 +135,82 @@ bool Loader::load_game(int& levelNumber, int& coordinates, Level*& level, Player
                 else {
                     playerStats->load_unique_perks(attunedPerks);
                 }
+                break;
             }
-            break;
-            case 13 :
-            {
-                int a, b, c, d, e, f, g;
-                if(!(iss >> a >> b >> c >> d >> e >> f >> g)) {
+            case 13 : {
+                int helmet, body, legs, gloves, boots, mainHand, offhand;
+                if(!(iss >> helmet >> body >> legs >> gloves >> boots >> mainHand >> offhand)) {
                     return false;
                 }
                 else {
-                    equipment->load_save_data(a, b, c, d, e, f, g);
+                    equipment->load_equipment(helmet, body, legs, gloves, boots, mainHand, offhand);
                 }
+                break;
             }
-            break;
-            case 15 :
-            {
-                int a, b;
-                if(!(iss >> a >> b)) {
+            case 15 : {
+                int currentWeight, maxWeight;
+                if(!(iss >> currentWeight >> maxWeight)) {
                     return false;
                 }
                 else {
-                    inventory->set_weight(a, b);
+                    inventory->load_weight(currentWeight, maxWeight);
                 }
+                break;
             }
-            break;
-            case 16 :
-            {
-                int a, b;
+            case 16 : {
+                int itemId, itemCount;
                 std::vector<ConsumableItem*> consumableItems;
                 ConsumableItem* consumableItem;
                 ConsumableItemList itemList = ConsumableItemList();
-                while(iss >> a >> b) {
-                    consumableItem = itemList.get_consumable_item(a);
-                    while(b > 0) {
+                while(iss >> itemId >> itemCount) {
+                    consumableItem = itemList.get_consumable_item(itemId);
+                    while(itemCount > 0) {
                         consumableItems.push_back(consumableItem);
-                        b--;
+                        itemCount--;
                     }
                 }
                 inventory->load_consumable_items(consumableItems);
+                break;
             }
-            break;
-            case 17 :
-            {
-                int a, b;
+            case 17 : {
+                int itemId, itemCount;
                 std::vector<EquipableItem*> equipableItems;
                 EquipableItem* equipableItem;
                 EquipableItemList itemList = EquipableItemList();
-                while(iss >> a >> b) {
-                    equipableItem = itemList.get_equipable_item(a);
-                    while(b > 0) {
+                while(iss >> itemId >> itemCount) {
+                    equipableItem = itemList.get_equipable_item(itemId);
+                    while(itemCount > 0) {
                         equipableItems.push_back(equipableItem);
-                        b--;
+                        itemCount--;
                     }
                 }
                 inventory->load_equipable_items(equipableItems);
+                break;
             }
-            break;
-            case 19 :
-            {
-                int a;
-                bool b;
+            case 19 : {
+                int perkId;
+                bool perkState;
                 PerkList perkList = PerkList();
                 Perk* perk;
                 playerPerks.clear();
-                while(iss >> a >> b) {
-                    perk = perkList.get_perk(a);
-                    perk->set_state(b);
+                while(iss >> perkId >> perkState) {
+                    perk = perkList.get_perk(perkId);
+                    perk->set_state(perkState);
                     playerPerks.push_back(perk);
                 }
+                break;
             }
-            break;
-            case 21 :
-            {
-                int index = -1, runeWieldedIndex;
-                int a;
-                bool b;
+            case 21 : {
+                int index = -1, runeWieldedIndex = -1;
+                int runeId;
+                bool isRuneWielded;
                 std::vector<Rune*> runes;
                 RuneList runeList = RuneList();
                 Rune* rune;
-                while(iss >> a >> b) {
+                while(iss >> runeId >> isRuneWielded) {
                     index++;
-                    rune = runeList.get_rune(a);
-                    if(b == true) {
+                    rune = runeList.get_rune(runeId);
+                    if(isRuneWielded == true) {
                         runeWieldedIndex = index;
                     }
                     runes.push_back(rune);
@@ -230,8 +218,8 @@ bool Loader::load_game(int& levelNumber, int& coordinates, Level*& level, Player
                 if(index >= 0) {
                     bracelet.load_runes(runes, runeWieldedIndex);
                 }
+                break;
             }
-            break;
         }
     }
     return true;

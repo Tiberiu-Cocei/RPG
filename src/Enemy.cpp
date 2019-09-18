@@ -58,7 +58,7 @@ void Enemy::enemy_encounter() {
     std::cout<<"You are fighting a level " + std::to_string(combatLevel) + " " + name + "!\n";
 }
 
-void Enemy::enemy_death(Inventory*& inventory) {
+void Enemy::enemy_death(Inventory*& inventory, PlayerStats*& playerStats) {
     std::cout<<"\n"<<this->deathDescription<<"\n";
     int randomRoll = rand() % 100 + 1;
     ConsumableItem* consumableItemDrop = NULL;
@@ -83,11 +83,14 @@ void Enemy::enemy_death(Inventory*& inventory) {
         equipableItemDrop = equipableDrops.at(1);
     }
     if(consumableItemDrop != NULL) {
-        std::cout<<"You have found a " + consumableItemDrop->get_name() + ". Do you wish to pick it up? (Yes/no) ";
+        std::cout<<"You have found a " + consumableItemDrop->get_name() + ". Do you wish to pick it up? You may also use it now. (Yes/no/use) ";
         std::string command;
         getline(std::cin,command);
         if(command.compare("Yes") == 0 || command.compare("yes") == 0) {
             inventory->pickup_item(consumableItemDrop);
+        }
+        else if(command.compare("Use") == 0 || command.compare("use") == 0) {
+            consumableItemDrop->use_item(playerStats);
         }
         else {
             std::cout<<"You drop the item to the ground and move on.\n";

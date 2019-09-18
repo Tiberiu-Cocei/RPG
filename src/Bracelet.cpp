@@ -74,7 +74,12 @@ void Bracelet::get_save_data(std::string& saveData) {
 
 void Bracelet::load_runes(std::vector<Rune*> runes, int index) {
     this->runes = runes;
-    this->runeWielded = runes.at(index);
+    if(index == -1) {
+        this->runeWielded = NULL;
+    }
+    else {
+        this->runeWielded = runes.at(index);
+    }
 }
 
 Bracelet::~Bracelet() {}

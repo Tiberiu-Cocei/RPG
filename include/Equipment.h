@@ -13,7 +13,7 @@ class Equipment
         EquipableItem* equip_item(EquipableItem*, PlayerStats*&);
         void get_equipment();
         void get_save_data(std::string&);
-        void load_save_data(int, int, int, int, int, int, int);
+        void load_equipment(int, int, int, int, int, int, int);
 
     private:
         EquipableItem* helmet;

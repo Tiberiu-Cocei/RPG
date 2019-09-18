@@ -30,10 +30,10 @@
 	<array>
 	"Game.h"
 
-1568633904 source:d:\informatica\git\rpg\src\enemy.cpp
+1568840918 source:d:\informatica\git\rpg\src\enemy.cpp
 	"Enemy.h"
 
-1568633913 d:\informatica\git\rpg\include\enemy.h
+1568844897 d:\informatica\git\rpg\include\enemy.h
 	"EnemyStats.h"
 	"ConsumableItem.h"
 	"EquipableItem.h"
@@ -49,12 +49,12 @@
 
 1568625609 d:\informatica\git\rpg\include\stats.h
 
-1568742022 source:d:\informatica\git\rpg\src\playerstats.cpp
+1568841120 source:d:\informatica\git\rpg\src\playerstats.cpp
 	"PlayerStats.h"
 	<string.h>
 	<iostream>
 
-1568741807 d:\informatica\git\rpg\include\playerstats.h
+1568841114 d:\informatica\git\rpg\include\playerstats.h
 	<Stats.h>
 	<string>
 
@@ -71,28 +71,28 @@
 	<string.h>
 	<iostream>
 
-1568711902 d:\informatica\git\rpg\include\item.h
+1568840779 d:\informatica\git\rpg\include\item.h
 	<string>
 	"PlayerStats.h"
 
-1568711783 source:d:\informatica\git\rpg\src\consumableitem.cpp
+1568840918 source:d:\informatica\git\rpg\src\consumableitem.cpp
 	"ConsumableItem.h"
 	<string.h>
 	<iostream>
 	"PlayerStats.h"
 
-1568711916 d:\informatica\git\rpg\include\consumableitem.h
+1568840705 d:\informatica\git\rpg\include\consumableitem.h
 	<Item.h>
 	"PlayerStats.h"
 	<string>
 
-1568711795 source:d:\informatica\git\rpg\src\equipableitem.cpp
+1568840917 source:d:\informatica\git\rpg\src\equipableitem.cpp
 	"EquipableItem.h"
 	<string.h>
 	<iostream>
 	"PlayerStats.h"
 
-1568711920 d:\informatica\git\rpg\include\equipableitem.h
+1568840726 d:\informatica\git\rpg\include\equipableitem.h
 	<Item.h>
 	<string>
 	"PlayerStats.h"
@@ -109,23 +109,23 @@
 1566738600 d:\informatica\git\rpg\include\consumableitemlist.h
 	"ConsumableItem.h"
 
-1568743909 d:\informatica\git\rpg\include\equipment.h
+1568841141 d:\informatica\git\rpg\include\equipment.h
 	"EquipableItemList.h"
 	<iostream>
 	<string.h>
 	"PlayerStats.h"
 
-1568744022 source:d:\informatica\git\rpg\src\equipment.cpp
+1568841153 source:d:\informatica\git\rpg\src\equipment.cpp
 	"Equipment.h"
 	<iostream>
 	<string.h>
 
-1568744489 source:d:\informatica\git\rpg\src\inventory.cpp
+1568841175 source:d:\informatica\git\rpg\src\inventory.cpp
 	"Inventory.h"
 	<iostream>
 	<string.h>
 
-1568744447 d:\informatica\git\rpg\include\inventory.h
+1568841167 d:\informatica\git\rpg\include\inventory.h
 	"EquipableItem.h"
 	"ConsumableItem.h"
 	"Equipment.h"
@@ -133,10 +133,10 @@
 	<vector>
 	<unordered_map>
 
-1568655110 source:d:\informatica\git\rpg\src\enemylist.cpp
+1568840917 source:d:\informatica\git\rpg\src\enemylist.cpp
 	"EnemyList.h"
 
-1567695895 d:\informatica\git\rpg\include\enemylist.h
+1568840722 d:\informatica\git\rpg\include\enemylist.h
 	"Enemy.h"
 	<vector>
 	<iostream>
@@ -145,12 +145,12 @@
 	"EquipableItemList.h"
 	"ConsumableItemList.h"
 
-1568636289 source:d:\informatica\git\rpg\src\combat.cpp
+1568840918 source:d:\informatica\git\rpg\src\combat.cpp
 	"Combat.h"
 	<algorithm>
 	<windows.h>
 
-1568634431 d:\informatica\git\rpg\include\combat.h
+1568840703 d:\informatica\git\rpg\include\combat.h
 	"Enemy.h"
 	"Equipment.h"
 	<iostream>
@@ -163,10 +163,10 @@
 	"Bracelet.h"
 	"Rune.h"
 
-1568740577 source:d:\informatica\git\rpg\src\level.cpp
+1568841050 source:d:\informatica\git\rpg\src\level.cpp
 	"Level.h"
 
-1568741949 d:\informatica\git\rpg\include\level.h
+1568841033 d:\informatica\git\rpg\include\level.h
 	<iostream>
 	<string.h>
 	<ConsumableItem.h>
@@ -179,7 +179,7 @@
 	"Perk.h"
 	"Bracelet.h"
 
-1568634182 source:d:\informatica\git\rpg\src\levellist.cpp
+1568840917 source:d:\informatica\git\rpg\src\levellist.cpp
 	"LevelList.h"
 	<vector>
 	<iostream>
@@ -187,7 +187,7 @@
 	<array>
 	"Perk.h"
 
-1568579912 d:\informatica\git\rpg\include\levellist.h
+1568840920 d:\informatica\git\rpg\include\levellist.h
 	"Level.h"
 	"ConsumableItemList.h"
 	"EquipableItemList.h"
@@ -195,10 +195,10 @@
 	"PerkList.h"
 	"RuneList.h"
 
-1568738739 source:d:\informatica\git\rpg\src\game.cpp
+1568841448 source:d:\informatica\git\rpg\src\game.cpp
 	"Game.h"
 
-1568736085 d:\informatica\git\rpg\include\game.h
+1568840733 d:\informatica\git\rpg\include\game.h
 	<iostream>
 	<algorithm>
 	<cctype>
@@ -216,10 +216,10 @@
 	"Saver.h"
 	"Loader.h"
 
-1568745626 source:d:\informatica\git\rpg\src\perk.cpp
+1568840917 source:d:\informatica\git\rpg\src\perk.cpp
 	"Perk.h"
 
-1568745071 d:\informatica\git\rpg\include\perk.h
+1568840920 d:\informatica\git\rpg\include\perk.h
 	<iostream>
 	<string.h>
 	"PlayerStats.h"
@@ -232,16 +232,16 @@
 1568712311 source:d:\informatica\git\rpg\src\perklist.cpp
 	"PerkList.h"
 
-1568625497 source:d:\informatica\git\rpg\src\ability.cpp
+1568840920 source:d:\informatica\git\rpg\src\ability.cpp
 	"Ability.h"
 
-1568633704 d:\informatica\git\rpg\include\ability.h
+1568840696 d:\informatica\git\rpg\include\ability.h
 	<iostream>
 	<string.h>
 	"PlayerStats.h"
 	"Enemy.h"
 
-1568644570 source:d:\informatica\git\rpg\src\abilitylist.cpp
+1568759937 source:d:\informatica\git\rpg\src\abilitylist.cpp
 	"AbilityList.h"
 
 1568550703 d:\informatica\git\rpg\include\abilitylist.h
@@ -263,16 +263,16 @@
 	"AbilityList.h"
 	"Rune.h"
 
-1568745372 source:d:\informatica\git\rpg\src\bracelet.cpp
+1568840885 source:d:\informatica\git\rpg\src\bracelet.cpp
 	"Bracelet.h"
 
-1568745377 d:\informatica\git\rpg\include\bracelet.h
+1568840699 d:\informatica\git\rpg\include\bracelet.h
 	"Rune.h"
 	<vector>
 	"PlayerStats.h"
 	"Enemy.h"
 
-1568734090 d:\informatica\git\rpg\include\saver.h
+1568840920 d:\informatica\git\rpg\include\saver.h
 	<iostream>
 	<string.h>
 	<vector>
@@ -284,10 +284,10 @@
 	"Bracelet.h"
 	<fstream>
 
-1568746688 source:d:\informatica\git\rpg\src\saver.cpp
+1568840647 source:d:\informatica\git\rpg\src\saver.cpp
 	"Saver.h"
 
-1568745022 d:\informatica\git\rpg\include\loader.h
+1568840920 d:\informatica\git\rpg\include\loader.h
 	<dirent.h>
 	<iostream>
 	<string.h>
@@ -301,6 +301,6 @@
 	"EquipableItemList.h"
 	"ConsumableItemList.h"
 
-1568746684 source:d:\informatica\git\rpg\src\loader.cpp
+1568841287 source:d:\informatica\git\rpg\src\loader.cpp
 	"Loader.h"
 

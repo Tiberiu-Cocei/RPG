@@ -165,7 +165,7 @@ void Equipment::get_save_data(std::string& saveData) {
                         std::to_string(offhand->get_id()) + "\n";
 }
 
-void Equipment::load_save_data(int helmet, int body, int legs, int gloves, int boots, int mainHand, int offhand) {
+void Equipment::load_equipment(int helmet, int body, int legs, int gloves, int boots, int mainHand, int offhand) {
     EquipableItemList itemList = EquipableItemList();
     this->helmet = itemList.get_equipable_item(helmet);
     this->body = itemList.get_equipable_item(body);

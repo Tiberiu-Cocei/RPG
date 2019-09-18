@@ -125,8 +125,7 @@ void Game::play() {
           case 11 :
             level->show_user_map();
             break;
-          case 16 :
-          {
+          case 16 : {
             int perkIndex = 1;
             if(playerPerks.size() == 0) {
                 std::cout<<"You do not know any perks at the moment. The elders did mention something about a fountain of knowledge..\n";
@@ -171,8 +170,7 @@ void Game::play() {
                 std::cerr << "Not a number.\n";
             }
             break;
-          case 20 :
-            {
+          case 20 : {
                 std::cout<<"Enter a name for the save file: ";
                 std::string fileName;
                 getline(std::cin, fileName);
@@ -185,8 +183,7 @@ void Game::play() {
                 }
                 break;
             }
-          case 21 :
-            {
+          case 21 : {
                 loader.show_save_files();
                 std::string fileName;
                 std::cout<<"\nEnter the name of the save file: ";

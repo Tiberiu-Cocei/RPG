@@ -29,7 +29,7 @@ class Level
         int get_text_color_number();
         bool is_boss_room(int);
         void get_save_data(std::string&);
-        void load_booleans(bool, bool, bool, bool, bool, bool);
+        void load_room_states(bool, bool, bool, bool, bool, bool);
         void load_user_map(std::array<char, 225>);
 
     private:

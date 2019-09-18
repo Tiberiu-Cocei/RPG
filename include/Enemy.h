@@ -27,7 +27,7 @@ class Enemy
         bool enemy_attack(PlayerStats*&);
         bool enemy_defend(PlayerStats*&);
         void enemy_encounter();
-        void enemy_death(Inventory*&);
+        void enemy_death(Inventory*&, PlayerStats*&);
         void stun_enemy();
         bool is_stunned();
 

@@ -47,8 +47,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                 }
             }
             break;
-          case 3 :
-            {
+          case 3 : {
                 int escapeRoll = rand() % 100 + 1 + playerStats->get_escape_bonus();
                 if(escapeRoll > 60 && isBoss == false) {
                     std::cout<<"You successfully escape and make your way back.\n";
@@ -166,7 +165,7 @@ bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy, Rune* bossRune
 }
 
 void Combat::player_victory(PlayerStats*& playerStats, Enemy*& enemy, Inventory*& inventory) {
-    enemy->enemy_death(inventory);
+    enemy->enemy_death(inventory, playerStats);
     playerStats->reset_temp_stats();
     enemy->get_enemy_stats()->reset_stats();
     enemy->is_stunned(); //removes stun effect
