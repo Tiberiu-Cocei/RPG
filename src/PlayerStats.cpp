@@ -29,7 +29,7 @@ void PlayerStats::gain_experience(int experience) {
 }
 
 bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus, bool canCrit) {
-    int evade = rand() % 50 + 1 + get_luck()/10 + get_evasion()/3.5  - attack/10 + this->tempLuck/10 + this->tempEvasion/3.5;
+    int evade = rand() % 50 + 1 + get_luck()/10 + get_evasion()/2.0  - attack/3.5 + this->tempLuck/10 + this->tempEvasion/2.0;
     if(evade > 42) {
         std::cout<<"You have avoided the attack.\n";
         return false;

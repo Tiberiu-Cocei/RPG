@@ -224,6 +224,7 @@ void Game::play() {
             }
             else {
                 std::cout<<"Congratulations! You have cleared all the current content of the game!\n";
+                getline(std::cin, itemIndex); //prevents console from closing instantly
                 gameOver = true;
             }
         }

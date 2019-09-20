@@ -63,7 +63,7 @@ void Enemy::enemy_death(Inventory*& inventory, PlayerStats*& playerStats) {
     int randomRoll = rand() % 100 + 1;
     ConsumableItem* consumableItemDrop = NULL;
     EquipableItem* equipableItemDrop = NULL;
-    if(randomRoll > 1 && randomRoll <= 15) {
+    if(randomRoll > 0 && randomRoll <= 15) {
         consumableItemDrop = consumableDrops.at(0);
     }
     else if(randomRoll > 15 && randomRoll <= 35) {

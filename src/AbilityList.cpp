@@ -16,13 +16,13 @@ Ability* AbilityList::get_ability(int index){
         case 3 :
             return new Ability("Harden", "Creates a layer of earth surrounding your armor, temporarily increasing defenses and empowering future abilities.",
                                "Dirt and rocks come together, creating a hardened layer on your armor and empowering the rune.",
-                               true, false, 2, 1, 0.0f, 0, 0, 11, 0, 0);
+                               true, false, 2, 1, 0.0f, 0, 0, 7, 0, 0);
 
         //case 11-20: Rune of water
         case 11 :
             return new Ability("Healing wave", "Creates a layer of healing water on yourself, mending wounds.",
                                "Healing water appears on your body, healing you.",
-                               true, false, 3, 2, 1.35f, 0, 0, 0, 0, 0);
+                               true, false, 3, 2, 1.5f, 0, 0, 0, 0, 0);
         case 12 :
             return new Ability("Drown", "Floods your foe in water in an attempt to drown them. Immobilizes the foe.",
                                "An increasing amount of water appears out of thin air, covering your enemy entirely. \nYour foe falls to the ground, being unable to attack the next turn.",
@@ -44,7 +44,7 @@ Ability* AbilityList::get_ability(int index){
         case 23 :
             return new Ability("Blur", "Manipulates the air around you, making you seem blurred to the enemy and enhancing the rune.",
                                "The air around you becomes twisted, increasing your evasion and the power of the rune.",
-                               true, false, 2, 3, 0.0f, 0, 0, 0, 0, 15);
+                               true, false, 3, 3, 0.0f, 0, 0, 0, 0, 8);
 
         //case 31-40: Rune of fire
         case 31 :
@@ -68,13 +68,21 @@ Ability* AbilityList::get_ability(int index){
             return new Ability("Armor strike", "", "Numerous small appendages emerge from underground and attempt break your armor. You manage to cut them down but parts of your armor fell to the ground.",
                                true, false, 0, 0, 0.0f, 0, 0, 4, 0, 0);
 
-        //case 110-120: Second boss
+        //case 111-120: Second boss
         case 111 :
             return new Ability("Chemical burn", "", "A stream of chemicals appears out of nowhere and splashes in your direction.",
                                true, false, 0, 0, 1.5f, 0, 0, 0, 0, 0);
         case 112 :
-            return new Ability("Glue slice", "", "Your foe launches an attack which you manage to block. However, from their blade shoots out a glue-like mixture which slows your movement.",
+            return new Ability("Glue splash", "", "Your foe launches an attack which you manage to block. However, from their blade shoots out a glue-like mixture which slows your movement.",
                                true, false, 0, 0, 0.0f, 3, 0, 0, 0, 4);
+
+        //case 121-130: Third boss
+        case 121 :
+            return new Ability("Whirlwind", "", "Your foe grasps their weapon tightly and launches a spinning attack strengthened by their rune.",
+                               true, false, 0, 0, 1.5f, 0, 0, 0, 0, 0);
+        case 122 :
+            return new Ability("Strength sap", "", "A magic circle appears beneath you and saps some of your strength in an instant.",
+                               true, false, 0, 0, 0.0f, 0, 8, 0, 5, 0);
 
         default :
             return new Ability("ERROR_ABILITY", "ERROR_ABILITY", "ERROR_ABILITY", false, false, 0, 0, 0.0f, 0, 0, 0, 0, 0);

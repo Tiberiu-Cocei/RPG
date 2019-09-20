@@ -132,7 +132,21 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
 bool Combat::player_normal_attack(PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Enemy*& enemy) {
     //checks for Executioner perk
     if(playerStats->get_perk_state(0) == true && enemy->get_enemy_stats()->get_current_health_points() <= 50) {
+        playerStats->modify_temp_stats(0, 0, playerStats->get_strength()/2, 0, 0, 0);
+    }
+    //checks for Rage perk
+    if(playerStats->get_perk_state(1) == true && playerStats->get_current_health_points() < 75) {
         playerStats->modify_temp_stats(0, 0, playerStats->get_strength()/3, 0, 0, 0);
+    }
+    //checks for Double strike perk
+    if(playerStats->get_perk_state(2) == true) {
+        int randValue = rand() % 50 + 1 + (playerStats->get_luck() + playerStats->get_temp_luck())/2;
+        if(randValue >= 70) {
+            bool isDead = enemy->enemy_defend(playerStats);
+            if(isDead) {
+                return true;
+            }
+        }
     }
     return enemy->enemy_defend(playerStats);
 }

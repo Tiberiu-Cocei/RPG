@@ -14,6 +14,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 3 :
             return new EquipableItem(0, 1, 0, 0, 0, 3, 0, 3, 2, 1,
                                "Mithril helmet", "You have found an unmaintained mithril helmet.", "Equipped the mithril helmet.", index);
+        case 4 :
+            return new EquipableItem(0, 2, 0, 0, 0, 5, 0, 5, 2, 1,
+                               "Wildsteel helmet", "You have found an wildsteel helmet. It seems to be imbued with magic.", "Equipped the wildsteel helmet.", index);
 
         //Secret room helmet
         case 11 :
@@ -30,6 +33,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 53 :
             return new EquipableItem(0, 2, 0, 0, 0, 6, 0, 5, 3, 2,
                                "Mithril body armor", "You have found an unmaintained mithril body armor.", "Equipped the mithril body armor.", index);
+        case 54 :
+            return new EquipableItem(0, 3, 0, 0, 0, 8, 0, 7, 3, 2,
+                               "Wildsteel body armor", "You have found an wildsteel body armor. It seems to be imbued with magic.", "Equipped the wildsteel body armor.", index);
 
         //Secret room body armor
         case 61 :
@@ -46,6 +52,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 103 :
             return new EquipableItem(0, 1, 0, 0, 0, 5, 0, 5, 2, 3,
                                "Mithril leg armor", "You have found an unmaintained mithril leg armor.", "Equipped the mithril leg armor.", index);
+        case 104 :
+            return new EquipableItem(0, 2, 0, 0, 0, 7, 0, 7, 2, 3,
+                               "Wildsteel leg armor", "You have found an wildsteel leg armor. It seems to be imbued with magic.", "Equipped the wildsteel leg armor.", index);
 
         //151-200: gloves
         case 151 :
@@ -57,6 +66,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 153 :
             return new EquipableItem(0, 0, 0, 3, 0, 3, 2, 0, 2, 4,
                                "Mithril gloves", "You have found a pair of unmaintained mithril gloves.", "Equipped the mithril gloves.", index);
+        case 154 :
+            return new EquipableItem(0, 1, 0, 5, 0, 4, 4, 0, 2, 4,
+                               "Wildsteel gloves", "You have found a pair of wildsteel gloves. They seem to be imbued with magic.", "Equipped the wildsteel gloves.", index);
 
         //201-250: boots
         case 201 :
@@ -67,7 +79,10 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
                                "Iron boots", "You have found a pair of damaged iron boots.", "Equipped the iron boots.", index);
         case 203 :
             return new EquipableItem(0, 0, 0, 0, 0, 2, 0, 5, 2, 5,
-                               "Mithril boots", "You have found a pair unmaintained mithril boots.", "Equipped the mithril boots.", index);
+                               "Mithril boots", "You have found a pair of unmaintained mithril boots.", "Equipped the mithril boots.", index);
+        case 204 :
+            return new EquipableItem(0, 1, 0, 0, 0, 4, 0, 7, 2, 5,
+                               "Wildsteel boots", "You have found a pair of wildsteel boots. They seem to be imbued with magic.", "Equipped the wildsteel boots.", index);
 
         //251-300: weapons
         case 251 :
@@ -79,6 +94,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 253 :
             return new EquipableItem(5, 0, 0, 9, 10, 0, 5, 0, 3, 6,
                                "Mithril sword", "You have found a mithril sword. It looks unmaintained.", "Equipped the mithril sword.", index);
+        case 254 :
+            return new EquipableItem(7, 0, 0, 11, 14, 0, 8, 0, 3, 6,
+                               "Wildsteel sword", "You have found an wildsteel sword. It seems to be imbued with magic.", "Equipped the wildsteel sword.", index);
 
         //Treasure room weapons
         case 261 :
@@ -87,6 +105,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 262 :
             return new EquipableItem(6, 0, 0, -5, 16, 0, -3, -5, 7, 6,
                                "Giant hammer", "You have found an enormous hammer. Anything hit by it will definitely feel it.", "Equipped the giant hammer.", index);
+        case 263 :
+            return new EquipableItem(6, 0, 0, 8, 10, 0, 13, 5, 2, 6,
+                               "Blessed sword", "You have found a sword with a shining blade. It seems to have been blessed.", "Equipped the blessed sword.", index);
 
         //301-350: shields
         case 301 :
@@ -98,6 +119,14 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 303 :
             return new EquipableItem(0, 3, 0, 0, 0, 6, 0, 3, 3, 7,
                                "Mithril shield", "You have found a mithril shield. Seems to be in good condition.", "Equipped the mithril shield.", index);
+        case 304 :
+            return new EquipableItem(0, 5, 0, 0, 0, 8, 0, 5, 3, 7,
+                               "Wildsteel shield", "You have found an wildsteel shield. Seems to be imbued with magic.", "Equipped the wildsteel shield.", index);
+
+        //Secret room shield
+        case 311 :
+            return new EquipableItem(5, 0, 10, 6, 7, 0, 5, 10, 0, 7,
+                               "Void-steel defender", "You have found a parrying dagger made out of void-steel. It very light and durable.", "Equipped the void-steel defender", index);
 
         default :
             return new EquipableItem(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM", index);

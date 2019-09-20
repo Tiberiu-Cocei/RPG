@@ -43,6 +43,11 @@ Rune* RuneList::get_rune(int index) {
             abilities.push_back(abilityList.get_ability(112));
             return new Rune("Rune of alchemy", "", abilities, index);
 
+        case 13 :
+            abilities.push_back(abilityList.get_ability(121));
+            abilities.push_back(abilityList.get_ability(122));
+            return new Rune("Rune of the wild", "", abilities, index);
+
         default :
             abilities.push_back(abilityList.get_ability(0));
             abilities.push_back(abilityList.get_ability(0));

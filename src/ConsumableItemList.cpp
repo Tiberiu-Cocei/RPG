@@ -13,6 +13,10 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
             return new ConsumableItem(35, 0, 0, 0, 0, 0, 0, 1,
                                "Healing Potion II", "You have found a recreation of a healing potion.",
                                "You drink the healing potion. It has a bland taste and watery texture.", index);
+        case 3 :
+            return new ConsumableItem(60, 0, 0, 0, 0, 0, 0, 1,
+                               "Healing Potion III", "You have found a healing potion.",
+                               "You drink the healing potion. It has a sweet taste.", index);
 
         //51-100: combat buffs
         case 51 :
@@ -23,6 +27,10 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
             return new ConsumableItem(0, 5, 7, 9, 6, 4, 5, 1,
                                "Combat Potion II", "You have found a recreation of a combat potion.",
                                "You drink the combat potion. You feel stronger and faster.", index);
+        case 53 :
+            return new ConsumableItem(0, 30, 10, 12, 11, 8, 12, 1,
+                               "Combat Potion III", "You have found a combat potion.",
+                               "You drink the combat potion. You feel an adrenaline rush as your power increases considerably.", index);
 
         case 61 :
             return new ConsumableItem(15, 0, 2, 4, 0, 1, 0, 1,
@@ -32,15 +40,23 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
             return new ConsumableItem(25, 0, 6, 7, 0, 3, 0, 1,
                                "Striker Potion II", "You have found a recreation of a striker potion.",
                                "You drink the striker potion. You feel stronger.", index);
+        case 63 :
+            return new ConsumableItem(40, 0, 8, 9, 0, 6, 0, 1,
+                               "Striker Potion III", "You have found a striker potion.",
+                               "You drink the striker potion. You feel much stronger.", index);
 
         case 71 :
             return new ConsumableItem(20, 5, 0, 0, 3, 0, 3, 1,
                                "Defender Potion I", "You have found a poorly made defender potion.",
                                "You drink the defender potion. You feel a bit more resilient.", index);
         case 72 :
-            return new ConsumableItem(35, 15, 0, 0, 6, 0, 5, 1,
+            return new ConsumableItem(35, 10, 0, 0, 6, 0, 5, 1,
                                "Defender Potion II", "You have found a recreation of a defender potion.",
                                "You drink the defender potion. You become more evasive and you feel your skin become thicker.", index);
+        case 73 :
+            return new ConsumableItem(50, 20, 0, 0, 9, 0, 10, 1,
+                               "Defender Potion III", "You have found a defender potion.",
+                               "You drink the defender potion. You become more evasive and you feel your skin harden.", index);
 
         //100-200: filler drops
         case 100 :
@@ -63,6 +79,14 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
             return new ConsumableItem(15, 0, 0, 0, 0, 0, 0, 1,
                                "Cheese Roll", "You have found a cheese roll.",
                                "You eat the entire roll. It is perplexing how you manage to do so in such a short amount of time.", index);
+        case 105 :
+            return new ConsumableItem(20, 0, 0, 0, 0, 0, 0, 1,
+                               "Mushroom stew", "You have found a packaged bowl of mushroom stew.",
+                               "You eat the mushroom stew. It tastes surprisingly good", index);
+        case 106 :
+            return new ConsumableItem(25, 0, 0, 0, 0, 0, 0, 1,
+                               "Pack of rations", "You have found some packed rations.",
+                               "You eat the rations. They taste bland but are rich in nutrients.", index);
 
         default :
             return new ConsumableItem(0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM", index);
