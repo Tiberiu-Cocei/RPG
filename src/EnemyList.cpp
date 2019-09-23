@@ -166,6 +166,58 @@ Enemy* EnemyList::get_enemy(int index) {
             return new Enemy(enemyStats, "Minotaur", "\"Oh? A challenger? It has been such a long time since anyone has gotten this far.\" \nYou are taken aback by their words and ask: \"What do you mean? Hasn't everyone completed the trial?\" \nAs you finish your question, the minotaur starts to laugh. \"I see they're still keeping up the charade if you truly think that.\" \n\"I apologize, but I cannot tell you the truth. All that you need to know is that I must be defeated if you wish to continue.\" \nAs it doesn't seem you'll be getting any further response, you prepare for battle!",
                              "\"Well.. done..\" said the Minotaur with its last breath, dying shortly afterwards.", consumableDrops, equipableDrops, 165, 6500);
 
+        //31-40: fourth level
+        case 31 :
+            enemyStats = new EnemyStats(135, 79, 79, 74, 75);
+            consumableDrops.push_back(consumableItemList->get_consumable_item(106));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(3));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(4));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(74));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(5));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(155));
+            return new Enemy(enemyStats, "Imp", "From the sky suddenly dives a reddish figure. You avoid its attack and prepare for battle!",
+                             "The imp's body turns to ashes.", consumableDrops, equipableDrops, 76, 500);
+        case 32 :
+            enemyStats = new EnemyStats(163, 73, 81, 76, 82);
+            consumableDrops.push_back(consumableItemList->get_consumable_item(106));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(3));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(4));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(74));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(155));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(205));
+            return new Enemy(enemyStats, "Hellhound", "You hear something charge towards you. You manage to dodge in time and then prepare for battle!",
+                             "The hellhound falls over and dies shortly after.", consumableDrops, equipableDrops, 80, 500);
+        case 33 :
+            enemyStats = new EnemyStats(208, 89, 87, 89, 77);
+            consumableDrops.push_back(consumableItemList->get_consumable_item(106));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(4));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(5));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(64));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(105));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(255));
+            return new Enemy(enemyStats, "Magma Golem", "Lava suddenly bursts in front of you. Rocks from around the eruption levitate and form a humanoid shape.",
+                             "The rocks come undone and fall lifeless to the ground.", consumableDrops, equipableDrops, 89, 750);
+        case 34 :
+            enemyStats = new EnemyStats(305, 94, 95, 92, 90);
+            consumableDrops.push_back(consumableItemList->get_consumable_item(4));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(5));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(5));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(64));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(55));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(305));
+            return new Enemy(enemyStats, "Royal Guard", "A soldier with armor that you recognize as being of the royal army challenges you to a duel!",
+                             "The guard kneels in defeat, dropping their weapon and congratulating you on your victory. They would speak no further.", consumableDrops, equipableDrops, 104, 1000);
+        case 35 :
+            enemyStats = new EnemyStats(1350, 107, 119, 110, 105);
+            consumableDrops.push_back(consumableItemList->get_consumable_item(64));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(64));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(64));
+            consumableDrops.push_back(consumableItemList->get_consumable_item(64));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(305));
+            equipableDrops.push_back(equipableItemList->get_equipable_item(305));
+            return new Enemy(enemyStats, "King", "\"I must congratulate you for reaching the end of the trial. It has been years since anyone has gotten this far.\" \n\"If what you say is true, what exactly happened to the others?\" you ask the King, confused. \n\"They all perished, the King responds. There was one survivor however, until you put them out of their misery that is, in the cave depths.\" \n\"That cannot be true. Everyone returned alive and well.. didn't they?\" you ask in disbelief. \n\"Not quite. Those who went through the trial and failed had been replaced by a doppler. \nA being indistinguishable from a human, created by a powerful rune using a memory imprint of the fallen subject.\" \n\"Why? you ask, distraught\" \n\"Because I could not allow word to spread about the trial. Its purpose is to choose the next King. \nThat person must be able to overcome the trial without any prior knowledge. \nEven runes that can manipulate the mind are ineffective in this regard. \nDeath or never leaving this place for those who fail are the only ways it can happen.\" \nSilence falls as you do not know what to say. It is broken shortly, however. \n\"I believe it is time to end this. Defeat me and you shall take my place. Lose and you shall die.\"",
+                             "\"Congratulations, you have completed the trial and proven your worth.\" With a bright light, his wounds heal rapidly. \nAs the king stands up once more, he puts away his weapon. \n\"You shall begin your formal training in order to take my place, and I shall soon finally rest. \n\"It is a heavy burden that I entrust to you, but I am sure you will do better than me.\"", consumableDrops, equipableDrops, 236, 15000);
+
         default :
             enemyStats = new EnemyStats(100, 100, 100, 100, 100);
             consumableDrops.push_back(consumableItemList->get_consumable_item(0));

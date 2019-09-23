@@ -4,7 +4,7 @@ Saver::Saver() {}
 
 bool Saver::save_game(int levelNumber, int coordinates, Level* level, PlayerStats* playerStats, Equipment* equipment,
                       Inventory* inventory, std::vector<Perk*> playerPerks, Bracelet bracelet, std::string file) {
-    std::string fileName = "../../saves/" + file + ".txt";
+    std::string fileName = "../../saves/" + file;
     std::ofstream saveFile(fileName);
     std::string saveData;
     saveData += "1\n" + std::to_string(levelNumber) + " " + std::to_string(coordinates) + "\n";

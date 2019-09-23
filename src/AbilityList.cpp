@@ -30,7 +30,7 @@ Ability* AbilityList::get_ability(int index){
         case 13 :
             return new Ability("Flow", "Your attacks become fluid like water, increasing their chance of striking the enemy.",
                                "Your arms feel much lighter and their movement fluid. The rune shines brighter, signaling an increase in power.",
-                               true, false, 2, 2, 0.0f, 13, 0, 0, 8, 0);
+                               true, false, 2, 2, 0.0f, 11, 0, 0, 7, 0);
 
         //case 21-30: Rune of air
         case 21 :
@@ -58,7 +58,7 @@ Ability* AbilityList::get_ability(int index){
         case 33 :
             return new Ability("Boiling blade", "Heats your weapon to its boiling point while maintaining its form and shape.",
                                "Your blade becomes extremely hot, its exterior gaining a look of molten magma and your rune shining brighter.",
-                               true, false, 3, 4, 0.0f, 0, 10, 0, 0, 0);
+                               true, false, 3, 4, 0.0f, 0, 9, 0, 0, 0);
 
         //case 101-110: First boss
         case 101 :
@@ -74,7 +74,7 @@ Ability* AbilityList::get_ability(int index){
                                true, false, 0, 0, 1.5f, 0, 0, 0, 0, 0);
         case 112 :
             return new Ability("Glue splash", "", "Your foe launches an attack which you manage to block. However, from their blade shoots out a glue-like mixture which slows your movement.",
-                               true, false, 0, 0, 0.0f, 3, 0, 0, 0, 4);
+                               true, false, 0, 0, 0.0f, 4, 0, 0, 0, 5);
 
         //case 121-130: Third boss
         case 121 :
@@ -83,6 +83,22 @@ Ability* AbilityList::get_ability(int index){
         case 122 :
             return new Ability("Strength sap", "", "A magic circle appears beneath you and saps some of your strength in an instant.",
                                true, false, 0, 0, 0.0f, 0, 8, 0, 5, 0);
+
+        //case 131-140: Fourth level enemies
+        case 131 :
+            return new Ability("Fireball", "", "A ball of fire appears mid-air and shoots in your direction.",
+                               true, false, 0, 0, 1.3f, 0, 0, 0, 0, 0);
+        case 132 :
+            return new Ability("Lava splash", "", "The land cracks beneath your feet and lava splashes forth.",
+                               true, false, 0, 0, 1.6f, 0, 0, 0, 0, 0);
+
+        //case 141-150: Fourth boss
+        case 141 :
+            return new Ability("Elemental strike", "", "A flurry of elements surround the King's blade as he leaps in for an attack.",
+                               true, false, 0, 0, 2.2f, 0, 0, 0, 0, 0);
+        case 142 :
+            return new Ability("Impending doom", "", "A dark magic circle appears beneath you. Immediately after, you feel part of your power fade.",
+                               true, false, 0, 0, 0.0f, 7, 7, 7, 7, 7);
 
         default :
             return new Ability("ERROR_ABILITY", "ERROR_ABILITY", "ERROR_ABILITY", false, false, 0, 0, 0.0f, 0, 0, 0, 0, 0);

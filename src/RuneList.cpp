@@ -48,6 +48,16 @@ Rune* RuneList::get_rune(int index) {
             abilities.push_back(abilityList.get_ability(122));
             return new Rune("Rune of the wild", "", abilities, index);
 
+        case 14 :
+            abilities.push_back(abilityList.get_ability(131));
+            abilities.push_back(abilityList.get_ability(132));
+            return new Rune("Inferior rune of fire", "", abilities, index);
+
+        case 15 :
+            abilities.push_back(abilityList.get_ability(141));
+            abilities.push_back(abilityList.get_ability(142));
+            return new Rune("Rune of the King", "", abilities, index);
+
         default :
             abilities.push_back(abilityList.get_ability(0));
             abilities.push_back(abilityList.get_ability(0));

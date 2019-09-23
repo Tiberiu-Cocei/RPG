@@ -17,7 +17,7 @@ class Level
 {
     public:
         Level(std::string, std::string, std::string, int, EquipableItem*, ConsumableItem*, std::vector<Enemy*>,
-              std::array<char, 225>, int, int, int, std::string, EquipableItem*, std::vector<Perk*>, Rune*, Rune*);
+              std::array<char, 225>, int, int, int, std::string, EquipableItem*, std::vector<Perk*>, Rune*, Rune*, Rune* = NULL);
         ~Level();
         void begin_level();
         void end_level();
@@ -74,6 +74,7 @@ class Level
         std::vector<Perk*> fountainPerks;
         Rune* playerRune;
         Rune* bossRune;
+        Rune* enemyRune;
 };
 
 #endif

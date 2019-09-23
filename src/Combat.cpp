@@ -12,9 +12,12 @@ Combat::Combat() {
     combatMapping.insert(std::make_pair("inventory", 7));
     combatMapping.insert(std::make_pair("use item", 8));
     combatMapping.insert(std::make_pair("use ability", 9));
+    rageState = false;
+    executionerState = false;
+    secondWindState = false;
 }
 
-bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, Bracelet& bracelet, bool isBoss, Rune* bossRune) {
+bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Inventory*& inventory, Enemy*& enemy, Bracelet& bracelet, bool isBoss, Rune* enemyRune) {
     enemy->enemy_encounter();
     while(1) {
         std::cout << "\nEnter command: ";
@@ -40,7 +43,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                 return false;
             }
             else {
-                isDead = enemy_turn(playerStats, enemy, bossRune);
+                isDead = enemy_turn(playerStats, enemy, enemyRune);
                 if(isDead == true) {
                     enemy->get_enemy_stats()->reset_stats();
                     return true;
@@ -57,7 +60,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                 }
                 else if(escapeRoll <= 60 && isBoss == false) {
                     std::cout<<"You failed to escape from your enemy!\n";
-                    isDead = enemy_turn(playerStats, enemy, bossRune);
+                    isDead = enemy_turn(playerStats, enemy, enemyRune);
                     if(isDead == true) {
                         enemy->get_enemy_stats()->reset_stats();
                         return true;
@@ -90,7 +93,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
             } catch(const std::invalid_argument& error) {
                 std::cerr << "Not a number.\n";
             }
-            isDead = enemy_turn(playerStats, enemy, bossRune);
+            isDead = enemy_turn(playerStats, enemy, enemyRune);
             if(isDead == true) {
                 enemy->get_enemy_stats()->reset_stats();
                 return true;
@@ -117,7 +120,7 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
                     return false;
                 }
             }
-            isDead = enemy_turn(playerStats, enemy, bossRune);
+            isDead = enemy_turn(playerStats, enemy, enemyRune);
             if(isDead == true) {
                 enemy->get_enemy_stats()->reset_stats();
                 return true;
@@ -131,15 +134,30 @@ bool Combat::encounter(Equipment*& equipment, PlayerStats*& playerStats, std::ve
 
 bool Combat::player_normal_attack(PlayerStats*& playerStats, std::vector<Perk*> playerPerks, Enemy*& enemy) {
     //checks for Executioner perk
-    if(playerStats->get_perk_state(0) == true && enemy->get_enemy_stats()->get_current_health_points() <= 50) {
-        playerStats->modify_temp_stats(0, 0, playerStats->get_strength()/2, 0, 0, 0);
+    if(playerStats->get_perk_state(0) && enemy->get_enemy_stats()->get_current_health_points() < 50 && !executionerState) {
+        playerStats->gain_temporary_stats_from_perk(0, 0, playerStats->get_strength()/3, 0, 0, 0);
+        executionerState = true;
     }
     //checks for Rage perk
-    if(playerStats->get_perk_state(1) == true && playerStats->get_current_health_points() < 75) {
-        playerStats->modify_temp_stats(0, 0, playerStats->get_strength()/3, 0, 0, 0);
+    if(playerStats->get_perk_state(1) && playerStats->get_current_health_points() < 75 && !rageState) {
+        playerStats->gain_temporary_stats_from_perk(0, 0, playerStats->get_strength()/3, 0, 0, 0);
+        rageState = true;
+    }
+    //checks for Focus perk
+    if(playerStats->get_perk_state(3)) {
+        playerStats->gain_temporary_stats_from_perk(0, 4, 3, 0, 0, 0);
+    }
+    //checks for Second wind perk
+    if(playerStats->get_perk_state(4) && playerStats->get_current_health_points() < 50 && !secondWindState) {
+        playerStats->gain_temporary_stats_from_perk(0, 0, 0, 0, 15, 25);
+        secondWindState = true;
+    }
+    //checks for Runic Absorption perk
+    if(playerStats->get_perk_state(5) && playerStats->get_runic_absorption_count()) {
+        playerStats->change_current_charges(1);
     }
     //checks for Double strike perk
-    if(playerStats->get_perk_state(2) == true) {
+    if(playerStats->get_perk_state(2)) {
         int randValue = rand() % 50 + 1 + (playerStats->get_luck() + playerStats->get_temp_luck())/2;
         if(randValue >= 70) {
             bool isDead = enemy->enemy_defend(playerStats);
@@ -151,24 +169,24 @@ bool Combat::player_normal_attack(PlayerStats*& playerStats, std::vector<Perk*> 
     return enemy->enemy_defend(playerStats);
 }
 
-bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy, Rune* bossRune) {
+bool Combat::enemy_turn(PlayerStats*& playerStats, Enemy*& enemy, Rune* enemyRune) {
     Sleep(600);
     if(enemy->is_stunned() == false) {
-        if(bossRune == NULL) {
+        if(enemyRune == NULL) {
             std::cout<<"\nThe " + enemy->get_name() + " attacks!\n";
             return enemy->enemy_attack(playerStats);
         }
         else {
             int randomAction = rand() % 100 + 1;
-            if(randomAction <= 60) {
+            if(randomAction <= 50) {
                 std::cout<<"\nThe " + enemy->get_name() + " attacks!\n";
                 return enemy->enemy_attack(playerStats);
             }
-            else if (randomAction <= 80) {
-                return bossRune->get_ability_at(0)->use_ability(playerStats, enemy);
+            else if (randomAction <= 83) {
+                return enemyRune->get_ability_at(0)->use_ability(playerStats, enemy);
             }
             else {
-                return bossRune->get_ability_at(1)->use_ability(playerStats, enemy);
+                return enemyRune->get_ability_at(1)->use_ability(playerStats, enemy);
             }
         }
     }
@@ -188,6 +206,13 @@ void Combat::player_victory(PlayerStats*& playerStats, Enemy*& enemy, Inventory*
     }
     playerStats->gain_experience(enemy->get_xp());
     playerStats->change_current_charges(2);
+    reset_states();
+}
+
+void Combat::reset_states() {
+    this->rageState = false;
+    this->executionerState = false;
+    this->secondWindState = false;
 }
 
 Combat::~Combat() {}

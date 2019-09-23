@@ -215,9 +215,7 @@ bool Loader::load_game(int& _levelNumber, int& _coordinates, Level*& level, Play
                     }
                     runes.push_back(rune);
                 }
-                if(index >= 0) {
-                    bracelet.load_runes(runes, runeWieldedIndex);
-                }
+                bracelet.load_runes(runes, runeWieldedIndex);
                 break;
             }
         }

@@ -21,6 +21,7 @@ PlayerStats::PlayerStats(int healthPoints, int attack, int strength, int defense
     for(int i = 0; i < 10; i++) {
         attunedPerks[i] = false;
     }
+    runicAbsorptionCount = 0;
 }
 
 void PlayerStats::gain_experience(int experience) {
@@ -172,8 +173,8 @@ void PlayerStats::get_stats() {
     int strength = get_strength() + tempStrength;
     ownStats += std::to_string(strength) + " total strength. ";
     if(strength <= 10) ownStats += "You feel extremely weak.\n";
-    else if(strength <= 20) ownStats += "Your muscle are not developed.\n";
-    else if(strength <= 30) ownStats += "You regret not training your muscles.\n";
+    else if(strength <= 20) ownStats += "Your muscles are barely noticeable.\n";
+    else if(strength <= 30) ownStats += "You regret not developing your muscles.\n";
     else if(strength <= 40) ownStats += "You can probably lift a boulder.\n";
     else if(strength <= 60) ownStats += "You're strong enough to fist fight a weaker enemy.\n";
     else if(strength <= 80) ownStats += "Your muscles are pronounced and developed.\n";
@@ -239,6 +240,16 @@ void PlayerStats::gain_stats_from_perk(int xpCost, int dmgBonus, int dmgReductio
     set_defense(get_defense() + defense);
     set_luck(get_luck() + luck);
     set_evasion(get_evasion() + evasion);
+}
+
+void PlayerStats::gain_temporary_stats_from_perk(int tempHealthPoints, int tempAttack, int tempStrength, int tempDefense, int tempLuck, int tempEvasion) {
+    this->tempHealthPoints += tempHealthPoints;
+    set_current_health_points(get_current_health_points() + tempHealthPoints);
+    this->tempAttack += tempAttack;
+    this->tempStrength += tempStrength;
+    this->tempDefense += tempDefense;
+    this->tempLuck += tempLuck;
+    this->tempEvasion += tempEvasion;
 }
 
 void PlayerStats::regen_health() {
@@ -376,6 +387,17 @@ void PlayerStats::load_special_stats(int experience, int hpRegen, int bonusHeali
 void PlayerStats::load_unique_perks(bool attunedPerks[10]) {
     for(int i = 0; i < 10; i++) {
         this->attunedPerks[i] = attunedPerks[i];
+    }
+}
+
+bool PlayerStats::get_runic_absorption_count() {
+    if(this->runicAbsorptionCount == 3) {
+        this->runicAbsorptionCount = 0;
+        return true;
+    }
+    else {
+        this->runicAbsorptionCount++;
+        return false;
     }
 }
 

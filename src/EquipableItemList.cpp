@@ -17,6 +17,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 4 :
             return new EquipableItem(0, 2, 0, 0, 0, 5, 0, 5, 2, 1,
                                "Wildsteel helmet", "You have found an wildsteel helmet. It seems to be imbued with magic.", "Equipped the wildsteel helmet.", index);
+        case 5 :
+            return new EquipableItem(0, 3, 0, 0, 0, 7, 0, 8, 2, 1,
+                               "Royal helmet", "You have found a royal helmet. It is identical to that worn by the royal elite.", "Equipped the royal helmet.", index);
 
         //Secret room helmet
         case 11 :
@@ -36,6 +39,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 54 :
             return new EquipableItem(0, 3, 0, 0, 0, 8, 0, 7, 3, 2,
                                "Wildsteel body armor", "You have found an wildsteel body armor. It seems to be imbued with magic.", "Equipped the wildsteel body armor.", index);
+        case 55 :
+            return new EquipableItem(0, 4, 0, 0, 0, 11, 0, 9, 4, 2,
+                               "Royal body armor", "You have found a royal body armor. It is identical to that worn by the royal elite.", "Equipped the royal body armor.", index);
 
         //Secret room body armor
         case 61 :
@@ -55,6 +61,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 104 :
             return new EquipableItem(0, 2, 0, 0, 0, 7, 0, 7, 2, 3,
                                "Wildsteel leg armor", "You have found an wildsteel leg armor. It seems to be imbued with magic.", "Equipped the wildsteel leg armor.", index);
+        case 105 :
+            return new EquipableItem(0, 3, 0, 0, 0, 9, 0, 9, 3, 3,
+                               "Royal leg armor", "You have found a royal leg armor. It is identical to that worn by the royal elite.", "Equipped the royal leg armor.", index);
 
         //151-200: gloves
         case 151 :
@@ -69,6 +78,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 154 :
             return new EquipableItem(0, 1, 0, 5, 0, 4, 4, 0, 2, 4,
                                "Wildsteel gloves", "You have found a pair of wildsteel gloves. They seem to be imbued with magic.", "Equipped the wildsteel gloves.", index);
+        case 155 :
+            return new EquipableItem(0, 1, 0, 7, 0, 6, 6, 0, 2, 4,
+                               "Royal gloves", "You have found a pair of royal gloves. They are identical to that worn by the royal elite.", "Equipped the royal gloves.", index);
 
         //201-250: boots
         case 201 :
@@ -83,6 +95,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 204 :
             return new EquipableItem(0, 1, 0, 0, 0, 4, 0, 7, 2, 5,
                                "Wildsteel boots", "You have found a pair of wildsteel boots. They seem to be imbued with magic.", "Equipped the wildsteel boots.", index);
+        case 205 :
+            return new EquipableItem(0, 1, 0, 0, 0, 6, 0, 9, 2, 5,
+                               "Royal boots", "You have found a pair of royal boots. They are identical to that worn by the royal elite.", "Equipped the royal boots.", index);
 
         //251-300: weapons
         case 251 :
@@ -97,6 +112,9 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 254 :
             return new EquipableItem(7, 0, 0, 11, 14, 0, 8, 0, 3, 6,
                                "Wildsteel sword", "You have found an wildsteel sword. It seems to be imbued with magic.", "Equipped the wildsteel sword.", index);
+        case 255 :
+            return new EquipableItem(9, 0, 0, 14, 17, 0, 11, 0, 4, 6,
+                               "Royal sword", "You have found a royal sword. It is identical to that worn by the royal elite.", "Equipped the royal sword.", index);
 
         //Treasure room weapons
         case 261 :
@@ -106,8 +124,16 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
             return new EquipableItem(6, 0, 0, -5, 16, 0, -3, -5, 7, 6,
                                "Giant hammer", "You have found an enormous hammer. Anything hit by it will definitely feel it.", "Equipped the giant hammer.", index);
         case 263 :
-            return new EquipableItem(6, 0, 0, 8, 10, 0, 13, 5, 2, 6,
+            return new EquipableItem(6, 0, 0, 8, 10, 0, 13, 5, 3, 6,
                                "Blessed sword", "You have found a sword with a shining blade. It seems to have been blessed.", "Equipped the blessed sword.", index);
+        case 264 :
+            return new EquipableItem(15, 0, 0, 17, 0, 0, 17, 10, 2, 6,
+                               "Divine Rapier", "You have found a peculiar looking rapier. In scribbled letters there is written something about defending an Ancient.", "Equipped the divine rapier.", index);
+
+        //Secret room weapon
+        case 271 :
+            return new EquipableItem(11, 0, 0, 17, 20, 0, 13, 5, 0, 6,
+                               "Void-steel sword", "You have found a sword that was masterfully made from a very light and durable material.", "Equipped the void-steel sword", index);
 
         //301-350: shields
         case 301 :
@@ -122,11 +148,14 @@ EquipableItem* EquipableItemList::get_equipable_item(int index) {
         case 304 :
             return new EquipableItem(0, 5, 0, 0, 0, 8, 0, 5, 3, 7,
                                "Wildsteel shield", "You have found an wildsteel shield. Seems to be imbued with magic.", "Equipped the wildsteel shield.", index);
+        case 305 :
+            return new EquipableItem(0, 7, 0, 0, 0, 11, 0, 8, 4, 7,
+                               "Royal shield", "You have found a royal shield. It is identical to that worn by the royal elite.", "Equipped the royal shield.", index);
 
         //Secret room shield
         case 311 :
             return new EquipableItem(5, 0, 10, 6, 7, 0, 5, 10, 0, 7,
-                               "Void-steel defender", "You have found a parrying dagger made out of void-steel. It very light and durable.", "Equipped the void-steel defender", index);
+                               "Void-steel defender", "You have found a parrying dagger made out of void-steel. It feels very light and durable.", "Equipped the void-steel defender", index);
 
         default :
             return new EquipableItem(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "ERROR_ITEM", "ERROR_ITEM", "ERROR_ITEM", index);

@@ -3,10 +3,10 @@
 Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, int textColorNr, EquipableItem* treasureEquipable,
              ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout,
              int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates, std::string clueDesc,
-             EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks, Rune* playerRune, Rune* bossRune)
+             EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks, Rune* playerRune, Rune* bossRune, Rune* enemyRune)
              : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), treasureEquipable(treasureEquipable),
                treasureConsumable(treasureConsumable), enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc),
-               secretEquipable(secretEquipable), fountainPerks(fountainPerks), playerRune(playerRune), bossRune(bossRune) {
+               secretEquipable(secretEquipable), fountainPerks(fountainPerks), playerRune(playerRune), bossRune(bossRune), enemyRune(enemyRune) {
     this->textColorNr = textColorNr;
     this->equipableTreasureCoordinates = equipableTreasureCoordinates;
     this->consumableTreasureCoordinates = consumableTreasureCoordinates;
@@ -239,7 +239,7 @@ bool Level::generic_room(int coordinates, Equipment*& equipment, PlayerStats*& p
                 enemy = enemyList.at(0);
             }
         }
-        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, enemy, bracelet);
+        playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, enemy, bracelet, false, enemyRune);
     }
     return playerDeath;
 }
@@ -251,7 +251,7 @@ bool Level::boss_room(Equipment*& equipment, PlayerStats*& playerStats, std::vec
         playerDeath = combat->encounter(equipment, playerStats, playerPerks, inventory, boss, bracelet, true, bossRune);
         if(playerDeath == false) {
             this->isBossBeaten = true;
-            playerStats->increase_max_charges(2);
+            playerStats->increase_max_charges(1);
         }
         return playerDeath;
     }

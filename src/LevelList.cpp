@@ -21,6 +21,7 @@ Level* LevelList::get_level(int index) {
     ConsumableItem* treasureConsumable;
     Rune* playerRune;
     Rune* bossRune;
+    Rune* enemyRune;
     std::vector<Enemy*> enemies;
     std::vector<Perk*> fountainPerks;
     std::array<char, 225> roomLayout;
@@ -68,7 +69,7 @@ Level* LevelList::get_level(int index) {
             equipableTreasureCoordinates = 88;
             consumableTreasureCoordinates = 37;
             initialCoordinates = 207;
-            clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee in these p'rilous times. \nFrom whence thee beganeth, walketh towards wh're the darkness reclaim the landeth as the travelling lamp sets.";
+            clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee. \nFrom whence thee beganeth, walketh towards wh're the darkness reclaim the landeth as the travelling lamp sets.";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout, equipableTreasureCoordinates,
                              consumableTreasureCoordinates, initialCoordinates, clueDesc, secretEquipable, fountainPerks, playerRune, bossRune);
 
@@ -115,7 +116,7 @@ Level* LevelList::get_level(int index) {
             equipableTreasureCoordinates = 171;
             consumableTreasureCoordinates = 115;
             initialCoordinates = 204;
-            clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee in these p'rilous times. \nFrom whence thee w're shower'd by golden lighteth, walketh towards wh're the meek reside.";
+            clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee. \nFrom whence thee w're shower'd by golden lighteth, walketh towards wh're the meek reside.";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout, equipableTreasureCoordinates,
                              consumableTreasureCoordinates, initialCoordinates,  clueDesc, secretEquipable, fountainPerks, playerRune, bossRune);
 
@@ -163,9 +164,56 @@ Level* LevelList::get_level(int index) {
             equipableTreasureCoordinates = 63;
             consumableTreasureCoordinates = 57;
             initialCoordinates = 196;
-            clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee in these p'rilous times. \nWhen thee ent'r the lodging with a windy stone thy mirr'r ent'rs the hidden one.";
+            clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee. \nWhen thee ent'r the lodging with a windy stone thy mirr'r ent'rs the hidden one.";
             return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout, equipableTreasureCoordinates,
                              consumableTreasureCoordinates, initialCoordinates,  clueDesc, secretEquipable, fountainPerks, playerRune, bossRune);
+
+        case 4 :
+            levelName = "Volcano";
+            beginDesc = "Heat is the only thing you can feel at this point. You're sweaty and feel very uncomfortable, but must press on nonetheless.";
+            endDesc = "Knowing you do not have much of a choice, you follow him out of the volcanic ruins and prepare for a new life.";
+            textColorNr = 12;
+            treasureEquipable = equipableList->get_equipable_item(264);
+            treasureConsumable = consumableList->get_consumable_item(54);
+            secretEquipable = equipableList->get_equipable_item(271);
+            playerRune = runeList.get_rune(4);
+            enemyRune = runeList.get_rune(14);
+            bossRune = runeList.get_rune(15);
+            enemies.push_back(enemyList->get_enemy(31));
+            enemies.push_back(enemyList->get_enemy(32));
+            enemies.push_back(enemyList->get_enemy(33));
+            enemies.push_back(enemyList->get_enemy(34));
+            enemies.push_back(enemyList->get_enemy(35));
+            fountainPerks.push_back(perkList->get_perk(31));
+            fountainPerks.push_back(perkList->get_perk(32));
+            fountainPerks.push_back(perkList->get_perk(33));
+            fountainPerks.push_back(perkList->get_perk(34));
+            fountainPerks.push_back(perkList->get_perk(35));
+            fountainPerks.push_back(perkList->get_perk(36));
+            fountainPerks.push_back(perkList->get_perk(37));
+            roomLayout = {
+                'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',
+                'X', 'X', 'X', 'O', 'O', 'X', 'X', 'X', 'X', 'X', 'O', 'O', 'O', 'O', 'X',
+                'X', 'X', 'O', 'O', 'O', 'X', 'O', 'X', 'O', 'X', 'T', 'O', 'X', 'B', 'X',
+                'X', 'X', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'X', 'O', 'O', 'X', 'X',
+                'X', 'O', 'X', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X', 'X', 'X',
+                'X', 'O', 'X', 'O', 'X', 'X', 'O', 'S', 'O', 'O', 'X', 'O', 'X', 'X', 'X',
+                'X', 'O', 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'X', 'X', 'X', 'O', 'C', 'X',
+                'X', 'O', 'O', 'O', 'O', 'X', 'X', 'O', 'X', 'X', 'X', 'O', 'O', 'O', 'X',
+                'X', 'X', 'O', 'O', 'O', 'O', 'X', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'X',
+                'X', 'X', 'O', 'O', 'O', 'O', 'X', 'O', 'X', 'O', 'O', 'O', 'O', 'R', 'X',
+                'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X',
+                'X', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'X', 'X',
+                'X', 'O', 'X', 'O', 'O', 'X', 'X', 'X', 'O', 'O', 'X', 'O', 'O', 'O', 'X',
+                'X', 'F', 'O', 'O', 'O', 'O', 'T', 'X', 'O', 'X', 'X', 'X', 'X', 'X', 'X',
+                'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'
+            };
+            equipableTreasureCoordinates = 201;
+            consumableTreasureCoordinates = 40;
+            initialCoordinates = 198;
+            clueDesc = "I greeteth thee, burden'd one. I wisheth to bringeth a glimm'r of hope to thee. \nThe illusi'n lies in the he'rt of the volcano.";
+            return new Level(levelName, beginDesc, endDesc, textColorNr, treasureEquipable, treasureConsumable, enemies, roomLayout, equipableTreasureCoordinates,
+                             consumableTreasureCoordinates, initialCoordinates,  clueDesc, secretEquipable, fountainPerks, playerRune, bossRune, enemyRune);
 
         default :
             levelName = "ERROR_LEVEL";

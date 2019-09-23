@@ -24,6 +24,7 @@ class PlayerStats : public Stats
         void gain_experience(int);
         int get_experience();
         void gain_stats_from_perk(int, int, int, int, int, int, int, int, int, int, int, int);
+        void gain_temporary_stats_from_perk(int, int, int, int, int, int);
         void regen_health();
         int get_bonus_healing();
         int get_escape_bonus();
@@ -42,6 +43,7 @@ class PlayerStats : public Stats
         void load_damage_stats(int, int);
         void load_special_stats(int, int, int, int, int, int);
         void load_unique_perks(bool[10]);
+        bool get_runic_absorption_count();
 
     private:
         int tempHealthPoints;
@@ -59,6 +61,7 @@ class PlayerStats : public Stats
         int currentCharges;
         int maxCharges;
         bool attunedPerks[10]; //0 - Executioner
+        int runicAbsorptionCount;
 };
 
 #endif

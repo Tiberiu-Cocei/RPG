@@ -17,6 +17,14 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
             return new ConsumableItem(60, 0, 0, 0, 0, 0, 0, 1,
                                "Healing Potion III", "You have found a healing potion.",
                                "You drink the healing potion. It has a sweet taste.", index);
+        case 4 :
+            return new ConsumableItem(100, 0, 0, 0, 0, 0, 0, 1,
+                               "Healing Potion IV", "You have found a superior healing potion.",
+                               "You drink the healing potion. It has a sweet taste.", index);
+        case 5 :
+            return new ConsumableItem(150, 0, 0, 0, 0, 0, 0, 1,
+                               "Healing Potion V", "You have found a masterfully-made healing potion.",
+                               "You drink the healing potion. It tastes heavenly.", index);
 
         //51-100: combat buffs
         case 51 :
@@ -31,6 +39,10 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
             return new ConsumableItem(0, 30, 10, 12, 11, 8, 12, 1,
                                "Combat Potion III", "You have found a combat potion.",
                                "You drink the combat potion. You feel an adrenaline rush as your power increases considerably.", index);
+        case 54 :
+            return new ConsumableItem(0, 50, 13, 15, 14, 10, 13, 1,
+                               "Combat Potion III", "You have found a superior combat potion.",
+                               "You drink the combat potion. You feel an adrenaline rush as your power increases considerably.", index);
 
         case 61 :
             return new ConsumableItem(15, 0, 2, 4, 0, 1, 0, 1,
@@ -44,6 +56,10 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
             return new ConsumableItem(40, 0, 8, 9, 0, 6, 0, 1,
                                "Striker Potion III", "You have found a striker potion.",
                                "You drink the striker potion. You feel much stronger.", index);
+        case 64 :
+            return new ConsumableItem(75, 0, 11, 14, 0, 9, 0, 1,
+                               "Striker Potion IV", "You have found a superior striker potion.",
+                               "You drink the striker potion. You feel much stronger.", index);
 
         case 71 :
             return new ConsumableItem(20, 5, 0, 0, 3, 0, 3, 1,
@@ -56,6 +72,10 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
         case 73 :
             return new ConsumableItem(50, 20, 0, 0, 9, 0, 10, 1,
                                "Defender Potion III", "You have found a defender potion.",
+                               "You drink the defender potion. You become more evasive and you feel your skin harden.", index);
+        case 74 :
+            return new ConsumableItem(100, 35, 0, 0, 11, 0, 13, 1,
+                               "Defender Potion IV", "You have found a superior defender potion.",
                                "You drink the defender potion. You become more evasive and you feel your skin harden.", index);
 
         //100-200: filler drops

@@ -223,7 +223,7 @@ void Game::play() {
                 currentCoordinates = level->get_initial_coordinates();
             }
             else {
-                std::cout<<"Congratulations! You have cleared all the current content of the game!\n";
+                std::cout<<"Congratulations! You have finished the game!\n";
                 getline(std::cin, itemIndex); //prevents console from closing instantly
                 gameOver = true;
             }
@@ -239,12 +239,14 @@ void Game::game_introduction() {
     std::cout<<"Do you wish to view the story introduction? (Yes/No)\n";
     std::getline(std::cin, viewIntro);
     if(viewIntro == "Yes" || viewIntro == "yes") {
-        std::cout<<"\nToday is the last day of the month. As is tradition, one of the young adults from the village will be sent to the Path of Trial.\n";
+        std::cout<<"\nToday is the last day of the month. As is tradition, one of the young adults from the village will be sent to the King's Trial.\n";
         Sleep(6000);
-        std::cout<<"All you know is that those who undergo it act different after the ordeal. Many leave the village after completing the trial, never to return.\n";
-        Sleep(6000);
-        std::cout<<"The elders say that they matured, but it did little to help make your bad feeling go away.\n";
-        Sleep(3000);
+        std::cout<<"It is believed that the trial was created by the King in order to keep the young fit and combat-ready, in the event of a war.\n";
+        Sleep(4500);
+        std::cout<<"Since the choice is arbitrary, many train hoping they would be chosen, in order to make a name for themselves.\n";
+        Sleep(4000);
+        std::cout<<"What happens during the trial is unclear. Everyone makes it out in one piece but refuse to talk about it, simply returning to their ordinary lives.\n";
+        Sleep(5500);
         std::cout<<"You get dressed and go to the gathering. Like always, a mysterious man wearing a cloak that covers him entirely is waiting in the middle of the village.\n";
         Sleep(6000);
         std::cout<<"Once the village has gathered, the elders signal everyone to become quiet. They call the youth to come closer to the center. This includes you.\n";
@@ -277,8 +279,6 @@ void Game::game_introduction() {
         Sleep(3000);
         std::cout<<"\"Prepare yourself and meet us near the entrance of the cave at dusk.\"\n";
         Sleep(3000);
-        std::cout<<"His soothing voice helped calm you further, and with the goal in mind, you feel hopeful. Still, the bad feeling remains.\n";
-        Sleep(4500);
         std::cout<<"Hours later, the time has come. Fully prepared, you go and meet the elders. They show you the entrance of the cave.\n";
         Sleep(4500);
         std::cout<<"You look at it. This is the cave that only opens up during this time of month, and closes itself as the sun sets.\n\n";

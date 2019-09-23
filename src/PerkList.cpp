@@ -60,6 +60,22 @@ Perk* PerkList::get_perk(int index) {
         case 29 :
             return new Perk("Double strike", "Chance to attack twice, 3000 XP", 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, index);
 
+        //31-40: Perks for the fourth level
+        case 31 :
+            return new Perk("Vitality IV", "+50 max hp, 3000 XP", 3000, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, index);
+        case 32 :
+            return new Perk("Combat Blessing II", "+6 attack, +6 strength, +6 defense, +6 luck, +6 evasion, 4250 XP", 4250, 0, 0, 0, 6, 6, 6, 6, 6, 0, 0, 0, 0, -1, index);
+        case 33 :
+            return new Perk("Sharpened Blade III", "+10 damage bonus, 5000 XP", 5000, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, index);
+        case 34 :
+            return new Perk("Thick Skin II", "+5 damage reduction, 5000 XP", 5000, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, index);
+        case 35 :
+            return new Perk("Focus", "Gain bonus attack and strength with every attack, 10000 XP", 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, index);
+        case 36 :
+            return new Perk("Second wind", "Gain bonus evasion and luck when health falls below 50, 10000 XP", 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, index);
+        case 37 :
+            return new Perk("Runic absorption", "Gain a charge every third turn, 10000 XP", 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, index);
+
         default :
             return new Perk("ERROR_PERK", "ERROR_PERK", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, index);
     }

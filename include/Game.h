@@ -28,7 +28,7 @@ class Game
         void play();
         void game_introduction();
         bool gameOver;
-        const int numberOfLevels = 3;
+        const int numberOfLevels = 4;
         int currentLevel, currentCoordinates, commandValue, itemIndexInt;
         std::string commandKey, itemIndex;
         std::map<std::string, int> commandMapping;
