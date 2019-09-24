@@ -26,7 +26,7 @@ Ability* AbilityList::get_ability(int index){
         case 12 :
             return new Ability("Drown", "Floods your foe in water in an attempt to drown them. Immobilizes the foe.",
                                "An increasing amount of water appears out of thin air, covering your enemy entirely. \nYour foe falls to the ground, being unable to attack the next turn.",
-                               false, true, 3, 2, 1.65f, 0, 0, 0, 0, 0);
+                               false, true, 3, 2, 2.35f, 0, 0, 0, 0, 0);
         case 13 :
             return new Ability("Flow", "Your attacks become fluid like water, increasing their chance of striking the enemy.",
                                "Your arms feel much lighter and their movement fluid. The rune shines brighter, signaling an increase in power.",
@@ -36,11 +36,11 @@ Ability* AbilityList::get_ability(int index){
         case 21 :
             return new Ability("Tornado", "Bends the air around your foe, making it swirl violently.",
                                "Your enemy is hit by a tornado of wind, leading to a high number of cuts to appear on their body.",
-                               false, false, 2, 3, 1.9f, 0, 0, 0, 0, 0);
+                               false, false, 2, 3, 2.4f, 0, 0, 0, 0, 0);
         case 22 :
             return new Ability("Air slice", "Strikes your enemy from afar with a sharp ripple of air and sends you flying backwards.",
                                "You strike directly in front of you, creating a ripple of air that is headed towards the enemy and launches you backwards. \nYour foe must close the distance, thus being unable to attack the next turn",
-                               false, true, 3, 3, 1.5f, 0, 0, 0, 0, 0);
+                               false, true, 3, 3, 1.8f, 0, 0, 0, 0, 0);
         case 23 :
             return new Ability("Blur", "Manipulates the air around you, making you seem blurred to the enemy and enhancing the rune.",
                                "The air around you becomes twisted, increasing your evasion and the power of the rune.",
@@ -50,15 +50,15 @@ Ability* AbilityList::get_ability(int index){
         case 31 :
             return new Ability("Explosion", "Unleashes a fiery explosion upon your foe, dealing heavy damage.",
                                "With a loud boom, your enemy is hit by a violent explosion.",
-                               false, false, 4, 4, 3.0f, 0, 0, 0, 0, 0);
+                               false, false, 4, 4, 4.0f, 0, 0, 0, 0, 0);
         case 32 :
             return new Ability("Ignite", "Ignites your foe on fire, forcing it to extinguish itself.",
                                "Your enemy is suddenly set on fire. They attempt to extinguish themselves in a panic, thus being unable to attack the next turn.",
-                               false, true, 3, 4, 2.0f, 0, 0, 0, 0, 0);
+                               false, true, 3, 4, 2.5f, 0, 0, 0, 0, 0);
         case 33 :
             return new Ability("Boiling blade", "Heats your weapon to its boiling point while maintaining its form and shape.",
                                "Your blade becomes extremely hot, its exterior gaining a look of molten magma and your rune shining brighter.",
-                               true, false, 3, 4, 0.0f, 0, 9, 0, 0, 0);
+                               true, false, 3, 4, 0.0f, 0, 14, 0, 0, 0);
 
         //case 101-110: First boss
         case 101 :
@@ -66,7 +66,7 @@ Ability* AbilityList::get_ability(int index){
                                true, false, 0, 0, 1.3f, 0, 0, 0, 0, 0);
         case 102 :
             return new Ability("Armor strike", "", "Numerous small appendages emerge from underground and attempt break your armor. You manage to cut them down but parts of your armor fell to the ground.",
-                               true, false, 0, 0, 0.0f, 0, 0, 4, 0, 0);
+                               true, false, 0, 0, 0.0f, 0, 0, -4, 0, 0);
 
         //case 111-120: Second boss
         case 111 :
@@ -74,7 +74,7 @@ Ability* AbilityList::get_ability(int index){
                                true, false, 0, 0, 1.5f, 0, 0, 0, 0, 0);
         case 112 :
             return new Ability("Glue splash", "", "Your foe launches an attack which you manage to block. However, from their blade shoots out a glue-like mixture which slows your movement.",
-                               true, false, 0, 0, 0.0f, 4, 0, 0, 0, 5);
+                               true, false, 0, 0, 0.0f, -4, 0, 0, 0, -5);
 
         //case 121-130: Third boss
         case 121 :
@@ -82,7 +82,7 @@ Ability* AbilityList::get_ability(int index){
                                true, false, 0, 0, 1.5f, 0, 0, 0, 0, 0);
         case 122 :
             return new Ability("Strength sap", "", "A magic circle appears beneath you and saps some of your strength in an instant.",
-                               true, false, 0, 0, 0.0f, 0, 8, 0, 5, 0);
+                               true, false, 0, 0, 0.0f, 0, -8, 0, -5, 0);
 
         //case 131-140: Fourth level enemies
         case 131 :
@@ -95,10 +95,10 @@ Ability* AbilityList::get_ability(int index){
         //case 141-150: Fourth boss
         case 141 :
             return new Ability("Elemental strike", "", "A flurry of elements surround the King's blade as he leaps in for an attack.",
-                               true, false, 0, 0, 2.2f, 0, 0, 0, 0, 0);
+                               true, false, 0, 0, 1.9f, 0, 0, 0, 0, 0);
         case 142 :
             return new Ability("Impending doom", "", "A dark magic circle appears beneath you. Immediately after, you feel part of your power fade.",
-                               true, false, 0, 0, 0.0f, 7, 7, 7, 7, 7);
+                               true, false, 0, 0, 0.0f, -6, -6, -6, -6, -6);
 
         default :
             return new Ability("ERROR_ABILITY", "ERROR_ABILITY", "ERROR_ABILITY", false, false, 0, 0, 0.0f, 0, 0, 0, 0, 0);

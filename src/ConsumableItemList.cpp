@@ -41,7 +41,7 @@ ConsumableItem* ConsumableItemList::get_consumable_item(int index) {
                                "You drink the combat potion. You feel an adrenaline rush as your power increases considerably.", index);
         case 54 :
             return new ConsumableItem(0, 50, 13, 15, 14, 10, 13, 1,
-                               "Combat Potion III", "You have found a superior combat potion.",
+                               "Combat Potion IV", "You have found a superior combat potion.",
                                "You drink the combat potion. You feel an adrenaline rush as your power increases considerably.", index);
 
         case 61 :

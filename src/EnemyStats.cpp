@@ -90,7 +90,7 @@ void EnemyStats::get_stats() {
     else if(defense <= 60) enemyStats += "Their defense is on par with a proper set of iron armor.\n";
     else if(defense <= 80) enemyStats += "Their defense is sturdy and reinforced.\n";
     else if(defense <= 100) enemyStats += "Their defense is on par with armor made using the most expensive of materials.\n";
-    else enemyStats += "Their defense is of legend and extremely hard to penetrate.\n";
+    else enemyStats += "Their defense is extremely hard to penetrate.\n";
 
     int evasion = get_evasion();
     enemyStats += std::to_string(evasion) + " total evasion. ";

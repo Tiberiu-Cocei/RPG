@@ -99,7 +99,7 @@ void Level::show_user_map() {
                 std::cout<<userMap.at(i*15 + j)<<" ";
             }
             else {
-                SetConsoleTextAttribute(this->hConsole, 45);
+                SetConsoleTextAttribute(this->hConsole, 85);
                 std::cout<<" ";
                 SetConsoleTextAttribute(this->hConsole, this->textColorNr);
                 std::cout<<" ";
