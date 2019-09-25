@@ -43,7 +43,7 @@ void Inventory::use_item(int index, Equipment*& equipment, PlayerStats*& playerS
         consumableItems.erase(consumableItems.begin() + index - 1);
         currentWeight -= item->get_weight();
     }
-    else if(index > 0 && index < startingEquipableIndex + equipableItems.size()) {
+    else if(index > 0 && (unsigned)index < startingEquipableIndex + equipableItems.size()) {
         EquipableItem* newItem = equipableItems.at(index - startingEquipableIndex);
         EquipableItem* oldItem = equipment->equip_item(newItem, playerStats);
         equipableItems.erase(equipableItems.begin() + index - startingEquipableIndex);
@@ -62,7 +62,7 @@ void Inventory::drop_item(int index) {
         currentWeight -= item->get_weight();
         std::cout<<"Dropped the " + item->get_name() + ".\n";
     }
-    else if(index > 0 && index < startingEquipableIndex + equipableItems.size()) {
+    else if(index > 0 && (unsigned)index < startingEquipableIndex + equipableItems.size()) {
         EquipableItem* item = equipableItems.at(index - startingEquipableIndex);
         equipableItems.erase(equipableItems.begin() + index - startingEquipableIndex);
         currentWeight -= item->get_weight();

@@ -12,7 +12,7 @@ void Bracelet::equip_rune(int index) {
     if(this->runes.size() == 0) {
         std::cout<<"You do not have any runes. Perhaps there are places of power where you could find them.\n";
     }
-    else if(index <= 0 || index > this->runes.size()) {
+    else if(index <= 0 || (unsigned)index > this->runes.size()) {
         std::cout<<"Invalid index.\n";
     }
     else {

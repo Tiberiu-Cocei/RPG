@@ -98,7 +98,7 @@ bool Loader::load_game(int& _levelNumber, int& _coordinates, Level*& level, Play
                     return false;
                 }
                 else {
-                    playerStats->modify_temp_stats(tempHealthPoints, tempAttack, tempStrength, tempDefense, tempLuck, tempEvasion);
+                    playerStats->load_temporary_stats(tempHealthPoints, tempAttack, tempStrength, tempDefense, tempLuck, tempEvasion);
                 }
                 break;
             }

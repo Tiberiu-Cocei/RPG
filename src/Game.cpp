@@ -147,7 +147,7 @@ void Game::play() {
                 if(playerPerks.size() == 0) {
                     std::cout<<"You do not know any perks at the moment. The elders did mention something about a fountain of knowledge..\n";
                 }
-                else if(perkIndexInt > 0 && perkIndexInt <= playerPerks.size()) {
+                else if(perkIndexInt > 0 && (unsigned)perkIndexInt <= playerPerks.size()) {
                     playerPerks.at(perkIndexInt - 1)->attune_perk(playerStats, inventory);
                 }
                 else {

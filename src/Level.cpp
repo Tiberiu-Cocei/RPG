@@ -4,9 +4,9 @@ Level::Level(std::string levelName, std::string beginDesc, std::string endDesc, 
              ConsumableItem* treasureConsumable, std::vector<Enemy*> enemyList, std::array<char, 225> roomLayout,
              int equipableTreasureCoordinates, int consumableTreasureCoordinates, int initialCoordinates, std::string clueDesc,
              EquipableItem* secretEquipable, std::vector<Perk*> fountainPerks, Rune* playerRune, Rune* bossRune, Rune* enemyRune)
-             : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), treasureEquipable(treasureEquipable),
-               treasureConsumable(treasureConsumable), enemyList(enemyList), roomLayout(roomLayout), clueDesc(clueDesc),
-               secretEquipable(secretEquipable), fountainPerks(fountainPerks), playerRune(playerRune), bossRune(bossRune), enemyRune(enemyRune) {
+             : levelName(levelName), beginDesc(beginDesc), endDesc(endDesc), clueDesc(clueDesc), treasureEquipable(treasureEquipable),
+               secretEquipable(secretEquipable), treasureConsumable(treasureConsumable), enemyList(enemyList), roomLayout(roomLayout),
+               fountainPerks(fountainPerks), playerRune(playerRune), bossRune(bossRune), enemyRune(enemyRune) {
     this->textColorNr = textColorNr;
     this->equipableTreasureCoordinates = equipableTreasureCoordinates;
     this->consumableTreasureCoordinates = consumableTreasureCoordinates;

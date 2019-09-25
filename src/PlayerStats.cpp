@@ -370,6 +370,15 @@ void PlayerStats::load_base_stats(int currentHealthPoints, int healthPoints, int
     set_evasion(evasion);
 }
 
+void PlayerStats::load_temporary_stats(int tempHealthPoints, int tempAttack, int tempStrength, int tempDefense, int tempLuck, int tempEvasion) {
+    this->tempHealthPoints = tempHealthPoints;
+    this->tempAttack = tempAttack;
+    this->tempStrength = tempStrength;
+    this->tempDefense = tempDefense;
+    this->tempLuck = tempLuck;
+    this->tempEvasion = tempEvasion;
+}
+
 void PlayerStats::load_damage_stats(int dmgBonus, int dmgReduction) {
     this->dmgBonus = dmgBonus;
     this->dmgReduction = dmgReduction;

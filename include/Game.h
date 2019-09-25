@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#define _WIN32_WINNT 0x0500
 #include <iostream>
 #include <algorithm>
 #include <cctype>
@@ -13,7 +14,6 @@
 #include "Inventory.h"
 #include "LevelList.h"
 #include "Perk.h"
-#define _WIN32_WINNT 0x0500
 #include "Bracelet.h"
 #include "Saver.h"
 #include "Loader.h"
