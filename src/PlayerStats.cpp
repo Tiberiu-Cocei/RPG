@@ -47,6 +47,8 @@ bool PlayerStats::take_damage(int attack, int strength, int luck, int dmgBonus, 
         if(get_current_health_points() <= 0) {
             std::cout<<" damage and have died.\n";
             set_current_health_points(0);
+            std::string pauseGame;
+            std::getline(std::cin, pauseGame); //prevents console from closing instantly
             return true;
         }
         std::cout<<" damage and have " + std::to_string(get_current_health_points()) + " health points left.\n";
