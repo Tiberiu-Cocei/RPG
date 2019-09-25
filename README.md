@@ -1,5 +1,6 @@
 # King's Trial
 A text-based RPG. It has four levels, with each level having different enemies, items and special rooms.  
+
 A player has the following stats:  
   - **Health points**: when it reaches 0 you lose.
   - **Attack**: the chance of successfully landing an attack.
